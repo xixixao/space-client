@@ -1,5 +1,3 @@
-###global define###
-
 define ['responseInterceptors/responseInterceptors', 'statuses'], (responseInterceptors, statuses) ->
 	'use strict'
 

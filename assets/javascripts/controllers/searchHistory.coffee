@@ -1,5 +1,3 @@
-###global define###
-
 define ['controllers/controllers', 'services/message'], (controllers) ->
 	'use strict'
 

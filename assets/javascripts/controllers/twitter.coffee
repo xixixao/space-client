@@ -1,5 +1,3 @@
-###global define###
-
 define ['controllers/controllers', 'services/twitter'], (controllers) ->
 	'use strict'
 

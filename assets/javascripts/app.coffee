@@ -1,5 +1,3 @@
-###global define###
-
 define [
 	'vendor/angular'
 	'controllers/controllers'
