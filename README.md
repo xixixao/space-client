@@ -1,5 +1,5 @@
 # Angular Fun - Mimosa
-*[https://github.com/CaryLandholt/AngularFun](Original By Cary Landholt)*
+*[Original By Cary Landholt](https://github.com/CaryLandholt/AngularFun)*
 
 *Translated from Grunt to Mimosa*
 
