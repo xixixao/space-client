@@ -14,17 +14,6 @@ exports.startServer = (publicPath, useReload, optimize) ->
   isUniqueName = (name) ->
     (name for person in people when person.name is name).length is 0
 
-  ###
-	open = (command = 'open') ->
-		ostype = require('os').type()
-		command = 'explorer' if ostype is 'Windows_NT'
-		spawn = require('child_process').spawn
-
-		console.log "launching #{url}"
-
-		spawn command, ["http://localhost:3000"]
-	###
-
   app = express()
   server = app.listen 3000, ->
      console.log "Express server listening on port %d in %s mode", server.address().port, app.settings.env

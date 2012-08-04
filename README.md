@@ -1,16 +1,16 @@
-# Angular Fun
-*By Cary Landholt*
+# Angular Fun - Mimosa
+*[https://github.com/CaryLandholt/AngularFun](Original By Cary Landholt)*
 
-*Translated to Mimosa by David Bashford*
+*Translated from Grunt to Mimosa*
 
 ## About
 * This is an attempt to play with the features of [AngularJS](http://angularjs.org/) and leverage the goodness of [RequireJS](http://requirejs.org/)
 * Uses controllers, services, directives, filters, and partials
+* Takes advantage of Mimosa's mimimal configuration and built in RequireJS functionality.
 
 ## Prerequisites
-* Must have [Git](http://git-scm.com/) installed
-* Must have [node.js (at least v0.8.1)](http://nodejs.org/) installed with npm (Node Package Manager)
-* Install the following Node.js modules via the terminal.  This is a one-time task as the `-g` switch will install the modules globally.
+* [node.js (at least v0.8.1)](http://nodejs.org/)
+* Mimosa
   * `npm install -g mimosa`
 
 ## Install Angular Fun
@@ -21,10 +21,12 @@
 
 ## Run Angular Fun
 
-Run Mimosa's watcher with the server turned on.  This will 1) watch your directory structure and compile things on the fly and 2) run a server at port 3000 so you can view your application 3) serve the assets gzipped and 4) reload the application whenever something successfully compiles (live reload).  This will do it without optimizations...
+Run Mimosa's watcher with the server turned on.
 
     $ mimosa watch --server
 
-...and this with optimizations
+This will 1) watch your directory structure and compile things on the fly and 2) run a server at port 3000 so you can view your application 3) serve the assets gzipped and 4) reload the application whenever something successfully compiles (live reload).  This will do it without optimizations and this with optimizations:
 
     $ mimosa watch --server --optimize
+
+r.js minification is currently not working properly, likely due to a bug in uglify since it works fine with optimization turned off.
