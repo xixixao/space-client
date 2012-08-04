@@ -1,34 +1,30 @@
 # Angular Fun
 *By Cary Landholt*
 
+*Translated to Mimosa by David Bashford*
+
 ## About
 * This is an attempt to play with the features of [AngularJS](http://angularjs.org/) and leverage the goodness of [RequireJS](http://requirejs.org/)
 * Uses controllers, services, directives, filters, and partials
-* Uses the RequireJS [text plugin](http://requirejs.org/docs/api.html#text) for directive partials
 
 ## Prerequisites
 * Must have [Git](http://git-scm.com/) installed
 * Must have [node.js (at least v0.8.1)](http://nodejs.org/) installed with npm (Node Package Manager)
 * Install the following Node.js modules via the terminal.  This is a one-time task as the `-g` switch will install the modules globally.
-  * `npm install -g grunt`
+  * `npm install -g mimosa`
 
 ## Install Angular Fun
-Enter the following commands in the terminal.
-* `git clone git://github.com/CaryLandholt/AngularFun.git`
-* `cd AngularFun`
-* `npm install`
-* `grunt`
 
-You are now ready to run the app.
-However, if you wish to run the app with optimizations (minification, etc.) turned on, enter the following command in the terminal.
-`grunt prod`
+    $ git clone git://github.com/dbashford/AngularFun.git
+    $ cd AngularFun
+    $ npm install
 
-## Run It
-* Navigate to the root of the project
-* `grunt server`
+## Run Angular Fun
 
-## Making Changes
-* `grunt dev` will watch for any CoffeeScript (.coffee), Less (.less), or .template file changes.  When changes are detected, the files will be linted and compiled.
+Run Mimosa's watcher with the server turned on.  This will 1) watch your directory structure and compile things on the fly and 2) run a server at port 3000 so you can view your application 3) serve the assets gzipped and 4) reload the application whenever something successfully compiles (live reload).  This will do it without optimizations...
 
-## To-Do
-* Finish documentation
+    $ mimosa watch --server
+
+...and this with optimizations
+
+    $ mimosa watch --server --optimize
