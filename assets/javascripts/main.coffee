@@ -5,6 +5,7 @@ require
 	paths:
 	  c:"controllers"
 	  d:"directives"
+	  l18n:"vendor/l18n"
 	shim:
 		'vendor/angular':
 			deps: ['vendor/modernizr']

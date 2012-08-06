@@ -37,6 +37,7 @@
 (function () {
     'use strict';
 
+
     //regexp for reconstructing the master bundle name from parts of the regexp match
     //nlsRegExp.exec("foo/bar/baz/nls/en-ca/foo") gives:
     //["foo/bar/baz/nls/en-ca/foo", "foo/bar/baz/nls/", "/", "/", "en-ca", "foo"]
