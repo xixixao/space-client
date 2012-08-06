@@ -6,6 +6,10 @@ require
 	  c:"controllers"
 	  d:"directives"
 	  l18n:"vendor/l18n"
+	  jquery:[
+	    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js",
+	    "vendor/jquery"
+	  ]
 	shim:
 		'vendor/angular':
 			deps: ['vendor/modernizr']
@@ -16,6 +20,7 @@ require
 	[
 		'app'
 		'l18n!nls/hello'
+		'jquery'
 		'bootstrap'
 		'c/gitHub'
 		'c/people'
@@ -28,9 +33,9 @@ require
 		'filters/twitterfy'
 		'vendor/angular'
 		'responseInterceptors/dispatcher'
-	], (app, hello) ->
+	], (app, hello, $) ->
 
-    console.log hello.hello
+    $('body').append(hello.hello)
 
     app.config ['$routeProvider', ($routeProvider) ->
       $routeProvider
