@@ -1,4 +1,4 @@
-define ['controllers/controllers', 'services/twitter'], (controllers) ->
+define ['c/controllers', 'services/twitter'], (controllers) ->
 	'use strict'
 
 	controllers.controller 'twitter', ['$scope', '$rootScope', '$location', 'twitter', ($scope, $rootScope, $location, service) ->

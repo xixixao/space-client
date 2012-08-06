@@ -1,6 +1,6 @@
 ###global define###
 
-define ['directives/directives', 'templates', 'directives/tabs'], (directives, templates) ->
+define ['d/directives', 'templates', 'd/tabs'], (directives, templates) ->
 	'use strict'
 
 	directives.directive 'tab', [->

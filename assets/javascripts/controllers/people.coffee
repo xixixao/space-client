@@ -1,6 +1,6 @@
 ###global define###
 
-define ['controllers/controllers', 'services/people'], (controllers) ->
+define ['c/controllers', 'services/people'], (controllers) ->
 	'use strict'
 
 	controllers.controller 'people', ['$scope', 'people', ($scope, service) ->

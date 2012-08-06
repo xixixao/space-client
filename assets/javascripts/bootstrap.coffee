@@ -1,4 +1,3 @@
-
 define ['require', 'vendor/angular', 'app'], (require, angular) ->
 	'use strict'
 

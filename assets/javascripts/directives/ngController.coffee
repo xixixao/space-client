@@ -1,6 +1,6 @@
 ###global define###
 
-define ['directives/directives'], (directives) ->
+define ['d/directives'], (directives) ->
 	'use strict'
 
 	directives.directive 'ngController', ['$rootScope', ($rootScope) ->

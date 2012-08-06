@@ -1,4 +1,4 @@
-define ['controllers/controllers', 'services/message'], (controllers) ->
+define ['c/controllers', 'services/message'], (controllers) ->
 	'use strict'
 
 	controllers.controller 'searchHistory', ['$scope', 'message', ($scope, service) ->

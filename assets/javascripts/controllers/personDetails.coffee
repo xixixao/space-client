@@ -1,4 +1,4 @@
-define ['controllers/controllers', 'services/people'], (controllers) ->
+define ['c/controllers', 'services/people'], (controllers) ->
 	'use strict'
 
 	controllers.controller 'personDetails', ['$scope', '$rootScope', 'people', ($scope, $rootScope, service) ->
