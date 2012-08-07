@@ -7,7 +7,7 @@ require
 	  d:"directives"
 	  l18n:"vendor/l18n"
 	  jquery:[
-	    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js",
+	    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min",
 	    "vendor/jquery"
 	  ]
 	shim:
@@ -35,7 +35,7 @@ require
 		'responseInterceptors/dispatcher'
 	], (app, hello, $) ->
 
-    $('body').append(hello.hello)
+    $('body').append('Localized hello ==> ' + hello.hello)
 
     app.config ['$routeProvider', ($routeProvider) ->
       $routeProvider
