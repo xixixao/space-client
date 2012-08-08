@@ -1,39 +1,39 @@
 require
-	map:
-		'*':
-			'vendor/angularResource': 'vendor/angular-resource'
-	paths:
-	  c:"controllers"
-	  d:"directives"
-	  l18n:"vendor/l18n"
-	  jquery:[
-	    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min",
-	    "vendor/jquery"
-	  ]
-	shim:
-		'vendor/angular':
-			deps: ['vendor/modernizr']
-			exports: 'angular'
-		'vendor/angular-resource': ['vendor/angular']
-		'vendor/modernizr':
-			exports: 'Modernizr'
-	[
-		'app'
-		'l18n!nls/hello'
-		'jquery'
-		'bootstrap'
-		'c/gitHub'
-		'c/people'
-		'c/personDetails'
-		'c/searchHistory'
-		'c/twitter'
-		'd/ngController'
-		'd/tab'
-		'd/tabs'
-		'filters/twitterfy'
-		'vendor/angular'
-		'responseInterceptors/dispatcher'
-	], (app, hello, $) ->
+  map:
+    '*':
+      'vendor/angularResource': 'vendor/angular-resource'
+  paths:
+    c:"controllers"
+    d:"directives"
+    l18n:"vendor/l18n"
+    jquery:[
+      "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min",
+      "vendor/jquery"
+    ]
+  shim:
+    'vendor/angular':
+      deps: ['vendor/modernizr']
+      exports: 'angular'
+    'vendor/angular-resource': ['vendor/angular']
+    'vendor/modernizr':
+      exports: 'Modernizr'
+  [
+    'app'
+    'l18n!nls/hello'
+    'jquery'
+    'bootstrap'
+    'c/gitHub'
+    'c/people'
+    'c/personDetails'
+    'c/searchHistory'
+    'c/twitter'
+    'd/ngController'
+    'd/tab'
+    'd/tabs'
+    'filters/twitterfy'
+    'vendor/angular'
+    'responseInterceptors/dispatcher'
+  ], (app, hello, $) ->
 
     $('body').append('Localized hello ==> ' + hello.hello)
 
