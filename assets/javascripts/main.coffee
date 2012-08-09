@@ -6,10 +6,7 @@ require
     c:"controllers"
     d:"directives"
     l18n:"vendor/l18n"
-    jquery:[
-      "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min",
-      "vendor/jquery"
-    ]
+    jquery:"vendor/jquery"
   shim:
     'vendor/angular':
       deps: ['vendor/modernizr']
@@ -58,7 +55,7 @@ require
           changeTab: ($rootScope) ->
             $rootScope.$broadcast 'changeTab#twitter'
       .otherwise
-        redirectTo: '/github/CaryLandholt'
+        redirectTo: '/github/dbashford'
     ]
 
     app.run ['$rootScope', '$log', ($rootScope, $log) ->

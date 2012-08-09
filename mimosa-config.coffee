@@ -9,4 +9,3 @@ exports.config =
   require:
     optimize :
       optimize:'none'    # No idea whatsoever why uglify is jacking up the result
-      wrap:null
