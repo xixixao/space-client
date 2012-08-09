@@ -15,8 +15,8 @@
 
 ## Install Angular Fun
 
-    $ git clone git://github.com/dbashford/AngularFun.git
-    $ cd AngularFun
+    $ git clone git@github.com:dbashford/AngularFunMimosa.git
+    $ cd AngularFunMimosa
     $ npm install
 
 ## Run Angular Fun
