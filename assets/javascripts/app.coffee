@@ -9,7 +9,6 @@ define [
 	], (angular) ->
 	'use strict'
 
-
 	angular.module 'app', [
 		'controllers'
 		'directives'
