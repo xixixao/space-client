@@ -7,5 +7,6 @@ exports.config =
       compileWith: "less"
       extensions: ["less"]
   require:
-    optimize :
-      optimize:'none'    # No idea whatsoever why uglify is jacking up the result
+    optimize:
+      overrides:
+        optimize:'none'    # No idea whatsoever why uglify is jacking up the result

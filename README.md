@@ -6,7 +6,7 @@
 ## About
 * This is an attempt to play with the features of [AngularJS](http://angularjs.org/) and leverage the goodness of [RequireJS](http://requirejs.org/)
 * Uses controllers, services, directives, filters, and partials
-* Takes advantage of Mimosa's mimimal configuration and built in RequireJS functionality.
+* Takes advantage of Mimosa's mimimal configuration ([grunt config](https://github.com/CaryLandholt/AngularFun/blob/master/grunt.js) vs [mimosa config](https://github.com/dbashford/AngularFunMimosa/blob/master/mimosa-config.coffee)) and built in RequireJS functionality.
 
 ## Prerequisites
 * [node.js (at least v0.8.1)](http://nodejs.org/)
