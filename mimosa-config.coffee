@@ -6,7 +6,5 @@ exports.config =
     css:
       compileWith: "less"
       extensions: ["less"]
-  require:
-    optimize:
-      overrides:
-        optimize:'none'    # No idea whatsoever why uglify is jacking up the result
+  minify:
+    exclude:["\.min\.", "main.js"]
