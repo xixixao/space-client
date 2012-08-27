@@ -1,6 +1,6 @@
 ###global define###
 
-define ['vendor/angular', 'services/services', 'services/message', 'vendor/angularResource'], (angular, services) ->
+define ['ang', 'services/services', 'services/message', 'vendor/angularResource'], (angular, services) ->
 	'use strict'
 
 	services.factory 'gitHub', ['$resource', 'message', ($resource, message) ->

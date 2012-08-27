@@ -1,6 +1,6 @@
 ###global define###
 
-define ['vendor/angular', 'services/services', 'vendor/angularResource'], (angular, services) ->
+define ['ang', 'services/services', 'vendor/angularResource'], (angular, services) ->
 	'use strict'
 
 	services.factory 'people', ['$resource', ($resource) ->

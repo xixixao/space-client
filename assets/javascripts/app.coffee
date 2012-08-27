@@ -1,5 +1,5 @@
 define [
-	'vendor/angular'
+	'ang'
 	'c/controllers'
 	'd/directives'
 	'filters/filters'

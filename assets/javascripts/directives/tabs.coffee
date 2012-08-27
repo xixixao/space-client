@@ -1,6 +1,6 @@
 ###global define###
 
-define ['vendor/angular', 'd/directives', 'templates'], (angular, directives, templates) ->
+define ['ang', 'd/directives', 'templates'], (angular, directives, templates) ->
 	'use strict'
 
 	directives.directive 'tabs', [->

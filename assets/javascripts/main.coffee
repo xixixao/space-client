@@ -10,11 +10,12 @@ requirejs.config
     d:"directives"
     l18n:"vendor/l18n"
     jquery:"vendor/jquery"
+    ang:"vendor/angular"
   shim:
-    'vendor/angular':
+    'ang':
       deps: ['vendor/modernizr']
       exports: 'angular'
-    'vendor/angular-resource': ['vendor/angular']
+    'vendor/angular-resource': ['ang']
     'vendor/modernizr':
       exports: 'Modernizr'
 
@@ -32,7 +33,7 @@ requirejs [
     'd/tab'
     'd/tabs'
     'filters/twitterfy'
-    'vendor/angular'
+    'ang'
     'responseInterceptors/dispatcher'
   ], (app, hello, $) ->
 
@@ -99,10 +100,10 @@ require
     l18n:"vendor/l18n"
     jquery:"vendor/jquery"
   shim:
-    'vendor/angular':
+    'ang':
       deps: ['vendor/modernizr']
       exports: 'angular'
-    'vendor/angular-resource': ['vendor/angular']
+    'vendor/angular-resource': ['ang']
     'vendor/modernizr':
       exports: 'Modernizr'
   [
@@ -119,7 +120,7 @@ require
     'd/tab'
     'd/tabs'
     'filters/twitterfy'
-    'vendor/angular'
+    'ang'
     'responseInterceptors/dispatcher'
   ], (app, hello, $) ->
 

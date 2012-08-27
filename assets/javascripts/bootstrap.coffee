@@ -1,4 +1,4 @@
-define ['require', 'vendor/angular', 'app'], (require, angular) ->
+define ['require', 'ang', 'app'], (require, angular) ->
 	'use strict'
 
 	require ['vendor/domReady!'], (document) ->

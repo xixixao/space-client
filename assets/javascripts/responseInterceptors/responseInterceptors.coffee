@@ -1,4 +1,4 @@
-define ['vendor/angular'], (angular) ->
+define ['ang'], (angular) ->
 	'use strict'
 
 	angular.module 'responseInterceptors', []
