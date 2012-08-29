@@ -27,6 +27,4 @@ Run Mimosa's watcher with the server turned on.
 
 This will 1) watch your directory structure and compile things on the fly and 2) run a server at port 3000 so you can view your application 3) serve the assets gzipped and 4) reload the application whenever something successfully compiles (live reload).  This will do it without optimizations and this with optimizations:
 
-    $ mimosa watch --server --optimize
-
-r.js minification is currently not working properly, likely due to a bug in uglify since it works fine with optimization turned off.
+    $ mimosa watch --server --optimize --minify
