@@ -2,9 +2,11 @@
   "name": "Mimosa-LESSCoffeeScriptHTML-BootstrapAngular",
   "version": "0.0.1",
   "dependencies": {
-    "jade": "~0.27.2",
-    "express": "~3.0.0rc3",
-    "gzippo": "~0.1.7",
+    "consolidate": "~0.4.0",
+    "iced-coffee-script": "~1.3.3e",
+    "jade": "~0.26.3",
+    "gzippo": "git://github.com/dbashford/gzippo.git",
+    "express": "~3.0.0beta4",
     "watch-connect": "~0.3.4"
   },
   "engine": "node >= 0.8.1"

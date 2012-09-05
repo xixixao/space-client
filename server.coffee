@@ -1,8 +1,12 @@
 express =        require 'express'
 reloadOnChange = require 'watch-connect'
 gzip =           require 'gzippo'
+engines =       require 'consolidate'
 
-exports.startServer = (publicPath, useReload, optimize) ->
+exports.startServer = (config) ->
+
+  publicPath = config.watch.compiledDir
+  useReload = config.server.useReload
 
   nextId = 0
 
@@ -15,13 +19,14 @@ exports.startServer = (publicPath, useReload, optimize) ->
     (name for person in people when person.name is name).length is 0
 
   app = express()
-  server = app.listen 3000, ->
-     console.log "Express server listening on port %d in %s mode", server.address().port, app.settings.env
+  server = app.listen config.server.port, ->
+     console.log "Express server listening on port %d in %s mode", config.server.port, app.settings.env
 
   app.configure ->
-    app.set 'port', process.env.PORT || 3000
-    app.set 'views', "#{__dirname}/views"
-    app.set 'view engine', 'jade'
+    app.set 'port', config.server.port
+    app.set 'views', config.server.views.path
+    app.engine config.server.views.extension, engines[config.server.views.compileWith]
+    app.set 'view engine', config.server.views.extension
     app.use express.favicon()
     app.use express.bodyParser()
     app.use express.methodOverride()
@@ -29,7 +34,6 @@ exports.startServer = (publicPath, useReload, optimize) ->
       options =
         server:server
         watchdir:publicPath
-        verbose: false
         skipAdding:true
         exclude:["almond\\.js"]
         additionaldirs:["#{__dirname}/views"]
@@ -48,7 +52,7 @@ exports.startServer = (publicPath, useReload, optimize) ->
       env:      process.env.NODE_ENV ? "development"
     (req, res) -> res.render 'index', options
 
-  app.get '/', index(useReload, optimize)
+  app.get '/', index(useReload, config.optimize)
 
   app.get '/people', (req, res) -> res.json people
 
