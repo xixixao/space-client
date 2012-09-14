@@ -1,4 +1,6 @@
-define ['ang'], (angular) ->
-	'use strict'
+define (require) ->
+  'use strict'
 
-	angular.module 'controllers', []
+  angular = require('ang')
+
+  angular.module 'controllers', []

@@ -46,10 +46,9 @@ exports.startServer = (config) ->
 
   index = (useReload, optimize) ->
     options =
-      title:    "Express"
-      reload:   useReload
-      optimize: optimize ? false
-      env:      process.env.NODE_ENV ? "development"
+      reload:    config.server.useReload
+      optimize:  config.optimize ? false
+      cachebust: if process.env.NODE_ENV isnt "production" then "?b=#{(new Date()).getTime()}" else ''
     (req, res) -> res.render 'index', options
 
   app.get '/', index(useReload, config.optimize)

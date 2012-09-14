@@ -7,9 +7,8 @@ html(lang="en")
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width')
 
-    - var url = '/stylesheets/vendor/bootstrap.css'
-    - if (!(env == 'production')) {url += "?d=" + (new Date().getTime())}
-    link(rel='stylesheet', href=url)
+    link(rel='stylesheet', href='/stylesheets/vendor/bootstrap.css' + cachebust)
+    link(rel='stylesheet', href='/stylesheets/styles.css' + cachebust)
 
     if optimize
       script(src='/javascripts/main-built.js')
@@ -33,7 +32,7 @@ html(lang="en")
         p
           | and also&nbsp;
           a(href='https://github.com/dbashford/mimosa', target='_blank') Mimosa
-        p Dynamically loading templates.  Only getting JSON from the server.
+        p Compiles both Stylus and Less (Bootstrap) and CoffeeScript.  2 lines of config.
       .row
         .span8
           tabs

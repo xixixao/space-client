@@ -1,18 +1,22 @@
 ###global define###
 
-define ['d/directives', 'templates', 'd/tabs'], (directives, templates) ->
-	'use strict'
+define (require) ->
+  'use strict'
 
-	directives.directive 'tab', [->
-		link = (scope, element, attrs, controller) ->
-			controller.addTab scope, attrs.tabId
+  directives = require('d/directives')
+  templates = require('templates')
+  require('d/tabs')
 
-		link: link
-		replace: true
-		require: '^tabs'
-		restrict: 'E'
-		scope:
-			caption: '@'
-		template: templates.tab
-		transclude: true
-	]
+  directives.directive 'tab', [->
+    link = (scope, element, attrs, controller) ->
+      controller.addTab scope, attrs.tabId
+
+    link: link
+    replace: true
+    require: '^tabs'
+    restrict: 'E'
+    scope:
+      caption: '@'
+    template: templates.tab
+    transclude: true
+  ]
