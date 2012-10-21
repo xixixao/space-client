@@ -47,11 +47,11 @@ exports.startServer = (config) ->
   index = (useReload, optimize) ->
     options =
       reload:    config.server.useReload
-      optimize:  config.optimize ? false
+      optimize:  config.isOptimize ? false
       cachebust: if process.env.NODE_ENV isnt "production" then "?b=#{(new Date()).getTime()}" else ''
     (req, res) -> res.render 'index', options
 
-  app.get '/', index(useReload, config.optimize)
+  app.get '/', index(useReload, config.isOptimize)
 
   app.get '/people', (req, res) -> res.json people
 
