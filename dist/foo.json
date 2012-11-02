@@ -1,0 +1,23 @@
+{
+  "server": {
+    "useDefaultServer": false,
+    "useReload": false,
+    "path": "./server.coffee",
+    "port": 3000,
+    "base": "",
+    "views": {
+      "compileWith": "jade",
+      "extension": "jade",
+      "path": "./views"
+    }
+  },
+  "watch": {
+    "sourceDir": "./assets",
+    "compiledDir": "./public",
+    "javascriptDir": "javascripts",
+    "exclude": {},
+    "throttle": 0,
+    "compiledJavascriptDir": "./public/javascripts"
+  },
+  "isOptimize": true
+}
