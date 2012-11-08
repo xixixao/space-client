@@ -10,14 +10,14 @@ html(lang="en")
     link(rel='stylesheet', href='/stylesheets/vendor/bootstrap.css' + cachebust)
     link(rel='stylesheet', href='/stylesheets/styles.css' + cachebust)
 
+    if reload
+      script(src='/socket.io/socket.io.js')
+      script(src='/javascripts/reload-client.js')
+
     if optimize
       script(src='/javascripts/main-built.js')
     else
       script(src='/javascripts/vendor/require.js', data-main='/javascripts/main.js')
-
-    if reload
-      script(src='/socket.io/socket.io.js')
-      script(src='/socket-enable.js')
 
   body(ng-cloak='ng-cloak')
     ng:view

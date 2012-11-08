@@ -1,14 +1,9 @@
-express =        require 'express'
-reloadOnChange = require 'watch-connect'
-engines =       require 'consolidate'
+express = require 'express'
+engines = require 'consolidate'
 
 exports.startServer = (config) ->
 
-  publicPath = config.watch.compiledDir
-  useReload = config.server.useReload
-
   nextId = 0
-
   people = [
     {"id": "#{nextId++}", "name": "Saasha", "age": "5"}
     {"id": "#{nextId++}", "name": "Planet", "age": "7"}
@@ -29,32 +24,20 @@ exports.startServer = (config) ->
     app.use express.favicon()
     app.use express.bodyParser()
     app.use express.methodOverride()
-    if useReload
-      options =
-        server:server
-        watchdir:publicPath
-        skipAdding:true
-        exclude:["almond\\.js"]
-        additionaldirs:["#{__dirname}/views"]
-      app.use reloadOnChange(options)
     app.use express.compress()
     app.use app.router
-    app.use express.static(publicPath)
+    app.use express.static(config.watch.compiledDir)
 
   app.configure 'development', ->
     app.use express.errorHandler()
 
-  index = (useReload, optimize) ->
-    options =
-      reload:    config.server.useReload
-      optimize:  config.isOptimize ? false
-      cachebust: if process.env.NODE_ENV isnt "production" then "?b=#{(new Date()).getTime()}" else ''
-    (req, res) -> res.render 'index', options
+  options =
+    reload:    config.liveReload.enabled
+    optimize:  config.isOptimize ? false
+    cachebust: if process.env.NODE_ENV isnt "production" then "?b=#{(new Date()).getTime()}" else ''
 
-  app.get '/', index(useReload, config.isOptimize)
-
+  app.get '/', (req, res) -> res.render 'index', options
   app.get '/people', (req, res) -> res.json people
-
   app.post '/people', (req, res) ->
     name = req.body.name
     message =
@@ -72,3 +55,5 @@ exports.startServer = (config) ->
     id = req.params.id
     current = person for person in people when parseInt(person.id, 10) is parseInt(id, 10)
     res.json current
+
+  server
