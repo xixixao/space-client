@@ -32,7 +32,7 @@ exports.startServer = (config) ->
     app.use express.errorHandler()
 
   options =
-    reload:    config.liveReload.enabled
+    reload:    if config.liveReload?.enabled? then config.liveReload.enabled
     optimize:  config.isOptimize ? false
     cachebust: if process.env.NODE_ENV isnt "production" then "?b=#{(new Date()).getTime()}" else ''
 
