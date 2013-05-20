@@ -1,7 +1,67 @@
-body {
-  background-color #aaa
+body
+  background-color #eee
+
+.container
+  width 100%
+
+.item
+  margin 5px
+  background-color white
+  float left
+  text-decoration none
+
+.item:hover
+  text-decoration none
+
+.item-content
+  background-color #ddd
+  padding 10px
+  width 80px
+  height 80px
+  color #333
+
+  &.color0
+    background-color #fdd
+
+  &.color1
+    background-color #ddf
+
+  &.color2
+    background-color #dfd
+
+
+
+.custom-enter-setup,
+.custom-leave-setup,
+.custom-move-setup {
+  -webkit-transition: 1s linear all;
+  -moz-transition: 1s linear all;
+  -o-transition: 1s linear all;
+  transition: 1s linear all;
+  position:relative;
 }
 
-.hero-unit {
-  padding 20px 60px
+.custom-enter-setup {
+  left:-10px;
+  opacity:0;
+}
+.custom-enter-setup.custom-enter-start {
+  left:0;
+  opacity:1;
+}
+
+.custom-leave-setup {
+  left:0;
+  opacity:1;
+}
+.custom-leave-setup.custom-leave-start {
+  left:-10px;
+  opacity:0;
+}
+
+.custom-move-setup {
+  opacity:0.5;
+}
+.custom-move-setup.custom-move-start {
+  opacity:1;
 }

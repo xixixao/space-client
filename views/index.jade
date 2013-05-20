@@ -19,71 +19,22 @@ html(lang="en")
     else
       script(src='/javascripts/vendor/require.js', data-main='/javascripts/main.js')
 
-  body(ng-cloak='ng-cloak')
-    ng:view
-    .container
-      .hero-unit
-        h1
-          | Playing with&nbsp;
-          a(href='http://angularjs.org', target='_blank') AngularJS
-        p
-          | plus&nbsp;
-          a(href='http://requirejs.org/', target='_blank') RequireJS
-          | &nbsp;and&nbsp;
-          a(href='https://mimosajs.com', target='_blank') Mimosa
-        p Compiles Stylus, Less (Bootstrap), and CoffeeScript and packages app for non-Mimosa use.  4 lines of config.
-        p For optimized goodness try running <pre>mimosa watch -som</pre>
-      .row
-        .span8
-          tabs
-            tab(data-tab-id='twitter', caption='Twitter')
-              section(ng-controller='twitter')
-                .alert.alert-info(ng-show='!searchTerm.length')
-                  h4.alert-heading Heads up!
-                  span Enter Twitter search criteria.
-                form.well.form-search(ng-submit='search(searchTerm)')
-                  input.input-medium.search-query(type='text', ng-model='searchTerm', autofocus='autofocus')
-                  button.btn(type='submit')
-                    i.icon-search
-                    | Search
-                include partials/tweets
 
-            tab(data-tab-id='gitHub', caption='GitHub')
-              section(ng-controller='gitHub')
-                .alert.alert-info(ng-show='!searchTerm.length')
-                  h4.alert-heading Heads up!
-                  span Enter GitHub search criteria.
-                form.well.form-search(ng-submit='search(searchTerm)')
-                  input.input-medium.search-query(type='text', ng-model='searchTerm')
-                  button.btn(type='submit')
-                    i.icon-search
-                    | Search
-                include partials/repos
 
-            tab(data-tab-id='people', caption='People')
-              .row
-                .span4
-                  section(ng-controller='people')
-                    .alert.alert-error(ng-show='!!error')
-                      h4.alert-heading(ng-bind='error.title')
-                      span(ng-bind='error.message')
-                    form.well.form-search(ng-submit='insertPerson(name)')
-                      input.input-medium.search-query(type='text', ng-model='name')
-                      button.btn(type='submit')
-                        i.icon-plus
-                        | Insert
-                      myinput(model='name', kind='text', caption='My Caption', placeholder='Enter something here', help-text='Help me out, bro!')
-                    include partials/people
-                .span4
-                  section(ng-controller='personDetails')
-                    | Age:
-                    span(ng-bind='person.result.age')
-        .span4
-          h2 Search History
-          section(ng-controller='searchHistory')
-            form.well.form-search
-              input.input-medium.search-query(type='text', placeholder='Type filter...', ng-model='query')
-              label(ng-bind-template='Displaying:  {{(searchHistory | filter:query).length}}')
-            ol(ng-hide='!searchHistory.length')
-              li(ng-repeat='item in searchHistory | filter:query | orderBy:\'timeStamp\':true', ng-bind-template='{{item.source}}/{{item.criteria}}')
+  body(ng-cloak='ng-cloak', ng-controller='phoneList')
+    .container-fluid
+      .row-fluid
+        .span2
+          | Search:
+          input(ng-model='query')
+          | Sort by:
+          select(ng-model='orderProp')
+            option(value='name') Alphabetical
+            option(value='age') Newest
+        .span10
+          ul
+            a(ng-repeat='phone in phones | filter:query | orderBy:orderProp', href='{{phone.uri}}').thumbnail.item
+              .item-content(class='color{{phone.color}}', data-ng-animate="'custom'")
+                {{phone.name}}
+                div
 

@@ -1,5 +1,6 @@
 express = require 'express'
 engines = require 'consolidate'
+cloud = require '../cloud/server'
 
 exports.startServer = (config, callback) ->
 
@@ -55,5 +56,7 @@ exports.startServer = (config, callback) ->
     id = req.params.id
     current = person for person in people when parseInt(person.id, 10) is parseInt(id, 10)
     res.json current
+
+  cloud app
 
   callback server
