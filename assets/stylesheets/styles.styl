@@ -1,67 +1,40 @@
-body
-  background-color #eee
+// light theme
+// bg = #fff
+// item = #ddd
 
-.container
-  width 100%
+// border = gray
+// font = #333
 
-.item
-  margin 5px
-  background-color white
-  float left
-  text-decoration none
+// dark theme
+// bg = #111
+// item = #ddd
 
-.item:hover
-  text-decoration none
+// border = #333
+// font = #eee
 
-.item-content
-  background-color #ddd
-  padding 10px
-  width 80px
-  height 80px
-  color #333
+// body
+//   background-color bg
+//   color font
 
-  &.color0
-    background-color #fdd
-
-  &.color1
-    background-color #ddf
-
-  &.color2
-    background-color #dfd
-
-
+@import "components/item"
 
 .custom-enter-setup,
 .custom-leave-setup,
-.custom-move-setup {
-  -webkit-transition: 1s linear all;
-  -moz-transition: 1s linear all;
-  -o-transition: 1s linear all;
-  transition: 1s linear all;
-  position:relative;
-}
+.custom-move-setup
+  transition 1s linear all
+  position relative
 
-.custom-enter-setup {
-  left:-10px;
-  opacity:0;
-}
-.custom-enter-setup.custom-enter-start {
-  left:0;
-  opacity:1;
-}
+.custom-enter-setup
+  opacity 0
+.custom-enter-setup.custom-enter-start
+  opacity 1
 
-.custom-leave-setup {
-  left:0;
-  opacity:1;
-}
-.custom-leave-setup.custom-leave-start {
-  left:-10px;
-  opacity:0;
-}
+.custom-leave-setup
+  opacity 1
+.custom-leave-setup.custom-leave-start
+  opacity 0
 
-.custom-move-setup {
-  opacity:0.5;
-}
-.custom-move-setup.custom-move-start {
-  opacity:1;
-}
+.custom-move-setup
+  opacity 1
+.custom-move-setup.custom-move-start
+  opacity 1
