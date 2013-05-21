@@ -1,14 +1,12 @@
 c0 = #fdd
 c1 = #ddf
 c2 = #dfd
-c0 = #343
-c1 = #334
-c2 = #010
+// c0 = #343
+// c1 = #334
+// c2 = #010
 
 .item
   margin 5px
-  // background-color bg
-  // border-color border
   float left
   text-decoration none
 
@@ -16,11 +14,11 @@ c2 = #010
   text-decoration none
 
 .item-content
-  // background-color item
+  background-color $grayLighter
   padding 10px
   width 80px
   height 80px
-  // color font
+  color $textColor
 
   &.color0
     background-color c0
@@ -30,3 +28,20 @@ c2 = #010
 
   &.color2
     background-color c2
+
+
+.custom-enter-setup,
+.custom-leave-setup,
+  transition 1s linear all
+  position relative
+
+.custom-enter-setup
+  opacity 0
+.custom-enter-setup.custom-enter-start
+  opacity 1
+
+.custom-leave-setup
+  opacity 1
+.custom-leave-setup.custom-leave-start
+  opacity 0
+
