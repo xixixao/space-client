@@ -77,3 +77,13 @@ requirejs [
       $rootScope.$on '$routeChangeSuccess', (event, currentRoute, priorRoute) ->
         $rootScope.$broadcast "#{currentRoute.controller}$routeChangeSuccess", currentRoute, priorRoute
     ]
+
+    $ ->
+      object = field: "value"
+      $.post '/client/', object
+
+
+
+
+
+

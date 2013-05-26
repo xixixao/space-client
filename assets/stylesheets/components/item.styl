@@ -9,6 +9,12 @@ c2 = #dfd
   margin 5px
   float left
   text-decoration none
+  background-color: $dropdownBackground;
+  border: 1px solid $dropdownBorder;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  border-radius(6px);
+  box-shadow 0 1px 3px rgba(0,0,0,.2);
 
 .item:hover
   text-decoration none
@@ -28,20 +34,4 @@ c2 = #dfd
 
   &.color2
     background-color c2
-
-
-.custom-enter-setup,
-.custom-leave-setup,
-  transition 1s linear all
-  position relative
-
-.custom-enter-setup
-  opacity 0
-.custom-enter-setup.custom-enter-start
-  opacity 1
-
-.custom-leave-setup
-  opacity 1
-.custom-leave-setup.custom-leave-start
-  opacity 0
 
