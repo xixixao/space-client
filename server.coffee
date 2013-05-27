@@ -1,6 +1,6 @@
 express = require 'express'
 engines = require 'consolidate'
-cloud = require '../cloud/server'
+
 
 exports.startServer = (config, callback) ->
 
@@ -37,7 +37,11 @@ exports.startServer = (config, callback) ->
     optimize:  config.isOptimize ? false
     cachebust: if process.env.NODE_ENV isnt "production" then "?b=#{(new Date()).getTime()}" else ''
 
-  app.get '/', (req, res) -> res.render 'index', options
+  app.get '/', (req, res) ->
+    res.render 'index', options
+  app.get '/partials/:name', (req, res) ->
+    res.render "partials/#{req.params.name}", options
+
   app.get '/people', (req, res) -> res.json people
   app.post '/people', (req, res) ->
     name = req.body.name
@@ -57,6 +61,5 @@ exports.startServer = (config, callback) ->
     current = person for person in people when parseInt(person.id, 10) is parseInt(id, 10)
     res.json current
 
-  cloud app
 
   callback server

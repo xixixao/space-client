@@ -3,7 +3,7 @@ html(lang="en")
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-    title Angular Demo
+    title Client | Space
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width')
 
@@ -18,45 +18,6 @@ html(lang="en")
     else
       script(src='/javascripts/vendor/require.js', data-main='/javascripts/main.js')
 
-
-
-  body(ng-cloak='ng-cloak', ng-controller='phoneList')
+  body(ng-cloak='ng-cloak')
     .container-fluid
-      .row-fluid
-        .span2.title-container
-          h1 Space
-        .span7.search-bar-container
-          input.search-bar(type='text', ng-model='query')
-        .span3.sort-selector-container
-          select(ng-model='orderProp')
-            option(value='name') Alphabetical
-            option(value='age') Newest
-      .row-fluid
-        .span2
-          ul.dropdown-menu(role='menu', style='display: block; position: static; margin-bottom: 5px; *width: 180px;')
-            li
-              a(href='#') Regular link
-            li.dropdown-submenu
-              a(href='#') More options
-              ul.dropdown-menu
-                li
-                  a A
-                li.dropdown-submenu
-                  a(href='#') More options
-                    ul.dropdown-menu
-                      li
-                        a B
-                      li
-                        a B
-                li
-                  a C
-        .span10
-          ul
-            // data-ng-animate="'custom'"
-            a(ng-repeat='phone in phones | filter:query | orderBy:orderProp', href='{{phone.uri}}').thumbnail.item
-              .item-content(class='color{{phone.color}}')
-                {{phone.name}}
-                div
-          object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
-
-
+      ng:view
