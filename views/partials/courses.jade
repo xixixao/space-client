@@ -11,26 +11,26 @@
   .row-fluid
     .span2
       ul.dropdown-menu(role='menu', style='display: block; position: static; margin-bottom: 5px; *width: 180px;')
-        li
-          a(href='#') Regular link
-        li.dropdown-submenu
-          a(href='#') More options
-          ul.dropdown-menu
-            li
-              a A
-            li.dropdown-submenu
-              a(href='#') More options
-                ul.dropdown-menu
-                  li
-                    a B
-                  li
-                    a B
-            li
-              a C
+        li(ng-repeat='course in courses | orderBy:"name"')
+          a(href='{{course.url}}') {{course.name}}
+
+        // li.dropdown-submenu
+        //   a(href='#') More options
+        //   ul.dropdown-menu
+        //     li
+        //       a A
+        //     li.dropdown-submenu
+        //       a(href='#') More options
+        //         ul.dropdown-menu
+        //           li
+        //             a B
+        //           li
+        //             a B
+        //     li
+        //       a C
     .span10
       ul
-        a(ng-repeat='phone in phones | filter:query | orderBy:orderProp', href='{{phone.uri}}').thumbnail.item
-          .item-content(class='color{{phone.color}}')
-            {{phone.name}}
-            div
+        a(ng-repeat='file in files', href='{{file.uri}}').thumbnail.item
+          .item-content
+            {{file.name}}
       // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')

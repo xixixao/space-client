@@ -1,9 +1,10 @@
-define ['c/controllers', 'services/courses'], (controllers) ->
+define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
   'use strict'
 
-  controllers.controller 'courses', ['$scope', 'courses', ($scope, service) ->
-    $scope.name = ''
-    $scope.courses = service.courses
+  controllers.controller 'courses', ['$scope', 'user', ($scope, service) ->
+    $scope.courses = service.courses()
+    allFiles = new Fuse service.files(), keys: ['name']
 
-    #service.get()
+    $scope.$watch 'query', (query = "") ->
+      $scope.files = allFiles.search query
   ]

@@ -1,23 +1,21 @@
-define ['c/controllers', 'services/login'], (controllers) ->
+define ['c/controllers', 'services/fakeuser'], (controllers) ->
   'use strict'
 
   controllers.controller 'login', [
     '$scope'
     '$http'
     '$location'
-    ($scope, $http, $location) ->
+    'user'
+    ($scope, $http, $location, service) ->
 
       $scope.error = ''
       $scope.values = {}
 
-      URL = '/api/login'
-
       $scope.login = ->
         console.log "Loginning in %o", $scope.values
-        #$http.post(URL, $scope.values)
-        #.success (data) ->
-        #  $location.path('/');
-        #.error (error) ->
-        #  $scope.error = error
-        $location.path '/home'
+        service.login($scope.values)
+        .success (data) ->
+          $location.path '/home'
+        .error (error) ->
+          $scope.error = error
   ]
