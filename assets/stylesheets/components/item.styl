@@ -6,8 +6,8 @@ c2 = #dfd
 // c2 = #010
 
 .item
-  margin 5px
-  float left
+  margin 5px 0px
+  width: 300px
   text-decoration none
   background-color: $dropdownBackground;
   border: 1px solid $dropdownBorder;
@@ -16,14 +16,15 @@ c2 = #dfd
   border-radius(6px);
   box-shadow 0 1px 3px rgba(0,0,0,.2);
 
-.item:hover
-  text-decoration none
+  &:hover
+    text-decoration none
+.item.current-active
+  background-color red
 
 .item-content
   background-color $grayLighter
   padding 10px
-  width 80px
-  height 80px
+  height 18px
   color $textColor
 
   &.color0

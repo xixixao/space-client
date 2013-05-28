@@ -3,7 +3,7 @@
     .span2.title-container
       h1 Space
     .span7.search-bar-container
-      input.search-bar(type='text', ng-model='query', focus-in)
+      input.search-bar(type='text', ng-model='query', focus-in, ng-keypress='scroll($event)')
     .span3.sort-selector-container
       select(ng-model='orderProp')
         option(value='name') Alphabetical
@@ -30,7 +30,7 @@
         //       a C
     .span10
       ul
-        a(ng-repeat='file in files', href='{{file.uri}}').thumbnail.item
+        a.thumbnail.item(ng-repeat='file in files', href='{{file.uri}}', ng-class='file.active', ng-mouseover='activate($index)', ng-click='open($index)')
           .item-content
             {{file.name}}
       // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')

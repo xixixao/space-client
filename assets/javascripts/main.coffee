@@ -24,6 +24,7 @@ requirejs [
   'bootstrap'
   'c/login'
   'c/courses'
+  'c/file'
   'd/ngController'
   'd/tab'
   'd/tabs'
@@ -40,6 +41,9 @@ requirejs [
         .when '/home',
           controller: 'courses'
           templateUrl: 'partials/courses'
+        .when '/file/:file',
+          controller: 'file'
+          templateUrl: 'partials/file'
         .otherwise
           redirectTo: '/login'
     ]
