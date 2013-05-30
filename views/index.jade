@@ -23,15 +23,11 @@ html(lang="en")
 
     script(type='text/javascript', src='/javascripts/vendor/compatibility.js')
 
-    link(rel='resource', type='application/l10n', href='/javascripts/vendor/locale/locale.properties')
+    link(rel='resource', type='application/l10n', href='/locale/locale.properties')
     script(type='text/javascript', src='/javascripts/vendor/l10n.js')
     script(type='text/javascript', src='/javascripts/vendor/pdf.js')
 
-    script(type='text/javascript')
-      PDFJS.workerSrc = '/javascripts/vendor/worker_loader.js';
-
     script(type='text/javascript', src='/javascripts/vendor/debugger.js')
-    script(type='text/javascript', src='/javascripts/viewer.js')
 
   body(ng-cloak='ng-cloak')
     .container-fluid

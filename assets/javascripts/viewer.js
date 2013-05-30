@@ -16,9 +16,11 @@
  */
 /* globals PDFJS, PDFBug, FirefoxCom, Stats */
 
+define([], function () {
+
 'use strict';
 
-var DEFAULT_URL = 'compressed.tracemonkey-pldi-09.pdf';
+var DEFAULT_URL = '/files/ch5.pdf';
 var DEFAULT_SCALE = 'auto';
 var DEFAULT_SCALE_DELTA = 1.1;
 var UNKNOWN_SCALE = 0;
@@ -43,7 +45,7 @@ var FindStates = {
 };
 
 //#if (FIREFOX || MOZCENTRAL || B2G || GENERIC || CHROME)
-//PDFJS.workerSrc = '../build/pdf.js';
+PDFJS.workerSrc = '/javascripts/vendor/pdf.js';
 //#endif
 
 var mozL10n = document.mozL10n || document.webL10n;
@@ -954,7 +956,6 @@ var PDFView = {
   // Helper function to keep track whether a div was scrolled up or down and
   // then call a callback.
   watchScroll: function pdfViewWatchScroll(viewAreaElement, state, callback) {
-    debugger;
     state.down = true;
     state.lastY = viewAreaElement.scrollTop;
     viewAreaElement.addEventListener('scroll', function webViewerScroll(evt) {
@@ -3312,16 +3313,17 @@ var TextLayerBuilder = function textLayerBuilder(textLayerDiv, pageIdx) {
   };
 };
 
-//document.addEventListener('DOMContentLoaded', function (evt) {
-//  setTimeout(function (){ webViewerLoad(evt); }, 2000);
-//}
+document.addEventListener('DOMContentLoaded', function (evt) {
+  //setTimeout(function (){ webViewerLoad(evt); }, 3000);
+  //webViewerLoad(evt);
+}, true);
 
-document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
+function webViewerLoad(fileLocation) {
   PDFView.initialize();
   var params = PDFView.parseQueryString(document.location.search.substring(1));
 
 //#if !(FIREFOX || MOZCENTRAL)
-  var file = params.file || DEFAULT_URL;
+  var file = fileLocation || params.file || DEFAULT_URL;
 //#else
 //var file = window.location.toString()
 //#endif
@@ -3606,7 +3608,7 @@ document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
 //#if !B2G
   PDFView.open(file, 0);
 //#endif
-}, true);
+}
 
 function updateViewarea() {
 
@@ -4060,3 +4062,8 @@ window.addEventListener('afterprint', function afterPrint(evt) {
 //  });
 //});
 //#endif
+
+
+return {loadFile: webViewerLoad};
+
+});

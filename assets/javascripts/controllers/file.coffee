@@ -1,4 +1,4 @@
-define ['c/controllers', 'services/fakeuser', 'viewer'], (controllers) ->
+define ['c/controllers',  'viewer', 'services/fakeuser'], (controllers, PDFViewer) ->
   'use strict'
 
   controllers.controller 'file', [
@@ -13,4 +13,6 @@ define ['c/controllers', 'services/fakeuser', 'viewer'], (controllers) ->
       #  console.log data
       #.error (error) ->
       #  $scope.error = error
+
+      PDFViewer.loadFile 'files/ch5.pdf'
   ]
