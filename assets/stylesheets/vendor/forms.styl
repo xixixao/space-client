@@ -7,18 +7,18 @@
 // --------------
 
 // Make all forms have space below them
-form {
+.tb form {
   margin: 0 0 $baseLineHeight;
 }
 
-fieldset {
+.tb fieldset {
   padding: 0;
   margin: 0;
   border: 0;
 }
 
 // Groups of fields with labels on top (legends)
-legend {
+.tb legend {
   display: block;
   width: 100%;
   padding: 0;
@@ -37,22 +37,23 @@ legend {
 }
 
 // Set font for forms
-label,
-input,
-button,
-select,
-textarea {
+.tb label,
+.tb input,
+.tb button,
+.tb select,
+.tb textarea {
   fontShorthand($baseFontSize,normal,$baseLineHeight); // Set size, weight, line-height here
 }
-input,
-button,
-select,
-textarea {
+
+.tb input,
+.tb button,
+.tb select,
+.tb textarea {
   font-family: $baseFontFamily; // And only set font-family here for those that need it (note the missing label element)
 }
 
 // Identify controls by their labels
-label {
+.tb label {
   display: block;
   margin-bottom: 5px;
 }
@@ -61,23 +62,23 @@ label {
 // -------------------------
 
 // Shared size and type resets
-select,
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
+.tb select,
+.tb textarea,
+.tb input[type="text"],
+.tb input[type="password"],
+.tb input[type="datetime"],
+.tb input[type="datetime-local"],
+.tb input[type="date"],
+.tb input[type="month"],
+.tb input[type="time"],
+.tb input[type="week"],
+.tb input[type="number"],
+.tb input[type="email"],
+.tb input[type="url"],
+.tb input[type="search"],
+.tb input[type="tel"],
+.tb input[type="color"],
+.tb .uneditable-input {
   display: inline-block;
   height: $baseLineHeight;
   padding: 4px 6px;
@@ -91,32 +92,32 @@ input[type="color"],
 
 // Reset appearance properties for textual inputs and textarea
 // Declare width for legacy (can't be on input[type=*] selectors or it's too specific)
-input,
-textarea,
-.uneditable-input {
+.tb input,
+.tb textarea,
+.tb .uneditable-input {
   width: 206px; // plus 12px padding and 2px border
 }
 // Reset height since textareas have rows
-textarea {
+.tb textarea {
   height: auto;
 }
 // Everything else
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
+.tb textarea,
+.tb input[type="text"],
+.tb input[type="password"],
+.tb input[type="datetime"],
+.tb input[type="datetime-local"],
+.tb input[type="date"],
+.tb input[type="month"],
+.tb input[type="time"],
+.tb input[type="week"],
+.tb input[type="number"],
+.tb input[type="email"],
+.tb input[type="url"],
+.tb input[type="search"],
+.tb input[type="tel"],
+.tb input[type="color"],
+.tb .uneditable-input {
   background-color: $inputBackground;
   border: 1px solid $inputBorder;
   box-shadow inset 0 1px 1px rgba(0,0,0,.075);
@@ -132,8 +133,8 @@ input[type="color"],
 }
 
 // Position radios and checkboxes better
-input[type="radio"],
-input[type="checkbox"] {
+.tb input[type="radio"],
+.tb input[type="checkbox"] {
   margin: 4px 0 0;
   *margin-top: 0; /* IE7 */
   margin-top: 1px \9; /* IE8-9 */
@@ -141,42 +142,42 @@ input[type="checkbox"] {
 }
 
 // Reset width of input images, buttons, radios, checkboxes
-input[type="file"],
-input[type="image"],
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-input[type="radio"],
-input[type="checkbox"] {
+.tb input[type="file"],
+.tb input[type="image"],
+.tb input[type="submit"],
+.tb input[type="reset"],
+.tb input[type="button"],
+.tb input[type="radio"],
+.tb input[type="checkbox"] {
   width: auto; // Override of generic input selector
 }
 
 // Set the height of select and file controls to match text inputs
-select,
-input[type="file"] {
+.tb select,
+.tb input[type="file"] {
   height: $inputHeight; /* In IE7, the height of the select element cannot be changed by height, only font-size */
   *margin-top: 4px; /* For IE7, add top margin to align select with labels */
   line-height: $inputHeight;
 }
 
 // Make select elements obey height by applying a border
-select {
+.tb select {
   width: 220px; // default input width + 10px of padding that doesn't get applied
   border: 1px solid $inputBorder;
   background-color: $inputBackground; // Chrome on Linux and Mobile Safari need background-color
 }
 
 // Make multiple select elements height not fixed
-select[multiple],
-select[size] {
+.tb select[multiple],
+.tb select[size] {
   height: auto;
 }
 
 // Focus for select, file, radio, and checkbox
-select:focus,
-input[type="file"]:focus,
-input[type="radio"]:focus,
-input[type="checkbox"]:focus {
+.tb select:focus,
+.tb input[type="file"]:focus,
+.tb input[type="radio"]:focus,
+.tb input[type="checkbox"]:focus {
   tab-focus();
 }
 
@@ -185,8 +186,8 @@ input[type="checkbox"]:focus {
 // -------------------------
 
 // Make uneditable inputs look inactive
-.uneditable-input,
-.uneditable-textarea {
+.tb .uneditable-input,
+.tb .uneditable-textarea {
   color: $grayLight;
   background-color: darken($inputBackground, 1%);
   border-color: $inputBorder;
@@ -195,13 +196,13 @@ input[type="checkbox"]:focus {
 }
 
 // For text that needs to appear as an input but should not be an input
-.uneditable-input {
+.tb .uneditable-input {
   overflow: hidden; // prevent text from wrapping, but still cut it off like an input does
   white-space: nowrap;
 }
 
 // Make uneditable textareas behave like a textarea
-.uneditable-textarea {
+.tb .uneditable-textarea {
   width: auto;
   height: auto;
 }
@@ -211,8 +212,8 @@ input[type="checkbox"]:focus {
 // -------------------------
 
 // Placeholder text gets special styles because when browsers invalidate entire lines if it doesn't understand a selector
-input,
-textarea {
+.tb input,
+.tb textarea {
   placeholder();
 }
 
@@ -324,20 +325,20 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
 // --------------
 
 // Disabled and read-only inputs
-input[disabled],
-select[disabled],
-textarea[disabled],
-input[readonly],
-select[readonly],
-textarea[readonly] {
+.tb input[disabled],
+.tb select[disabled],
+.tb textarea[disabled],
+.tb input[readonly],
+.tb select[readonly],
+.tb textarea[readonly] {
   cursor: not-allowed;
   background-color: $inputDisabledBackground;
 }
 // Explicitly reset the colors here
-input[type="radio"][disabled],
-input[type="checkbox"][disabled],
-input[type="radio"][readonly],
-input[type="checkbox"][readonly] {
+.tb input[type="radio"][disabled],
+.tb input[type="checkbox"][disabled],
+.tb input[type="radio"][readonly],
+.tb input[type="checkbox"][readonly] {
   background-color: transparent;
 }
 
@@ -366,9 +367,9 @@ input[type="checkbox"][readonly] {
 
 // HTML5 invalid states
 // Shares styles with the .control-group.error above
-input:focus:invalid,
-textarea:focus:invalid,
-select:focus:invalid {
+.tb input:focus:invalid,
+.tb textarea:focus:invalid,
+.tb select:focus:invalid {
   color: #b94a48;
   border-color: #ee5f5b;
   &:focus {
@@ -428,16 +429,16 @@ select:focus:invalid {
   white-space: nowrap; // Prevent span and input from separating
 
   // Reset the white space collapse hack
-  input,
-  select,
+  .tb input,
+  .tb select,
   .uneditable-input,
   .dropdown-menu,
   .popover {
     font-size: $baseFontSize;
   }
 
-  input,
-  select,
+  .tb input,
+  .tb select,
   .uneditable-input {
     position: relative; // placed here by default so that on :focus we can place the input above the .add-on for full border and box-shadow goodness
     margin-bottom: 0; // prevent bottom margin from screwing up alignment in stacked forms
@@ -488,8 +489,8 @@ select:focus:invalid {
 }
 
 .input-append {
-  input,
-  select,
+  .tb input,
+  .tb select,
   .uneditable-input {
     border-radius($inputBorderRadius 0 0 $inputBorderRadius);
     + .btn-group .btn:last-child {
@@ -510,8 +511,8 @@ select:focus:invalid {
 
 // Remove all border-radius for inputs with both prepend and append
 .input-prepend.input-append {
-  input,
-  select,
+  .tb input,
+  .tb select,
   .uneditable-input {
     border-radius(0);
     + .btn-group .btn {

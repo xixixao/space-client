@@ -1,16 +1,17 @@
-.login-box
-  .offset4.span4.login-form-container
-    .row
-      form.login-form.form-horizontal
-        .row.login-inputs
-          .control-group
-            label.control-label Username
-            .controls
-              input.login-value-username(type='text', name='username', ng-model='values.username', focus-in)
-          .control-group
-            label.control-label Password
-            .controls
-              input.login-value-password(type='password', name='password', ng-model='values.password')
-    .row.text-center
-        p
-          button.btn.btn-large.btn-primary.login-button(ng-click='login()') Login
+.login-box.tb
+  .row-fluid
+    .offset4.span4.login-form-container
+      .row
+        form.login-form.form-horizontal
+          .row.login-inputs
+            .control-group
+              label.control-label Username
+              .controls
+                input.login-value-username(type='text', name='username', ng-model='values.username', focus-in)
+            .control-group
+              label.control-label Password
+              .controls
+                input.login-value-password(type='password', name='password', ng-model='values.password')
+      .row.text-center
+          p
+            button.btn.btn-large.btn-primary.login-button(ng-click='login()') Login

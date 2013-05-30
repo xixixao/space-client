@@ -362,11 +362,13 @@ hyphens(mode = auto) {
   vendor('hyphens', mode);
 }
 
-// Opacity
-opacity(opacity) {
-  opacity: (opacity/100);
-  filter: 'alpha(opacity=%s)' % opacity;
-}
+//TODO: find out where this breaks pdf-viewer (hides buttons and thumbnails)
+
+// // Opacity
+// opacity(opacity) {
+//   opacity: (opacity/100);
+//   filter: 'alpha(opacity=%s)' % opacity;
+// }
 
 
 
