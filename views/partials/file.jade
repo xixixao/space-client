@@ -1,1 +1,131 @@
 h1 Hello
+
+.pdf-viewer-control(tabindex='1')
+  #pdf-outerContainer.pdf-loadingInProgress
+    #pdf-sidebarContainer
+      #pdf-toolbarSidebar
+        .pdf-splitToolbarButton.pdf-toggled
+          button#pdf-viewThumbnail.pdf-toolbarButton.pdf-group.pdf-toggled(title='Show Thumbnails', tabindex='2', data-l10n-id='thumbs')
+            span(data-l10n-id='thumbs_label') Thumbnails
+          button#pdf-viewOutline.pdf-toolbarButton.pdf-group(title='Show Document Outline', tabindex='3', data-l10n-id='outline')
+            span(data-l10n-id='outline_label') Document Outline
+      #pdf-sidebarContent
+        #pdf-thumbnailView
+        #pdf-outlineView.pdf-hidden
+
+    #pdf-secondaryToolbar.pdf-secondaryToolbar.pdf-doorHangerRight
+      #pdf-secondaryToolbarButtonContainer
+        button#pdf-secondaryPresentationMode.pdf-secondaryToolbarButton.pdf-presentationMode.pdf-visibleLargeView(title='Switch to Presentation Mode', tabindex='18', data-l10n-id='presentation_mode')
+          span(data-l10n-id='presentation_mode_label') Presentation Mode
+        button#pdf-secondaryOpenFile.pdf-secondaryToolbarButton.pdf-openFile.pdf-visibleLargeView(title='Open File', tabindex='19', data-l10n-id='open_file')
+          span(data-l10n-id='open_file_label') Open
+        button#pdf-secondaryPrint.pdf-secondaryToolbarButton.pdf-print.pdf-visibleMediumView(title='Print', tabindex='20', data-l10n-id='print')
+          span(data-l10n-id='print_label') Print
+        button#pdf-secondaryDownload.pdf-secondaryToolbarButton.pdf-download.pdf-visibleMediumView(title='Download', tabindex='21', data-l10n-id='download')
+          span(data-l10n-id='download_label') Download
+        .pdf-horizontalToolbarSeparator.pdf-visibleLargeView
+        button#pdf-firstPage.pdf-secondaryToolbarButton.pdf-firstPage(title='Go to First Page', tabindex='22', data-l10n-id='first_page')
+          span(data-l10n-id='first_page_label') Go to First Page
+        button#pdf-lastPage.pdf-secondaryToolbarButton.pdf-lastPage(title='Go to Last Page', tabindex='23', data-l10n-id='last_page')
+          span(data-l10n-id='last_page_label') Go to Last Page
+        .pdf-horizontalToolbarSeparator
+        button#pdf-pageRotateCcw.pdf-secondaryToolbarButton.pdf-rotateCcw(title='Rotate Counterclockwise', tabindex='24', data-l10n-id='page_rotate_ccw')
+          span(data-l10n-id='page_rotate_ccw_label') Rotate Counterclockwise
+        button#pdf-pageRotateCw.pdf-secondaryToolbarButton.pdf-rotateCw(title='Rotate Clockwise', tabindex='25', data-l10n-id='page_rotate_cw')
+          span(data-l10n-id='page_rotate_cw_label') Rotate Clockwise
+
+    #pdf-mainContainer
+      #pdf-findbar.pdf-findbar.pdf-hidden.pdf-doorHanger.pdf-hiddenSmallView
+        label.pdf-toolbarLabel(for='findInput', data-l10n-id='find_label') Find:
+        input#pdf-findInput.pdf-toolbarField(tabindex='41')
+        .pdf-splitToolbarButton
+          button#pdf-findPrevious.pdf-toolbarButton.pdf-findPrevious(title='', tabindex='42', data-l10n-id='find_previous')
+            span(data-l10n-id='find_previous_label') Previous
+          .pdf-splitToolbarButtonSeparator
+          button#pdf-findNext.pdf-toolbarButton.pdf-findNext(title='', tabindex='43', data-l10n-id='find_next')
+            span(data-l10n-id='find_next_label') Next
+        input#pdf-findHighlightAll.pdf-toolbarField(type='checkbox')
+        label.pdf-toolbarLabel(for='findHighlightAll', tabindex='44', data-l10n-id='find_highlight') Highlight all
+        input#pdf-findMatchCase.pdf-toolbarField(type='checkbox')
+        label.pdf-toolbarLabel(for='findMatchCase', tabindex='45', data-l10n-id='find_match_case_label') Match case
+        span#pdf-findMsg.pdf-toolbarLabel
+      .pdf-toolbar
+        #pdf-toolbarContainer
+          #pdf-toolbarViewer
+            #pdf-toolbarViewerLeft
+              button#pdf-sidebarToggle.pdf-toolbarButton(title='Toggle Sidebar', tabindex='4', data-l10n-id='toggle_sidebar')
+                span(data-l10n-id='toggle_sidebar_label') Toggle Sidebar
+              .pdf-toolbarButtonSpacer
+              button#pdf-viewFind.pdf-toolbarButton.pdf-group.pdf-hiddenSmallView(title='Find in Document', tabindex='5', data-l10n-id='findbar')
+                span(data-l10n-id='findbar_label') Find
+              .pdf-splitToolbarButton
+                button#pdf-previous.pdf-toolbarButton.pdf-pageUp(title='Previous Page', tabindex='6', data-l10n-id='previous')
+                  span(data-l10n-id='previous_label') Previous
+                .pdf-splitToolbarButtonSeparator
+                button#pdf-next.pdf-toolbarButton.pdf-pageDown(title='Next Page', tabindex='7', data-l10n-id='next')
+                  span(data-l10n-id='next_label') Next
+              label#pdf-pageNumberLabel.pdf-toolbarLabel(for='pageNumber', data-l10n-id='page_label') Page:
+              input#pdf-pageNumber.pdf-toolbarField.pdf-pageNumber(type='number', value='1', size='4', min='1', tabindex='8')
+              span#pdf-numPages.pdf-toolbarLabel
+            #pdf-toolbarViewerRight
+              input#pdf-fileInput.pdf-fileInput(type='file', oncontextmenu='return false;', style='visibility: hidden; position: fixed; right: 0; top: 0;')
+              button#pdf-presentationMode.pdf-toolbarButton.pdf-presentationMode.pdf-hiddenLargeView(title='Switch to Presentation Mode', tabindex='12', data-l10n-id='presentation_mode')
+                span(data-l10n-id='presentation_mode_label') Presentation Mode
+              button#pdf-openFile.pdf-toolbarButton.pdf-openFile.pdf-hiddenLargeView(title='Open File', tabindex='13', data-l10n-id='open_file')
+                span(data-l10n-id='open_file_label') Open
+              button#pdf-print.pdf-toolbarButton.pdf-print.pdf-hiddenMediumView(title='Print', tabindex='14', data-l10n-id='print')
+                span(data-l10n-id='print_label') Print
+              button#pdf-download.pdf-toolbarButton.pdf-download.pdf-hiddenMediumView(title='Download', tabindex='15', data-l10n-id='download')
+                span(data-l10n-id='download_label') Download
+
+              // <div class="toolbarButtonSpacer"></div>
+
+              a#pdf-viewBookmark.pdf-toolbarButton.pdf-bookmark.pdf-hiddenSmallView(href='#', title='Current view (copy or open in new window)', tabindex='16', data-l10n-id='bookmark')
+                span(data-l10n-id='bookmark_label') Current View
+              .pdf-verticalToolbarSeparator.pdf-hiddenSmallView
+              button#pdf-secondaryToolbarToggle.pdf-toolbarButton(title='Tools', tabindex='17', data-l10n-id='tools')
+                span(data-l10n-id='tools_label') Tools
+            .pdf-outerCenter
+              #pdf-toolbarViewerMiddle.pdf-innerCenter
+                .pdf-splitToolbarButton
+                  button#pdf-zoomOut.pdf-toolbarButton.pdf-zoomOut(title='Zoom Out', tabindex='9', data-l10n-id='zoom_out')
+                    span(data-l10n-id='zoom_out_label') Zoom Out
+                  .pdf-splitToolbarButtonSeparator
+                  button#pdf-zoomIn.pdf-toolbarButton.pdf-zoomIn(title='Zoom In', tabindex='10', data-l10n-id='zoom_in')
+                    span(data-l10n-id='zoom_in_label') Zoom In
+                span#pdf-scaleSelectContainer.pdf-dropdownToolbarButton
+                  select#pdf-scaleSelect(title='Zoom', oncontextmenu='return false;', tabindex='11', data-l10n-id='zoom')
+                    option#pdf-pageAutoOption(value='auto', selected='selected', data-l10n-id='page_scale_auto') Automatic Zoom
+                    option#pdf-pageActualOption(value='page-actual', data-l10n-id='page_scale_actual') Actual Size
+                    option#pdf-pageFitOption(value='page-fit', data-l10n-id='page_scale_fit') Fit Page
+                    option#pdf-pageWidthOption(value='page-width', data-l10n-id='page_scale_width') Full Width
+                    option#pdf-customScaleOption(value='custom')
+                    option(value='0.pdf-5') 50%
+                    option(value='0.pdf-75') 75%
+                    option(value='1') 100%
+                    option(value='1.pdf-25') 125%
+                    option(value='1.pdf-5') 150%
+                    option(value='2') 200%
+          #pdf-loadingBar
+            .pdf-progress
+              .pdf-glimmer
+      menu#pdf-viewerContextMenu(type='context')
+        menuitem#pdf-contextFirstPage(label='First Page', data-l10n-id='first_page')
+        menuitem#pdf-contextLastPage(label='Last Page', data-l10n-id='last_page')
+        menuitem#pdf-contextPageRotateCcw(label='Rotate Counter-Clockwise', data-l10n-id='page_rotate_ccw')
+        menuitem#pdf-contextPageRotateCw(label='Rotate Clockwise', data-l10n-id='page_rotate_cw')
+      #pdf-viewerContainer
+        #pdf-viewer
+      #pdf-errorWrapper(hidden='true')
+        #pdf-errorMessageLeft
+          span#pdf-errorMessage
+          button#pdf-errorShowMore(onclick='', oncontextmenu='return false;', data-l10n-id='error_more_info')
+            | More Information
+          button#pdf-errorShowLess(onclick='', oncontextmenu='return false;', data-l10n-id='error_less_info', hidden='true')
+            | Less Information
+        #pdf-errorMessageRight
+          button#pdf-errorClose(oncontextmenu='return false;', data-l10n-id='error_close')
+            | Close
+        .pdf-clearBoth
+        textarea#pdf-errorMoreInfo(hidden='true', readonly='readonly')
+  #pdf-printContainer
