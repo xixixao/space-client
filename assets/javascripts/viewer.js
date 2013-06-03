@@ -562,6 +562,7 @@ var PDFFindBar = {
   initialize: function() {
     this.bar = document.getElementById('pdf-findbar');
     this.toggleButton = document.getElementById('pdf-viewFind');
+  //  this.questionButton = document.getElementById('pdf-viewQuestions');
     this.findField = document.getElementById('pdf-findInput');
     this.highlightAll = document.getElementById('pdf-findHighlightAll');
     this.caseSensitive = document.getElementById('pdf-findMatchCase');
@@ -572,6 +573,10 @@ var PDFFindBar = {
     this.toggleButton.addEventListener('click', function() {
       self.toggle();
     });
+
+//    this.questionButton.addEventListener('click', function() {
+  //    self.toggle();
+//    });
 
     this.findField.addEventListener('input', function() {
       self.dispatchEvent('');

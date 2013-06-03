@@ -5,6 +5,8 @@ exports.config =
     exclude:[/\.min\./, "javascripts/main.js"]
   copy:
     extensions: ["js","css","png","jpg","jpeg","gif","html","eot","svg","ttf","woff","otf","yaml","kml","ico","htc","htm","json","txt","xml","xsd","map","md", "properties", "pdf"]
+  stylus:
+    use: []
   lint:                      # settings for js, css linting/hinting
     # exclude:[]               # array of strings or regexes that match files to not lint,
                                # strings are paths that can be relative to the watch.compiledDir
