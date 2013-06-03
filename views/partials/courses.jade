@@ -1,36 +1,27 @@
 .courses.tb
   .row-fluid
-    .span2.title-container
-      h1 Space
-    .span7.search-bar-container
-      input.search-bar(type='text', ng-model='query', focus-in, ng-keypress='scroll($event)')
-    .span3.sort-selector-container
-      select(ng-model='orderProp')
-        option(value='name') Alphabetical
-        option(value='age') Newest
-  .row-fluid
-    .span2
-      ul.dropdown-menu(role='menu', style='display: block; position: static; margin-bottom: 5px; *width: 180px;')
-        li(ng-repeat='course in courses | orderBy:"name"')
-          a(href='{{course.url}}') {{course.name}}
+    .span3
+      tabs
+        tab(data-tab-id='twitter', caption='Feed')
+          ul
+            li(ng-repeat='course in courses | orderBy:"name"')
+              a(href='{{course.url}}') {{course.name}}
 
-        // li.dropdown-submenu
-        //   a(href='#') More options
-        //   ul.dropdown-menu
-        //     li
-        //       a A
-        //     li.dropdown-submenu
-        //       a(href='#') More options
-        //         ul.dropdown-menu
-        //           li
-        //             a B
-        //           li
-        //             a B
-        //     li
-        //       a C
-    .span10
-      ul
-        a.thumbnail.item(ng-repeat='file in files', href='{{file.uri}}', ng-class='file.active', ng-mouseover='activate($index)', ng-click='open($index)')
-          .item-content
-            {{file.name}}
-      // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
+        tab(data-tab-id='gitHub', caption='Topic')
+          ul
+            li(ng-repeat='course in courses | orderBy:"name"')
+              a(href='{{course.url}}') {{course.name}}
+    .span9.search-bar-container
+      .row-fluid
+        .span6
+          .input-append
+            input.search-bar(type='text', ng-model='query', focus-in, ng-keypress='scroll($event)')
+            .add-on
+              i.icon-search
+      .row-fluid
+        .span12
+          ul
+            a.thumbnail.item(ng-repeat='file in files', href='{{file.uri}}', ng-class='file.active', ng-mouseover='activate($index)', ng-click='open($index)')
+              .item-content
+                {{file.name}}
+          // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
