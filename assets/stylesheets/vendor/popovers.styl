@@ -9,7 +9,7 @@
   left: 0;
   z-index: $zindexPopover;
   display: none;
-  max-width: 276px;
+  width: 236px;
   padding: 1px;
   text-align: left; // Reset given new insertion method
   background-color: $popoverBackground;
@@ -18,8 +18,8 @@
           background-clip: padding-box;
   border: 1px solid #ccc;
   border: 1px solid rgba(0,0,0,.2);
-  border-radius(6px);
-  box-shadow(0 5px 10px rgba(0,0,0,.2));
+  $border-radius(6px);
+  $box-shadow(0 5px 10px rgba(0,0,0,.2));
 
   // Overrides for proper insertion
   white-space: normal;
@@ -39,11 +39,7 @@
   line-height: 18px;
   background-color: $popoverTitleBackground;
   border-bottom: 1px solid darken($popoverTitleBackground, 5%);
-  border-radius(5px 5px 0 0);
-
-  &:empty {
-    display: none;
-  }
+  $border-radius(5px 5px 0 0);
 }
 
 .popover-content {
@@ -74,42 +70,42 @@
 .popover {
   &.top .arrow {
     left: 50%;
-    margin-left: -($popoverArrowOuterWidth);
+    margin-left: -$popoverArrowOuterWidth;
     border-bottom-width: 0;
     border-top-color: #999; // IE8 fallback
     border-top-color: $popoverArrowOuterColor;
-    bottom: -($popoverArrowOuterWidth);
+    bottom: -$popoverArrowOuterWidth;
     &:after {
       bottom: 1px;
-      margin-left: -($popoverArrowWidth);
+      margin-left: -$popoverArrowWidth;
       border-bottom-width: 0;
       border-top-color: $popoverArrowColor;
     }
   }
   &.right .arrow {
     top: 50%;
-    left: -($popoverArrowOuterWidth);
-    margin-top: -($popoverArrowOuterWidth);
+    left: -$popoverArrowOuterWidth;
+    margin-top: -$popoverArrowOuterWidth;
     border-left-width: 0;
     border-right-color: #999; // IE8 fallback
     border-right-color: $popoverArrowOuterColor;
     &:after {
       left: 1px;
-      bottom: -($popoverArrowWidth);
+      bottom: -$popoverArrowWidth;
       border-left-width: 0;
       border-right-color: $popoverArrowColor;
     }
   }
   &.bottom .arrow {
     left: 50%;
-    margin-left: -($popoverArrowOuterWidth);
+    margin-left: -$popoverArrowOuterWidth;
     border-top-width: 0;
     border-bottom-color: #999; // IE8 fallback
     border-bottom-color: $popoverArrowOuterColor;
-    top: -($popoverArrowOuterWidth);
+    top: -$popoverArrowOuterWidth;
     &:after {
       top: 1px;
-      margin-left: -($popoverArrowWidth);
+      margin-left: -$popoverArrowWidth;
       border-top-width: 0;
       border-bottom-color: $popoverArrowColor;
     }
@@ -117,8 +113,8 @@
 
   &.left .arrow {
     top: 50%;
-    right: -($popoverArrowOuterWidth);
-    margin-top: -($popoverArrowOuterWidth);
+    right: -$popoverArrowOuterWidth;
+    margin-top: -$popoverArrowOuterWidth;
     border-right-width: 0;
     border-left-color: #999; // IE8 fallback
     border-left-color: $popoverArrowOuterColor;
@@ -126,7 +122,7 @@
       right: 1px;
       border-right-width: 0;
       border-left-color: $popoverArrowColor;
-      bottom: -($popoverArrowWidth);
+      bottom: -$popoverArrowWidth;
     }
   }
 

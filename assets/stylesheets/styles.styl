@@ -12,57 +12,64 @@
 // Core variables and mixins
 @import "themes/light"; // Modify this for custom colors, font-sizes, etc
 
-@import "vendor/mixins";
-
 // CSS Reset
-@import "vendor/reset";
+@import "vendor/reset"
+
+// Core variables and mixins
+@import "vendor/mixins"
 
 // Grid system and page structure
-@import "vendor/scaffolding";
-@import "vendor/grid";
-@import "vendor/layouts";
+@import "vendor/scaffolding"
+@import "vendor/grid"
+@import "vendor/layouts"
 
 // Base CSS
-@import "vendor/type";
-@import "vendor/code";
-@import "vendor/forms";
-@import "vendor/tables";
+@import "vendor/type"
+@import "vendor/code"
+@import "vendor/forms"
+@import "vendor/tables"
 
 // Components: common
-@import "vendor/sprites";
-@import "vendor/dropdowns";
-@import "vendor/wells";
-@import "vendor/component-animations";
-@import "vendor/close";
+@import "vendor/sprites"
+@import "vendor/dropdowns"
+@import "vendor/wells"
+@import "vendor/component-animations"
+@import "vendor/close"
 
 // Components: Buttons & Alerts
-@import "vendor/buttons";
-@import "vendor/button-groups";
-@import "vendor/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons
+@import "vendor/buttons"
+@import "vendor/button-groups"
+@import "vendor/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
 
 // Components: Nav
-@import "vendor/navs";
-@import "vendor/navbar";
-@import "vendor/breadcrumbs";
-@import "vendor/pagination";
-@import "vendor/pager";
+@import "vendor/navs"
+@import "vendor/navbar"
+@import "vendor/breadcrumbs"
+@import "vendor/pagination"
+@import "vendor/pager"
 
 // Components: Popovers
-@import "vendor/modals";
-@import "vendor/tooltip";
-@import "vendor/popovers";
+@import "vendor/modals"
+@import "vendor/tooltip"
+@import "vendor/popovers"
 
 // Components: Misc
-@import "vendor/thumbnails";
+@import "vendor/thumbnails"
 @import "vendor/media";
-@import "vendor/labels-badges";
-@import "vendor/progress-bars";
-@import "vendor/accordion";
-@import "vendor/carousel";
-@import "vendor/hero-unit";
+@import "vendor/labels-badges"
+@import "vendor/progress-bars"
+@import "vendor/accordion"
+@import "vendor/carousel"
+@import "vendor/hero-unit"
 
-// // Utility classes
-@import "vendor/utilities"; // Has to be last to override when necessary
+// Utility classes
+@import "vendor/utilities" // Has to be last to override when necessary
+
+// For phone and tablet devices
+// -------------------------------------------------------------
+
+
+@import "vendor/responsive"
 
 // Our Styles
 // ----------

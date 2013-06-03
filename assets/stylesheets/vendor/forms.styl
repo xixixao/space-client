@@ -7,18 +7,18 @@
 // --------------
 
 // Make all forms have space below them
-.tb form {
+form {
   margin: 0 0 $baseLineHeight;
 }
 
-.tb fieldset {
+fieldset {
   padding: 0;
   margin: 0;
   border: 0;
 }
 
 // Groups of fields with labels on top (legends)
-.tb legend {
+legend {
   display: block;
   width: 100%;
   padding: 0;
@@ -42,9 +42,8 @@
 .tb button,
 .tb select,
 .tb textarea {
-  fontShorthand($baseFontSize,normal,$baseLineHeight); // Set size, weight, line-height here
+  $font-shorthand($baseFontSize,normal,$baseLineHeight); // Set size, weight, line-height here
 }
-
 .tb input,
 .tb button,
 .tb select,
@@ -78,15 +77,15 @@
 .tb input[type="search"],
 .tb input[type="tel"],
 .tb input[type="color"],
-.tb .uneditable-input {
+.uneditable-input {
   display: inline-block;
   height: $baseLineHeight;
   padding: 4px 6px;
-  margin-bottom: ($baseLineHeight / 2);
+  margin-bottom: $baseLineHeight / 2;
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
   color: $gray;
-  border-radius($inputBorderRadius);
+  $border-radius($inputBorderRadius);
   vertical-align: middle;
 }
 
@@ -94,7 +93,7 @@
 // Declare width for legacy (can't be on input[type=*] selectors or it's too specific)
 .tb input,
 .tb textarea,
-.tb .uneditable-input {
+.uneditable-input {
   width: 206px; // plus 12px padding and 2px border
 }
 // Reset height since textareas have rows
@@ -117,18 +116,18 @@
 .tb input[type="search"],
 .tb input[type="tel"],
 .tb input[type="color"],
-.tb .uneditable-input {
+.uneditable-input {
   background-color: $inputBackground;
   border: 1px solid $inputBorder;
-  box-shadow inset 0 1px 1px rgba(0,0,0,.075);
-  transition(border linear .2s, box-shadow linear .2s);
+  $box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+  $transition(border linear .2s, box-shadow linear .2s);
 
   // Focus state
   &:focus {
     border-color: rgba(82,168,236,.8);
     outline: 0;
     outline: thin dotted \9; /* IE6-9 */
-    box-shadow inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    $box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6));
   }
 }
 
@@ -178,7 +177,7 @@
 .tb input[type="file"]:focus,
 .tb input[type="radio"]:focus,
 .tb input[type="checkbox"]:focus {
-  tab-focus();
+  $tab-focus();
 }
 
 
@@ -186,23 +185,22 @@
 // -------------------------
 
 // Make uneditable inputs look inactive
-.tb .uneditable-input,
-.tb .uneditable-textarea {
+.uneditable-input,
+.uneditable-textarea {
   color: $grayLight;
   background-color: darken($inputBackground, 1%);
   border-color: $inputBorder;
-  box-shadow(inset 0 1px 2px rgba(0,0,0,.025));
+  $box-shadow(inset 0 1px 2px rgba(0,0,0,.025));
   cursor: not-allowed;
 }
 
 // For text that needs to appear as an input but should not be an input
-.tb .uneditable-input {
+.uneditable-input {
   overflow: hidden; // prevent text from wrapping, but still cut it off like an input does
   white-space: nowrap;
 }
-
 // Make uneditable textareas behave like a textarea
-.tb .uneditable-textarea {
+.uneditable-textarea {
   width: auto;
   height: auto;
 }
@@ -214,7 +212,7 @@
 // Placeholder text gets special styles because when browsers invalidate entire lines if it doesn't understand a selector
 .tb input,
 .tb textarea {
-  placeholder();
+  $placeholder();
 }
 
 
@@ -267,9 +265,9 @@
 .input-xxlarge    { width: 530px; }
 
 // Grid style input sizes
-input[class*="span"],
-select[class*="span"],
-textarea[class*="span"],
+.tb input[class*="span"],
+.tb select[class*="span"],
+.tb textarea[class*="span"],
 .uneditable-input[class*="span"],
 // Redeclare since the fluid row class is more specific
 .row-fluid input[class*="span"],
@@ -299,11 +297,11 @@ textarea[class*="span"],
 // ----------------------
 
 // Grid sizes
-inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
+//#grid > .input($gridColumnWidth, $gridGutterWidth); // /@todo Not converted yet
 
 // Control row for multiple inputs per line
 .controls-row {
-  clearfix(); // Clear the float from controls
+  $clearfix(); // Clear the float from controls
 }
 
 // Float to collapse white-space for proper grid alignment
@@ -350,19 +348,19 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
 
 // Warning
 .control-group.warning {
-  formFieldState($warningText, $warningText, $warningBackground);
+  $formFieldState($warningText, $warningText, $warningBackground);
 }
 // Error
 .control-group.error {
-  formFieldState($errorText, $errorText, $errorBackground);
+  $formFieldState($errorText, $errorText, $errorBackground);
 }
 // Success
 .control-group.success {
-  formFieldState($successText, $successText, $successBackground);
+  $formFieldState($successText, $successText, $successBackground);
 }
 // Success
 .control-group.info {
-  formFieldState($infoText, $infoText, $infoBackground);
+  $formFieldState($infoText, $infoText, $infoBackground);
 }
 
 // HTML5 invalid states
@@ -374,7 +372,7 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
   border-color: #ee5f5b;
   &:focus {
     border-color: darken(#ee5f5b, 10%);
-    box-shadow(0 0 6px lighten(#ee5f5b, 20%));
+    $box-shadow(0 0 6px lighten(#ee5f5b, 20%));
   }
 }
 
@@ -389,7 +387,7 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
   margin-bottom: $baseLineHeight;
   background-color: $formActionsBackground;
   border-top: 1px solid #e5e5e5;
-  clearfix(); // Adding clearfix to allow for .pull-right button containers
+  $clearfix(); // Adding clearfix to allow for .pull-right button containers
 }
 
 
@@ -404,12 +402,12 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
 
 .help-block {
   display: block; // account for any element using help-block
-  margin-bottom: ($baseLineHeight / 2);
+  margin-bottom: $baseLineHeight / 2;
 }
 
 .help-inline {
   display: inline-block;
-  ie7-inline-block();
+  $ie7-inline-block();
   vertical-align: middle;
   padding-left: 5px;
 }
@@ -422,29 +420,26 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
 // Allow us to put symbols and text within the input field for a cleaner look
 .input-append,
 .input-prepend {
-  display: inline-block;
-  margin-bottom: $baseLineHeight / 2;
-  vertical-align: middle;
+  margin-bottom: 5px;
   font-size: 0; // white space collapse hack
   white-space: nowrap; // Prevent span and input from separating
 
   // Reset the white space collapse hack
-  .tb input,
-  .tb select,
+  input,
+  select,
   .uneditable-input,
-  .dropdown-menu,
-  .popover {
+  .dropdown-menu {
     font-size: $baseFontSize;
   }
 
-  .tb input,
-  .tb select,
+  input,
+  select,
   .uneditable-input {
     position: relative; // placed here by default so that on :focus we can place the input above the .add-on for full border and box-shadow goodness
     margin-bottom: 0; // prevent bottom margin from screwing up alignment in stacked forms
     *margin-left: 0;
     vertical-align: top;
-    border-radius(0 $inputBorderRadius $inputBorderRadius 0);
+    $border-radius(0 $inputBorderRadius $inputBorderRadius 0);
     // Make input on top when focused so blue border and shadow always show
     &:focus {
       z-index: 2;
@@ -468,7 +463,7 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
   .btn,
   .btn-group > .dropdown-toggle {
     vertical-align: top;
-    border-radius(0);
+    $border-radius(0);
   }
   .active {
     background-color: lighten($green, 30);
@@ -484,17 +479,17 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
   .add-on:first-child,
   .btn:first-child {
     // FYI, `.btn:first-child` accounts for a button group that's prepended
-    border-radius($inputBorderRadius 0 0 $inputBorderRadius);
+    $border-radius($inputBorderRadius 0 0 $inputBorderRadius);
   }
 }
 
 .input-append {
-  .tb input,
-  .tb select,
+  input,
+  select,
   .uneditable-input {
-    border-radius($inputBorderRadius 0 0 $inputBorderRadius);
+    $border-radius($inputBorderRadius 0 0 $inputBorderRadius);
     + .btn-group .btn:last-child {
-      border-radius(0 $inputBorderRadius $inputBorderRadius 0);
+      $border-radius(0 $inputBorderRadius $inputBorderRadius 0);
     }
   }
   .add-on,
@@ -505,29 +500,29 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
   .add-on:last-child,
   .btn:last-child,
   .btn-group:last-child > .dropdown-toggle {
-    border-radius(0 $inputBorderRadius $inputBorderRadius 0);
+    $border-radius(0 $inputBorderRadius $inputBorderRadius 0);
   }
 }
 
 // Remove all border-radius for inputs with both prepend and append
 .input-prepend.input-append {
-  .tb input,
-  .tb select,
+  input,
+  select,
   .uneditable-input {
-    border-radius(0);
+    $border-radius(0);
     + .btn-group .btn {
-      border-radius(0 $inputBorderRadius $inputBorderRadius 0);
+      $border-radius(0 $inputBorderRadius $inputBorderRadius 0);
     }
   }
   .add-on:first-child,
   .btn:first-child {
     margin-right: -1px;
-    border-radius($inputBorderRadius 0 0 $inputBorderRadius);
+    $border-radius($inputBorderRadius 0 0 $inputBorderRadius);
   }
   .add-on:last-child,
   .btn:last-child {
     margin-left: -1px;
-    border-radius(0 $inputBorderRadius $inputBorderRadius 0);
+    $border-radius(0 $inputBorderRadius $inputBorderRadius 0);
   }
   .btn-group:first-child {
     margin-left: 0;
@@ -540,31 +535,31 @@ inputGridSystem-generate($gridColumns, $gridColumnWidth, $gridGutterWidth)
 // SEARCH FORM
 // -----------
 
-input.search-query {
+.tb input.search-query {
   padding-right: 14px;
   padding-right: 4px \9;
   padding-left: 14px;
   padding-left: 4px \9; /* IE7-8 doesn't have border-radius, so don't indent the padding */
   margin-bottom: 0; // Remove the default margin on all inputs
-  border-radius(15px);
+  $border-radius(15px);
 }
 
 /* Allow for input prepend/append in search forms */
 .form-search .input-append .search-query,
 .form-search .input-prepend .search-query {
-  border-radius(0); // Override due to specificity
+  $border-radius(0); // Override due to specificity
 }
 .form-search .input-append .search-query {
-  border-radius(14px 0 0 14px);
+  $border-radius(14px 0 0 14px);
 }
 .form-search .input-append .btn {
-  border-radius(0 14px 14px 0);
+  $border-radius(0 14px 14px 0);
 }
 .form-search .input-prepend .search-query {
-  border-radius(0 14px 14px 0);
+  $border-radius(0 14px 14px 0);
 }
 .form-search .input-prepend .btn {
-  border-radius(14px 0 0 14px);
+  $border-radius(14px 0 0 14px);
 }
 
 
@@ -587,7 +582,7 @@ input.search-query {
   .input-prepend,
   .input-append {
     display: inline-block;
-    ie7-inline-block();
+    $ie7-inline-block();
     margin-bottom: 0;
     vertical-align: middle;
   }
@@ -647,7 +642,7 @@ legend + .control-group {
   // Increase spacing between groups
   .control-group {
     margin-bottom: $baseLineHeight;
-    clearfix();
+    $clearfix();
   }
   // Float the labels left
   .control-label {
@@ -680,7 +675,7 @@ legend + .control-group {
   .input-prepend,
   .input-append {
     + .help-block {
-      margin-top: ($baseLineHeight / 2);
+      margin-top: $baseLineHeight / 2;
     }
   }
   // Move over buttons in .form-actions to align with .controls

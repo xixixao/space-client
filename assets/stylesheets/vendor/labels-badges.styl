@@ -19,12 +19,12 @@
 }
 // Set unique padding and border-radii
 .label {
-  border-radius(3px);
+  $border-radius(3px);
 }
 .badge {
   padding-left: 9px;
   padding-right: 9px;
-  border-radius(9px);
+  $border-radius(9px);
 }
 
 // Empty labels/badges collapse
@@ -35,12 +35,10 @@
   }
 }
 
-// Hover/focus state, but only for links
+// Hover state, but only for links
 a {
   &.label:hover,
-  &.label:focus,
-  &.badge:hover,
-  &.badge:focus {
+  &.badge:hover {
     color: $white;
     text-decoration: none;
     cursor: pointer;

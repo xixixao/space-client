@@ -7,11 +7,11 @@
 .btn-group {
   position: relative;
   display: inline-block;
-  ie7-inline-block();
+  $ie7-inline-block();
   font-size: 0; // remove as part 1 of font-size inline-block hack
   vertical-align: middle; // match .btn alignment given font-size hack above
   white-space: nowrap; // prevent buttons from wrapping when in tight spaces (e.g., the table on the tests page)
-  ie7-restore-left-whitespace();
+  $ie7-restore-left-whitespace();
 }
 
 // Space out series of button groups
@@ -22,8 +22,8 @@
 // Optional: Group multiple button groups together for a toolbar
 .btn-toolbar {
   font-size: 0; // Hack to remove whitespace that results from using inline-block
-  margin-top: ($baseLineHeight / 2);
-  margin-bottom: ($baseLineHeight / 2);
+  margin-top: $baseLineHeight / 2;
+  margin-bottom: $baseLineHeight / 2;
   > .btn + .btn,
   > .btn-group + .btn,
   > .btn + .btn-group {
@@ -34,7 +34,7 @@
 // Float them, remove border radius, then re-add to first and last elements
 .btn-group > .btn {
   position: relative;
-  border-radius(0);
+  $border-radius(0);
 }
 .btn-group > .btn + .btn {
   margin-left: -1px;
@@ -53,31 +53,31 @@
   font-size: $fontSizeSmall;
 }
 .btn-group > .btn-large {
-  font-size: 16px;
+  font-size: $fontSizeLarge;
 }
 
 // Set corners individual because sometimes a single button can be in a .btn-group and we need :first-child and :last-child to both match
 .btn-group > .btn:first-child {
   margin-left: 0;
-  border-top-left-radius($baseBorderRadius)
-  border-bottom-left-radius($baseBorderRadius)
+  $border-top-left-radius($baseBorderRadius);
+  $border-bottom-left-radius($baseBorderRadius);
 }
 // Need .dropdown-toggle since :last-child doesn't apply given a .dropdown-menu immediately after it
 .btn-group > .btn:last-child,
 .btn-group > .dropdown-toggle {
-  border-top-right-radius($baseBorderRadius);
-  border-bottom-right-radius($baseBorderRadius);
+  $border-top-right-radius($baseBorderRadius);
+  $border-bottom-right-radius($baseBorderRadius);
 }
 // Reset corners for large buttons
 .btn-group > .btn.large:first-child {
   margin-left: 0;
-  border-top-left-radius($borderRadiusLarge);
-  border-bottom-left-radius($borderRadiusLarge);
+  $border-top-left-radius($borderRadiusLarge);
+  $border-bottom-left-radius($borderRadiusLarge);
 }
 .btn-group > .btn.large:last-child,
 .btn-group > .large.dropdown-toggle {
-  border-top-right-radius($borderRadiusLarge);
-  border-bottom-right-radius($borderRadiusLarge);
+  $border-top-right-radius($borderRadiusLarge);
+  $border-bottom-right-radius($borderRadiusLarge);
 }
 
 // On hover/focus/active, bring the proper btn to front
@@ -103,7 +103,8 @@
 .btn-group > .btn + .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px;
-  box-shadow inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  $bg = inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  $box-shadow($bg);
   *padding-top: 5px;
   *padding-bottom: 5px;
 }
@@ -130,7 +131,8 @@
   // Remove the gradient and set the same inset shadow as the :active state
   .dropdown-toggle {
     background-image: none;
-    box-shadow inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+    $bg = inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+    $box-shadow($bg);
   }
 
   // Keep the hover's background when dropdown is open
@@ -164,6 +166,8 @@
   margin-left: 0;
 }
 // Carets in other button sizes
+.btn-mini .caret,
+.btn-small .caret,
 .btn-large .caret {
   margin-top: 6px;
 }
@@ -172,12 +176,6 @@
   border-right-width: 5px;
   border-top-width:   5px;
 }
-
-.btn-mini .caret,
-.btn-small .caret {
-  margin-top: 8px;
-}
-
 // Upside down carets for .dropup
 .dropup .btn-large .caret {
   border-bottom-width: 5px;
@@ -205,27 +203,27 @@
 
 .btn-group-vertical {
   display: inline-block; // makes buttons only take up the width they need
-  ie7-inline-block();
+  $ie7-inline-block();
 }
 .btn-group-vertical > .btn {
   display: block;
   float: none;
   max-width: 100%;
-  border-radius(0);
+  $border-radius(0);
 }
 .btn-group-vertical > .btn + .btn {
   margin-left: 0;
   margin-top: -1px;
 }
 .btn-group-vertical > .btn:first-child {
-  border-radius($baseBorderRadius $baseBorderRadius 0 0);
+  $border-radius($baseBorderRadius $baseBorderRadius 0 0);
 }
 .btn-group-vertical > .btn:last-child {
-  border-radius(0 0 $baseBorderRadius $baseBorderRadius);
+  $border-radius(0 0 $baseBorderRadius $baseBorderRadius);
 }
 .btn-group-vertical > .btn-large:first-child {
-  border-radius($borderRadiusLarge $borderRadiusLarge 0 0);
+  $border-radius($borderRadiusLarge $borderRadiusLarge 0 0);
 }
 .btn-group-vertical > .btn-large:last-child {
-  border-radius(0 0 $borderRadiusLarge $borderRadiusLarge);
+  $border-radius(0 0 $borderRadiusLarge $borderRadiusLarge);
 }

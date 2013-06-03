@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.3.0
+ * Bootstrap v2.2.2
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -8,57 +8,56 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
+// CSS Reset
+@import "reset.styl"
 
 // Core variables and mixins
-@import "variables"; // Modify this for custom colors, font-sizes, etc
-@import "mixins";
-
-// CSS Reset
-@import "reset";
+@import "variables.styl" // Modify this for custom colors, font-sizes, etc
+@import "mixins.styl"
 
 // Grid system and page structure
-@import "scaffolding";
-@import "grid";
-@import "layouts";
+@import "scaffolding.styl"
+@import "grid.styl"
+@import "layouts.styl"
 
 // Base CSS
-@import "type";
-@import "code";
-@import "forms";
-@import "tables";
+@import "type.styl"
+@import "code.styl"
+@import "forms.styl"
+@import "tables.styl"
 
 // Components: common
-@import "sprites";
-@import "dropdowns";
-@import "wells";
-@import "component-animations";
-@import "close";
+@import "sprites.styl"
+@import "dropdowns.styl"
+@import "wells.styl"
+@import "component-animations.styl"
+@import "close.styl"
 
 // Components: Buttons & Alerts
-@import "buttons";
-@import "button-groups";
-@import "alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons
+@import "buttons.styl"
+@import "button-groups.styl"
+@import "alerts.styl"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
 
 // Components: Nav
-@import "navs";
-@import "navbar";
-@import "breadcrumbs";
-@import "pagination";
-@import "pager";
+@import "navs.styl"
+@import "navbar.styl"
+@import "breadcrumbs.styl"
+@import "pagination.styl"
+@import "pager.styl"
 
 // Components: Popovers
-@import "modals";
-@import "tooltip";
-@import "popovers";
+@import "modals.styl"
+@import "tooltip.styl"
+@import "popovers.styl"
 
 // Components: Misc
-@import "thumbnails";
-@import "media";
-@import "labels-badges";
-@import "progress-bars";
-@import "accordion";
-@import "carousel";
-@import "hero-unit";
+@import "thumbnails.styl"
+@import "media.styl";
+@import "labels-badges.styl"
+@import "progress-bars.styl"
+@import "accordion.styl"
+@import "carousel.styl"
+@import "hero-unit.styl"
 
 // Utility classes
-@import "utilities"; // Has to be last to override when necessary
+@import "utilities.styl" // Has to be last to override when necessary
