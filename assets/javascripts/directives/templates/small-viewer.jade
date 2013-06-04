@@ -1,0 +1,17 @@
+.pdf-viewer-directive
+  #pdf-outerContainer.pdf-loadingInProgress
+    #pdf-mainContainer
+      #pdf-viewerContainer
+        #pdf-viewer
+      #pdf-errorWrapper(hidden='true')
+        #pdf-errorMessageLeft
+          span#pdf-errorMessage
+          button#pdf-errorShowMore(onclick='', oncontextmenu='return false;', data-l10n-id='error_more_info')
+            | More Information
+          button#pdf-errorShowLess(onclick='', oncontextmenu='return false;', data-l10n-id='error_less_info', hidden='true')
+            | Less Information
+        #pdf-errorMessageRight
+          button#pdf-errorClose(oncontextmenu='return false;', data-l10n-id='error_close')
+            | Close
+        .pdf-clearBoth
+        textarea#pdf-errorMoreInfo(hidden='true', readonly='readonly')

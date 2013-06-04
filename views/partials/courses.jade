@@ -31,7 +31,7 @@
               a(href='{{course.url}}') {{course.name}}
     .span9.search-bar-container
       .row-fluid
-        .span6
+        .span11
           .input-append
             input.search-bar(type='text', ng-model='query', focus-in, ng-keypress='scroll($event)')
             .add-on
@@ -39,7 +39,7 @@
       .row-fluid
         .span12
           ul
-            a.thumbnail.item(ng-repeat='file in files', href='{{file.uri}}', ng-class='file.active', ng-mouseover='activate($index)', ng-click='open($index)')
-              .item-content
+            li(ng-repeat='file in files', ng-class='file.active', ng-mouseover='activate($index)')
+              a(href='{{file.uri}}', ng-click='open($index)')
                 {{file.name}}
           // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
