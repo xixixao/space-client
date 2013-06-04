@@ -7,7 +7,7 @@
             a(href='#/home') SPACE
         ul.nav
           li
-            a {{username}}
+            a {{user.username}}
         ul.nav.pull-right
           li
             a Log Out
@@ -21,37 +21,59 @@
     .span12
       .page-header
         h3 Account Details 
-      .row
+      .row.row-spaced
         .span3
           | Name
         .span3
-          | {{name}}
-        .span3
+          | {{user.name}}
+        .span6
           a(ng-show='!hideName', ng-click='hideName = true') Edit
-          form(ng-show='hideName', ng-submit='hideName = false')
+          form.form-no-margin(ng-show='hideName', ng-submit='hideName = false')
             input(type='text')
-            input(type='submit', value='Submit')
+            input.btn(type='submit', value='Submit')
       .row.row-spaced
         .span3
           | Username
         .span3
-          | {{username}}
+          | {{user.username}}
         .span3
           |  -
       .row.row-spaced
         .span3
           | Email
         .span3
-          | {{email}}
+          | {{user.email}}
+        .span6
+          a(ng-show='!hideEmail', ng-click='hideEmail = true') Edit
+          form.form-no-margin(ng-show='hideEmail', ng-submit='hideEmail = false')
+            input(type='text')
+            input.btn(type='submit', value='Submit')
+      .row.row-spaced
         .span3
-          | Edit
+          | Facebook 
+        .span3
+          | {{user.facebook}}
+        .span6
+          a(ng-show='!hidefacebook', ng-click='hidefacebook = true') Edit
+          form.form-no-margin(ng-show='hidefacebook', ng-submit='hidefacebook = false')
+            input(type='text')
+            input.btn(type='submit', value='Submit')
       .row.row-spaced
         .span3
           | Password
         .span3
-          | {{password}}
+          | ******
         .span3
-          | Edit
+          a(ng-show='!hidePassword', ng-click='hidePassword = true') Edit
+          form.form-no-margin.form-inline(ng-show='hidePassword', ng-submit='hidePassword = false')
+            .control-group
+              input.input-small(type='text', placeholder='Old Password')
+            .control-group
+              input.input-small(type='text', placeholder='New Password')
+            .control-group
+              input.input-small(type='text', placeholder='Retype')
+            .control-group
+              input.btn(type='submit', value='Submit')
   p
   .row
     .span12
@@ -59,13 +81,17 @@
         h3 Notifications
       strong
         | How would you like to get notifications?
+  .row.row-top-offset
+    .span12        
       .row.row-spaced 
         .span3
           | Facebook
         .span3
-          | Edit
-      .row.row-spaced
+          a(ng-show='!OnFacebook', ng-click='OnFacebook = true') Off
+          a(ng-show='OnFacebook', ng-click='OnFacebook = false') On
+      .row.row-spaced                
         .span3
           | Email
         .span3
-          | Edit    
+          a(ng-show='!OnEmail', ng-click='OnEmail = true') Off
+          a(ng-show='OnEmail', ng-click='OnEmail = false') On

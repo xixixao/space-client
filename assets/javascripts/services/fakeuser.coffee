@@ -10,11 +10,12 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
     auth = {}
 
     data =
-      user:
+      userData:
         username: "ms6611"
         name: "Michal Srb"
         password: "12345678"
         email: "ms6611@ic.ac.uk"
+        facebook: "michal@facebook.com"
         courses: [
           name: "Bla asdjoghue"
         ,
@@ -60,7 +61,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
       auth:
         username: "ms6611"
         key: "982739287362835"
-    {auth, user} = data
+    {auth, userData} = data
 
     login = (values) ->
       handle =
@@ -71,12 +72,9 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
           handle
       handle
 
-    courses = -> user.courses
-    files = -> user.files
-    username = -> user.username
-    name = -> user.name
-    password = -> user.password
-    email = -> user.email
+    user = ->
+      console.log userData
+      userData
 
-    {login, courses, files, username, name, password, email}
+    {login, user}
   ]
