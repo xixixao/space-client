@@ -70,6 +70,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
 
     courses = -> user.courses
     files = -> user.files
+    username = -> user.username
 
-    {login, courses, files}
+    {login, courses, files, username}
   ]
