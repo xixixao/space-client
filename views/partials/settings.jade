@@ -1,0 +1,71 @@
+.courses.tb
+  .row
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        ul.nav
+          li
+            a(href='#/home') SPACE
+        ul.nav
+          li
+            a {{username}}
+        ul.nav.pull-right
+          li
+            a Log Out
+        ul.nav.pull-right
+          li
+            a(href='#/settings') Settings
+        ul.nav.pull-right
+          li
+            a Help
+  .row
+    .span12
+      .page-header
+        h3 Account Details 
+      .row
+        .span3
+          | Name
+        .span3
+          | {{name}}
+        .span3
+          a(ng-show='!hideName', ng-click='hideName = true') Edit
+          form(ng-show='hideName', ng-submit='hideName = false')
+            input(type='text')
+            input(type='submit', value='Submit')
+      .row.row-spaced
+        .span3
+          | Username
+        .span3
+          | {{username}}
+        .span3
+          |  -
+      .row.row-spaced
+        .span3
+          | Email
+        .span3
+          | {{email}}
+        .span3
+          | Edit
+      .row.row-spaced
+        .span3
+          | Password
+        .span3
+          | {{password}}
+        .span3
+          | Edit
+  p
+  .row
+    .span12
+      .page-header
+        h3 Notifications
+      strong
+        | How would you like to get notifications?
+      .row.row-spaced 
+        .span3
+          | Facebook
+        .span3
+          | Edit
+      .row.row-spaced
+        .span3
+          | Email
+        .span3
+          | Edit    

@@ -12,6 +12,9 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
     data =
       user:
         username: "ms6611"
+        name: "Michal Srb"
+        password: "12345678"
+        email: "ms6611@ic.ac.uk"
         courses: [
           name: "Bla asdjoghue"
         ,
@@ -71,6 +74,9 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
     courses = -> user.courses
     files = -> user.files
     username = -> user.username
+    name = -> user.name
+    password = -> user.password
+    email = -> user.email
 
-    {login, courses, files, username}
+    {login, courses, files, username, name, password, email}
   ]

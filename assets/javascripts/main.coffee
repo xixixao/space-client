@@ -25,6 +25,7 @@ requirejs [
   'c/login'
   'c/courses'
   'c/file'
+  'c/settings'
   'd/ngController'
   'd/tab'
   'd/tabs'
@@ -44,6 +45,9 @@ requirejs [
         .when '/file/:file',
           controller: 'file'
           templateUrl: 'partials/file'
+        .when '/settings',
+          controller: 'settings'
+          templateUrl: 'partials/settings'
         .otherwise
           redirectTo: '/login'
     ]
