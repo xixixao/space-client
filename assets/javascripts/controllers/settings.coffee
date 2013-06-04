@@ -8,5 +8,5 @@ define ['c/controllers', 'services/fakeuser'], (controllers) ->
      $scope.name = service.name()
      $scope.password = service.password()
      $scope.email = service.email()
-
+     $scope.facebook = service.facebook()
   ]

@@ -15,6 +15,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
         name: "Michal Srb"
         password: "12345678"
         email: "ms6611@ic.ac.uk"
+        facebook: "michal@facebook.com"
         courses: [
           name: "Bla asdjoghue"
         ,
@@ -77,6 +78,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
     name = -> user.name
     password = -> user.password
     email = -> user.email
+    facebook =-> user.facebook
 
-    {login, courses, files, username, name, password, email}
+    {login, courses, files, username, name, password, email, facebook}
   ]
