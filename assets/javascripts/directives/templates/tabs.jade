@@ -1,5 +1,5 @@
 .tabbable
   ul.nav.nav-tabs
     li(ng-repeat='tab in tabs', ng-class='{active:tab.selected}')
-      a(href='', ng-click='select(tab)') Tab {{tab.caption}}
+      a(href='', ng-click='select(tab)') {{tab.caption}}
   .tab-content(ng-transclude)

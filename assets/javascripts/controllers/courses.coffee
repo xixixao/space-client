@@ -6,9 +6,8 @@ define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
     '$location'
     'user'
     ($scope, $location, service) ->
-      $scope.username = service.username()
-      $scope.courses = service.courses()
-      allFiles = new Fuse service.files(), keys: ['name']
+      $scope.user = user = service.user()
+      allFiles = new Fuse user.files, keys: ['name']
 
       $scope.$watch 'query', (query = "") ->
         deactivate()

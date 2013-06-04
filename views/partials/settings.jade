@@ -7,7 +7,7 @@
             a(href='#/home') SPACE
         ul.nav
           li
-            a {{username}}
+            a {{user.username}}
         ul.nav.pull-right
           li
             a Log Out
@@ -25,7 +25,7 @@
         .span3
           | Name
         .span3
-          | {{name}}
+          | {{user.name}}
         .span6
           a(ng-show='!hideName', ng-click='hideName = true') Edit
           form.form-no-margin(ng-show='hideName', ng-submit='hideName = false')
@@ -35,14 +35,14 @@
         .span3
           | Username
         .span3
-          | {{username}}
+          | {{user.username}}
         .span3
           |  -
       .row.row-spaced
         .span3
           | Email
         .span3
-          | {{email}}
+          | {{user.email}}
         .span6
           a(ng-show='!hideEmail', ng-click='hideEmail = true') Edit
           form.form-no-margin(ng-show='hideEmail', ng-submit='hideEmail = false')
@@ -52,7 +52,7 @@
         .span3
           | Facebook 
         .span3
-          | {{facebook}}
+          | {{user.facebook}}
         .span6
           a(ng-show='!hidefacebook', ng-click='hidefacebook = true') Edit
           form.form-no-margin(ng-show='hidefacebook', ng-submit='hidefacebook = false')
