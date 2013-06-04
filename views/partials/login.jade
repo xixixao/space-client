@@ -3,8 +3,8 @@
     .span6
       h1 Space
     .span6.login-form-container
-      .row
-        form.login-form.form-horizontal
+      form.login-form.form-horizontal(ng-submit='login()')
+        .row
           .row.login-inputs
             .control-group
               label.control-label Username
@@ -14,6 +14,6 @@
               label.control-label Password
               .controls
                 input.login-value-password(type='password', name='password', ng-model='values.password')
-      .row.text-center
+        .row.text-center
           p
-            button.btn.btn-large.btn-primary.login-button(ng-click='login()') Login
+            input.btn.btn-large.btn-primary.login-buttonLogin(type='submit', value='Log in')
