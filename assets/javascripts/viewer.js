@@ -3360,10 +3360,13 @@ function webViewerLoad(fileLocation, classPrefix) {
 
 //#if !(FIREFOX || MOZCENTRAL)
   if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
-    document.getElementById('pdf-openFile').setAttribute('hidden', 'true');
-    document.getElementById('pdf-secondaryOpenFile').setAttribute('hidden', 'true');
+    if (document.getElementById('pdf-openFile')) {
+      document.getElementById('pdf-openFile').setAttribute('hidden', 'true');
+      document.getElementById('pdf-secondaryOpenFile').setAttribute('hidden', 'true');
+    }
   } else {
-    document.getElementById('pdf-fileInput').value = null;
+    if (document.getElementById('pdf-fileInput'))
+      document.getElementById('pdf-fileInput').value = null;
   }
 //#else
 //document.getElementById('pdf-openFile').setAttribute('hidden', 'true');
