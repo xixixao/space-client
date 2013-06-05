@@ -1013,11 +1013,12 @@ var PDFView = {
 
     var container = this.container;
     var currentPage = this.pages[this.page - 1];
+
     if (!currentPage) {
       return;
     }
 
-    console.info("container", container);
+    debugger;
     var pageWidthScale = (container.clientWidth - SCROLLBAR_PADDING) /
                           currentPage.width * currentPage.scale / CSS_UNITS;
     var pageHeightScale = (container.clientHeight - VERTICAL_PADDING) /
@@ -1719,10 +1720,10 @@ var PDFView = {
                      left + ',' + top;
       }
       // Initialize the browsing history.
-      //PDFHistory.initialize({ hash: storedHash, page: (pageNum || 1) },
-      //                      PDFView.documentFingerprint);
+      PDFHistory.initialize({ hash: storedHash, page: (pageNum || 1) },
+                            PDFView.documentFingerprint);
 
-      self.setInitialView(null, scale);
+      self.setInitialView(storedHash, scale);
 
       // Make all navigation keys work on document load,
       // unless the viewer is embedded in another page.
@@ -1807,7 +1808,6 @@ var PDFView = {
     // updated if the zoom level stayed the same.
     this.currentScale = 0;
     this.currentScaleValue = null;
-    console.log(PDFHistory.initialDestination, this.initialBookmark, storedHash, scale);
     if (PDFHistory.initialDestination) {
       this.navigateTo(PDFHistory.initialDestination);
       PDFHistory.initialDestination = null;
@@ -1817,7 +1817,6 @@ var PDFView = {
     } else if (storedHash) {
       this.setHash(storedHash);
     } else if (scale) {
-      console.log("scaling inti")
       this.parseScale(scale, true);
       this.page = 1;
     }
@@ -1825,7 +1824,7 @@ var PDFView = {
     if (PDFView.currentScale === UNKNOWN_SCALE) {
       // Scale was not initialized: invalid bookmark or scale was not specified.
       // Setting the default one.
-      this.parseScale(scale || DEFAULT_SCALE, true);
+      this.parseScale(DEFAULT_SCALE, true);
     }
   },
 
@@ -3359,6 +3358,18 @@ function webViewerLoad(fileLocation, classPrefix) {
 //var file = window.location.toString()
 //#endif
 
+//#if !(FIREFOX || MOZCENTRAL)
+  if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+    document.getElementById('pdf-openFile').setAttribute('hidden', 'true');
+    document.getElementById('pdf-secondaryOpenFile').setAttribute('hidden', 'true');
+  } else {
+    document.getElementById('pdf-fileInput').value = null;
+  }
+//#else
+//document.getElementById('pdf-openFile').setAttribute('hidden', 'true');
+//document.getElementById('pdf-secondaryOpenFile').setAttribute('hidden', 'true');
+//#endif
+
   // Special debugging flags in the hash section of the URL.
   var hash = document.location.hash.substring(1);
   var hashParams = PDFView.parseQueryString(hash);
@@ -3633,7 +3644,7 @@ function webViewerLoad(fileLocation, classPrefix) {
 //#endif
 
 //#if !B2G
-  PDFView.open(file, 'auto');
+  PDFView.open(file, 0);
 //#endif
 }
 
