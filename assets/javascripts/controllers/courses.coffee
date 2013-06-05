@@ -7,7 +7,11 @@ define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
     'user'
     ($scope, $location, service) ->
       $scope.user = user = service.user()
+      $scope.topic = user.courses[0]
       allFiles = new Fuse user.files, keys: ['name']
+
+      $scope.setTopic = (course) ->
+        $scope.topic = course
 
       $scope.$watch 'query', (query = "") ->
         deactivate()

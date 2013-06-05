@@ -20,12 +20,12 @@
   .row-fluid
     .span3
       tabs
-        tab(data-tab-id='twitter', caption='Feed')
+        tab(data-tab-id='feed', caption='Feed')
           ul
             li(ng-repeat='course in user.courses | orderBy:"name"')
-              a(href='{{course.url}}') {{course.name}}
+              a(ng-click='setTopic(course)') {{course.name}}
 
-        tab(data-tab-id='gitHub', caption='Topic')
+        tab(data-tab-id='topic', caption='Topic')
           ul
             li(ng-repeat='course in user.courses | orderBy:"name"')
               a(href='{{course.url}}') {{course.name}}
@@ -43,3 +43,62 @@
               a(href='{{file.uri}}', ng-click='open($index)')
                 {{file.name}}
           // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
+      .row-fluid
+        .span6
+          | {{topic.name}}
+          .row-top-offset
+          tabs
+            tab(data-tab-id='notes', caption='Notes')
+                table.table.table-hover
+                  tbody
+                    tr(ng-repeat='file in topic.files | orderBy:"name"')
+                      td 
+                        | {{$index + 1}}
+                      td
+                        a(href='{{file.url}}') {{file.name}}
+                      td 
+                        i.icon-remove(ng-show='!remove', ng-click='remove = true')
+                        .span3
+                          a(ng-show='remove') Delete?
+                      td
+                        .span3
+                            a(ng-show='remove') Yes
+                      td
+                        .span3
+                            a(ng-show='remove', ng-click='remove = false') No
+            tab(data-tab-id='tutorials', caption='Tutorials')
+                table.table.table-hover
+                  tbody
+                    tr(ng-repeat='tutorial in topic.tutorials | orderBy:"name"')
+                      td 
+                        | {{$index + 1}}
+                      td
+                        a(href='{{tutorial.url}}') {{tutorial.name}}
+                      td 
+                        i.icon-remove(ng-show='!remove', ng-click='remove = true')
+                        .span3
+                          a(ng-show='remove') Delete?
+                      td
+                        .span3
+                            a(ng-show='remove') Yes
+                      td
+                        .span3
+                            a(ng-show='remove', ng-click='remove = false') No
+            tab(data-tab-id='solutions', caption='Solutions')
+                table.table.table-hover
+                  tbody
+                    tr(ng-repeat='solution in topic.solutions | orderBy:"name"')
+                      td 
+                        | {{$index + 1}}
+                      td
+                        a(href='{{solution.url}}') {{solution.name}}
+                      td 
+                        i.icon-remove(ng-show='!remove', ng-click='remove = true')
+                        .span3
+                          a(ng-show='remove') Delete?
+                      td
+                        .span3
+                            a(ng-show='remove') Yes
+                      td
+                        .span3
+                            a(ng-show='remove', ng-click='remove = false') No
