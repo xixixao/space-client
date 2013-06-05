@@ -48,18 +48,18 @@
           | {{topic.name}}
           .row-top-offset
           tabs
-              .row-fluid
-                .span4
-                    i.icon-plus(ng-show='!addFile',ng-click='addFile=true')
-                    i.icon-minus(ng-show='addFile',ng-click='addFile=false')
-                    | Add a file 
-                .span8
-                  span.pretty-file
-                    input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
-                    .input-append
-                      input.input-large(ng-show='addFile', type='text')
-                      a.btn(ng-show='addFile') Browse
-                      a.btn(ng-show='addFile') Upload
+            .row-fluid
+              .span4
+                  i.icon-plus(ng-show='!addFile',ng-click='addFile=true')
+                  i.icon-minus(ng-show='addFile',ng-click='addFile=false')
+                  | Add a file 
+              .span8
+                span.pretty-file
+                  input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
+                  .input-append
+                    input.input-large(ng-show='addFile', type='text')
+                    a.btn(ng-show='addFile') Browse
+                    a.btn(ng-show='addFile') Upload
             tab(data-tab-id='notes', caption='Notes')
                 table.table.table-hover
                   tbody
