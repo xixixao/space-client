@@ -1211,6 +1211,7 @@ var PDFView = {
         return;
       switch (args.pdfjsLoadAction) {
         case 'supportsRangedLoading':
+          console.log("messaging");
           PDFView.open(args.pdfUrl, 0, undefined, pdfDataRangeTransport, {
             length: args.length
           });
@@ -1230,6 +1231,7 @@ var PDFView = {
                           'An error occurred while loading the PDF.'), e);
             break;
           }
+          console.log("completion");
           PDFView.open(args.data, 0);
           break;
       }
@@ -1258,6 +1260,7 @@ var PDFView = {
   // TODO(mack): This function signature should really be pdfViewOpen(url, args)
   open: function pdfViewOpen(url, scale, password,
                              pdfDataRangeTransport, args) {
+    console.log("opening called");
     var parameters = {password: password};
     if (typeof url === 'string') { // URL
       this.setTitleUsingUrl(url);
@@ -1376,6 +1379,7 @@ var PDFView = {
       a.click();
       a.parentNode.removeChild(a);
     } else {
+      console.log("openparent");
       window.open(url, '_parent');
     }
 //#else
@@ -1715,10 +1719,10 @@ var PDFView = {
                      left + ',' + top;
       }
       // Initialize the browsing history.
-      PDFHistory.initialize({ hash: storedHash, page: (pageNum || 1) },
-                            PDFView.documentFingerprint);
+      //PDFHistory.initialize({ hash: storedHash, page: (pageNum || 1) },
+      //                      PDFView.documentFingerprint);
 
-      self.setInitialView(storedHash, scale);
+      self.setInitialView(null, scale);
 
       // Make all navigation keys work on document load,
       // unless the viewer is embedded in another page.
@@ -1803,6 +1807,7 @@ var PDFView = {
     // updated if the zoom level stayed the same.
     this.currentScale = 0;
     this.currentScaleValue = null;
+    console.log(PDFHistory.initialDestination, this.initialBookmark, storedHash, scale);
     if (PDFHistory.initialDestination) {
       this.navigateTo(PDFHistory.initialDestination);
       PDFHistory.initialDestination = null;
@@ -1812,6 +1817,7 @@ var PDFView = {
     } else if (storedHash) {
       this.setHash(storedHash);
     } else if (scale) {
+      console.log("scaling inti")
       this.parseScale(scale, true);
       this.page = 1;
     }
@@ -1819,7 +1825,7 @@ var PDFView = {
     if (PDFView.currentScale === UNKNOWN_SCALE) {
       // Scale was not initialized: invalid bookmark or scale was not specified.
       // Setting the default one.
-      this.parseScale(DEFAULT_SCALE, true);
+      this.parseScale(scale || DEFAULT_SCALE, true);
     }
   },
 
@@ -3627,7 +3633,7 @@ function webViewerLoad(fileLocation, classPrefix) {
 //#endif
 
 //#if !B2G
-  PDFView.open(file, 0);
+  PDFView.open(file, 'auto');
 //#endif
 }
 
@@ -3700,11 +3706,12 @@ function updateViewarea() {
 }
 
 window.addEventListener('resize', function webViewerResize(evt) {
-  if (PDFView.initialized && document.getElementById(pdfClassPrefix + 'pageWidthOption') &&
+  if (PDFView.initialized && document.getElementById(pdfClassPrefix + 'scaleSelect') &&
       (document.getElementById(pdfClassPrefix + 'pageWidthOption').selected ||
       document.getElementById(pdfClassPrefix + 'pageFitOption').selected ||
       document.getElementById(pdfClassPrefix + 'pageAutoOption').selected))
       PDFView.parseScale(document.getElementById(pdfClassPrefix + 'scaleSelect').value);
+  console.log("scaleSelect", document.getElementById(pdfClassPrefix + 'scaleSelect').value);
   updateViewarea();
 });
 
