@@ -29,6 +29,7 @@ requirejs [
   'd/ngController'
   'd/tab'
   'd/tabs'
+  'd/smallViewer'
   'd/focusIn'
   'filters/twitterfy'
   'ang'

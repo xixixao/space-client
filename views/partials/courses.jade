@@ -42,4 +42,5 @@
             li(ng-repeat='file in files', ng-class='file.active', ng-mouseover='activate($index)')
               a(href='{{file.uri}}', ng-click='open($index)')
                 {{file.name}}
-          // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
+        .span12
+          small-viewer

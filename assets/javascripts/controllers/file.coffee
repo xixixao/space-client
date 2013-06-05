@@ -14,5 +14,5 @@ define ['c/controllers',  'viewer', 'services/fakeuser'], (controllers, PDFViewe
       #.error (error) ->
       #  $scope.error = error
 
-      PDFViewer.loadFile 'files/ch5.pdf'
+      PDFViewer.loadFile 'files/ch5.pdf', 'pdf-'
   ]
