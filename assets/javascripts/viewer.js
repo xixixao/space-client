@@ -1003,7 +1003,7 @@ var PDFView = {
   parseScale: function pdfViewParseScale(value, resetAutoSettings, noScroll) {
     if ('custom' == value)
       return;
-
+    console.log("parseScale");
     var scale = parseFloat(value);
     this.currentScaleValue = value;
     if (scale) {
@@ -1018,7 +1018,6 @@ var PDFView = {
       return;
     }
 
-    debugger;
     var pageWidthScale = (container.clientWidth - SCROLLBAR_PADDING) /
                           currentPage.width * currentPage.scale / CSS_UNITS;
     var pageHeightScale = (container.clientHeight - VERTICAL_PADDING) /
@@ -1212,7 +1211,6 @@ var PDFView = {
         return;
       switch (args.pdfjsLoadAction) {
         case 'supportsRangedLoading':
-          console.log("messaging");
           PDFView.open(args.pdfUrl, 0, undefined, pdfDataRangeTransport, {
             length: args.length
           });
@@ -1232,7 +1230,6 @@ var PDFView = {
                           'An error occurred while loading the PDF.'), e);
             break;
           }
-          console.log("completion");
           PDFView.open(args.data, 0);
           break;
       }
@@ -1261,7 +1258,6 @@ var PDFView = {
   // TODO(mack): This function signature should really be pdfViewOpen(url, args)
   open: function pdfViewOpen(url, scale, password,
                              pdfDataRangeTransport, args) {
-    console.log("opening called");
     var parameters = {password: password};
     if (typeof url === 'string') { // URL
       this.setTitleUsingUrl(url);
@@ -1380,7 +1376,6 @@ var PDFView = {
       a.click();
       a.parentNode.removeChild(a);
     } else {
-      console.log("openparent");
       window.open(url, '_parent');
     }
 //#else
@@ -1722,7 +1717,7 @@ var PDFView = {
       // Initialize the browsing history.
       PDFHistory.initialize({ hash: storedHash, page: (pageNum || 1) },
                             PDFView.documentFingerprint);
-
+      debugger;
       self.setInitialView(storedHash, scale);
 
       // Make all navigation keys work on document load,
@@ -1891,6 +1886,7 @@ var PDFView = {
   // Render a page or thumbnail view. This calls the appropriate function based
   // on the views state. If the view is already rendered it will return false.
   renderView: function pdfViewRender(view, type) {
+    debugger;
     var state = view.renderingState;
     switch (state) {
       case RenderingStates.FINISHED:
@@ -3725,7 +3721,6 @@ window.addEventListener('resize', function webViewerResize(evt) {
       document.getElementById(pdfClassPrefix + 'pageFitOption').selected ||
       document.getElementById(pdfClassPrefix + 'pageAutoOption').selected))
       PDFView.parseScale(document.getElementById(pdfClassPrefix + 'scaleSelect').value);
-  console.log("scaleSelect", document.getElementById(pdfClassPrefix + 'scaleSelect').value);
   updateViewarea();
 });
 
@@ -3753,9 +3748,11 @@ window.addEventListener('change', function webViewerChange(evt) {
   PDFView.setTitleUsingUrl(file.name);
 
   // URL does not reflect proper document location - hiding some icons.
-  document.getElementById(pdfClassPrefix + 'viewBookmark').setAttribute('hidden', 'true');
-  document.getElementById(pdfClassPrefix + 'download').setAttribute('hidden', 'true');
-  document.getElementById(pdfClassPrefix + 'secondaryDownload').setAttribute('hidden', 'true');
+  if (document.getElementById(pdfClassPrefix + 'viewBookmark')) {
+    document.getElementById(pdfClassPrefix + 'viewBookmark').setAttribute('hidden', 'true');
+    document.getElementById(pdfClassPrefix + 'download').setAttribute('hidden', 'true');
+    document.getElementById(pdfClassPrefix + 'secondaryDownload').setAttribute('hidden', 'true');
+  }
 }, true);
 
 function selectScaleOption(value) {
@@ -3784,22 +3781,27 @@ window.addEventListener('localized', function localized(evt) {
     function() {
       var container = document.getElementById(pdfClassPrefix + 'scaleSelectContainer');
       var select = document.getElementById(pdfClassPrefix + 'scaleSelect');
-      select.setAttribute('style', 'min-width: inherit;');
-      var width = select.clientWidth + 8;
-      select.setAttribute('style', 'min-width: ' + (width + 20) + 'px;');
-      container.setAttribute('style', 'min-width: ' + width + 'px; ' +
-                                      'max-width: ' + width + 'px;');
+      if (select) {
+        select.setAttribute('style', 'min-width: inherit;');
+        var width = select.clientWidth + 8;
+        select.setAttribute('style', 'min-width: ' + (width + 20) + 'px;');
+        container.setAttribute('style', 'min-width: ' + width + 'px; ' +
+                                        'max-width: ' + width + 'px;');
+      }
   });
 }, true);
 
 window.addEventListener('scalechange', function scalechange(evt) {
-  document.getElementById(pdfClassPrefix + 'zoomOut').disabled = (evt.scale === MIN_SCALE);
-  document.getElementById(pdfClassPrefix + 'zoomIn').disabled = (evt.scale === MAX_SCALE);
+  if (document.getElementById(pdfClassPrefix + 'zoomOut')) {
+    document.getElementById(pdfClassPrefix + 'zoomOut').disabled = (evt.scale === MIN_SCALE);
+    document.getElementById(pdfClassPrefix + 'zoomIn').disabled = (evt.scale === MAX_SCALE);
+  }
 
   var customScaleOption = document.getElementById(pdfClassPrefix + 'customScaleOption');
-  customScaleOption.selected = false;
+  if (customScaleOption)
+    customScaleOption.selected = false;
 
-  if (!evt.resetAutoSettings &&
+  if (!evt.resetAutoSettings && document.getElementById(pdfClassPrefix + 'scaleSelect') &&
        (document.getElementById(pdfClassPrefix + 'pageWidthOption').selected ||
         document.getElementById(pdfClassPrefix + 'pageFitOption').selected ||
         document.getElementById(pdfClassPrefix + 'pageAutoOption').selected)) {
@@ -3808,7 +3810,7 @@ window.addEventListener('scalechange', function scalechange(evt) {
   }
 
   var predefinedValueFound = selectScaleOption('' + evt.scale);
-  if (!predefinedValueFound) {
+  if (!predefinedValueFound && customScaleOption) {
     customScaleOption.textContent = Math.round(evt.scale * 10000) / 100 + '%';
     customScaleOption.selected = true;
   }
@@ -3817,7 +3819,7 @@ window.addEventListener('scalechange', function scalechange(evt) {
 
 window.addEventListener('pagechange', function pagechange(evt) {
   var page = evt.pageNumber;
-  if (PDFView.previousPageNumber !== page) {
+  if (PDFView.previousPageNumber !== page && document.getElementById(pdfClassPrefix + 'pageNumber')) {
     document.getElementById(pdfClassPrefix + 'pageNumber').value = page;
     var selected = document.querySelector('.thumbnail.selected');
     if (selected)
@@ -3837,8 +3839,10 @@ window.addEventListener('pagechange', function pagechange(evt) {
     }
 
   }
-  document.getElementById(pdfClassPrefix + 'previous').disabled = (page <= 1);
-  document.getElementById(pdfClassPrefix + 'next').disabled = (page >= PDFView.pages.length);
+  if (document.getElementById(pdfClassPrefix + 'previous')) {
+    document.getElementById(pdfClassPrefix + 'previous').disabled = (page <= 1);
+    document.getElementById(pdfClassPrefix + 'next').disabled = (page >= PDFView.pages.length);
+  }
 }, true);
 
 // Firefox specific event, so that we can prevent browser from zooming

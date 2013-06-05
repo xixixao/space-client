@@ -34,7 +34,7 @@ define [
 
     controller: controller
     link: ($scope, $element) ->
-      PDFViewer.loadFile 'files/ch5.pdf', 'pdf-small-'
+      PDFViewer.loadFile 'files/lecture9.pdf', 'pdf-small-'
 
     replace: true
     restrict: 'E'
