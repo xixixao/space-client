@@ -25,11 +25,11 @@
             li(ng-repeat='course in user.courses | orderBy:"name"')
               a(ng-click='setTopic(course)') {{course.name}}
 
-        tab(data-tab-id='topic', caption='Topic')
+        tab(data-tab-id='topic', caption='Topics')
           ul
             li(ng-repeat='course in user.courses | orderBy:"name"')
               a(href='{{course.url}}') {{course.name}}
-    .span9.search-bar-container
+    .span6.search-bar-container
       .row-fluid
         .span11
           .input-append
@@ -44,24 +44,22 @@
                 {{file.name}}
           // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
       .row-fluid
-        .span9
+        .span12
           | {{topic.name}}
           .row-top-offset
           tabs
-            .row-fluid
-              .span5
-                .span1
-                  i.icon-plus(ng-show='!addFile',ng-click='addFile=true')
-                  i.icon-minus(ng-show='addFile',ng-click='addFile=false')
+              .row-fluid
                 .span4
-                  | Add a file 
-              .span4
-                span.pretty-file
-                  input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
-                  .input-append
-                    input.input-large(ng-show='addFile', type='text')
-                    a.btn(ng-show='addFile') Browse
-                    a.btn(ng-show='addFile') Upload
+                    i.icon-plus(ng-show='!addFile',ng-click='addFile=true')
+                    i.icon-minus(ng-show='addFile',ng-click='addFile=false')
+                    | Add a file 
+                .span8
+                  span.pretty-file
+                    input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
+                    .input-append
+                      input.input-large(ng-show='addFile', type='text')
+                      a.btn(ng-show='addFile') Browse
+                      a.btn(ng-show='addFile') Upload
             tab(data-tab-id='notes', caption='Notes')
                 table.table.table-hover
                   tbody
