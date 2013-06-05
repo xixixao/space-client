@@ -44,10 +44,24 @@
                 {{file.name}}
           // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
       .row-fluid
-        .span6
+        .span9
           | {{topic.name}}
           .row-top-offset
           tabs
+            .row-fluid
+              .span5
+                .span1
+                  i.icon-plus(ng-show='!addFile',ng-click='addFile=true')
+                  i.icon-minus(ng-show='addFile',ng-click='addFile=false')
+                .span4
+                  | Add a file 
+              .span4
+                span.pretty-file
+                  input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
+                  .input-append
+                    input.input-large(ng-show='addFile', type='text')
+                    a.btn(ng-show='addFile') Browse
+                    a.btn(ng-show='addFile') Upload
             tab(data-tab-id='notes', caption='Notes')
                 table.table.table-hover
                   tbody
@@ -57,15 +71,16 @@
                       td
                         a(href='{{file.url}}') {{file.name}}
                       td 
-                        i.icon-remove(ng-show='!remove', ng-click='remove = true')
+                        i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
                         .span3
-                          a(ng-show='remove') Delete?
+                          a(ng-show='removeFile') Delete?
                       td
                         .span3
-                            a(ng-show='remove') Yes
+                            a(ng-show='removeFile') Yes
                       td
                         .span3
-                            a(ng-show='remove', ng-click='remove = false') No
+                            a(ng-show='removeFile', ng-click='removeFile = false') No
+
             tab(data-tab-id='tutorials', caption='Tutorials')
                 table.table.table-hover
                   tbody
@@ -75,15 +90,15 @@
                       td
                         a(href='{{tutorial.url}}') {{tutorial.name}}
                       td 
-                        i.icon-remove(ng-show='!remove', ng-click='remove = true')
+                        i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
                         .span3
-                          a(ng-show='remove') Delete?
+                          a(ng-show='removeFile') Delete?
                       td
                         .span3
-                            a(ng-show='remove') Yes
+                            a(ng-show='removeFile') Yes
                       td
                         .span3
-                            a(ng-show='remove', ng-click='remove = false') No
+                            a(ng-show='removeFile', ng-click='removeFile = false') No
             tab(data-tab-id='solutions', caption='Solutions')
                 table.table.table-hover
                   tbody
@@ -93,12 +108,13 @@
                       td
                         a(href='{{solution.url}}') {{solution.name}}
                       td 
-                        i.icon-remove(ng-show='!remove', ng-click='remove = true')
+                        i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
                         .span3
-                          a(ng-show='remove') Delete?
+                          a(ng-show='removeFile') Delete?
                       td
                         .span3
-                            a(ng-show='remove') Yes
+                            a(ng-show='removeFile') Yes
                       td
                         .span3
-                            a(ng-show='remove', ng-click='remove = false') No
+                            a(ng-show='removeFile', ng-click='removeFile = false') No
+
