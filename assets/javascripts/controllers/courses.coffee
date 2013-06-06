@@ -49,19 +49,15 @@ define ['c/controllers', 'jquery', 'vendor/fuse', 'services/fakeuser'], (control
         if $scope.lastActive?
           $scope.files[$scope.lastActive].active = ""
 
+      $scope.filesToUpload = []
 
-      $scope.clickFile = ->
+      $scope.triggerFileBrowse = ->
         fileInput = $('.pretty-file input[type="file"]')
-        fileInput.change ->
+        fileInput.change -> $scope.$apply ->
           files = fileInput[0].files
-          if files.length > 1 
-            info = files.length + ' files selected'
-          else 
-            path = fileInput.val().split('\\')
-            info = path[path.length - 1]
-          $scope.fileInfo = info
-          $('.pretty-file .input-append input').val info
-        
+          for file in files
+            file.nameWithoutExt = file.name[0...file.name.lastIndexOf '.']
+          $scope.filesToUpload = files
+
         fileInput.click()
-        
   ]

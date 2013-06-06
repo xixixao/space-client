@@ -64,12 +64,17 @@
                 span.pretty-file
                   input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
                   .input-append
-                    input.input-large(ng-show='addFile', type='text')
-                    a.btn(ng-click='clickFile()', ng-show='addFile') Browse
+                    // input.input-large(ng-show='addFile', ng-model='fileInfo', type='text')
+                    a.btn(ng-click='triggerFileBrowse()', ng-show='addFile') Browse
                     a.btn(ng-show='addFile') Upload
             tab(data-tab-id='notes', caption='Notes')
                 table.table.table-hover
                   tbody
+                    tr(ng-repeat='file in filesToUpload')
+                      td
+                        input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
+                      td
+                        span {{file.name}}
                     tr(ng-repeat='file in topic.files | orderBy:"name"')
                       td 
                         span.pull-left {{$index + 1}}
