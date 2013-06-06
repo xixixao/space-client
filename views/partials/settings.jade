@@ -18,80 +18,110 @@
           li
             a Help
   .row
-    .span12
-      .page-header
-        h3 Account Details 
-      .row.row-spaced
-        .span3
-          | Name
-        .span3
-          | {{user.name}}
-        .span6
-          a(ng-show='!hideName', ng-click='hideName = true') Edit
-          form.form-no-margin(ng-show='hideName', ng-submit='hideName = false')
-            input(type='text')
-            input.btn(type='submit', value='Submit')
-      .row.row-spaced
-        .span3
-          | Username
-        .span3
-          | {{user.username}}
-        .span3
-          |  -
-      .row.row-spaced
-        .span3
-          | Email
-        .span3
-          | {{user.email}}
-        .span6
-          a(ng-show='!hideEmail', ng-click='hideEmail = true') Edit
-          form.form-no-margin(ng-show='hideEmail', ng-submit='hideEmail = false')
-            input(type='text')
-            input.btn(type='submit', value='Submit')
-      .row.row-spaced
-        .span3
-          | Facebook 
-        .span3
-          | {{user.facebook}}
-        .span6
-          a(ng-show='!hidefacebook', ng-click='hidefacebook = true') Edit
-          form.form-no-margin(ng-show='hidefacebook', ng-submit='hidefacebook = false')
-            input(type='text')
-            input.btn(type='submit', value='Submit')
-      .row.row-spaced
-        .span3
-          | Password
-        .span3
-          | ******
-        .span3
-          a(ng-show='!hidePassword', ng-click='hidePassword = true') Edit
-          form.form-no-margin.form-inline(ng-show='hidePassword', ng-submit='hidePassword = false')
-            .control-group
-              input.input-small(type='text', placeholder='Old Password')
-            .control-group
-              input.input-small(type='text', placeholder='New Password')
-            .control-group
-              input.input-small(type='text', placeholder='Confirm Password')
-            .control-group
-              input.btn(type='submit', value='Submit')
-  p
+    .span6
+      h3 Account Details 
+      .row-fluid
+        table.table.table-hover
+          tbody
+            tr
+              td
+                span Name
+              td
+                span(ng-show='!editName') {{user.name}}
+                form.form-no-margin(ng-show='editName', ng-submit='editName = false')
+                  input.input-small(type='text', placeholder='{{user.name}}')
+                  a.btn(ng-click='editName = false') 
+                   i.icon-ok
+                  a.btn(ng-click='editName = false') 
+                   i.icon-remove
+              td 
+                span.btn-toolbar.pull-right
+                  .btn-group
+                    a.btn(ng-show='!editName', ng-click='editName = true')
+                      i.icon-pencil
+            tr
+              td
+                span Username
+              td
+                span {{user.username}}
+              td
+            tr
+              td
+                span Email
+              td
+                span(ng-show='!editEmail') {{user.email}}
+                form.form-no-margin(ng-show='editEmail', ng-submit='editEmail = false')
+                  input.input-small(type='text', placeholder='{{user.email}}')
+                  a.btn(ng-click='editEmail = false') 
+                   i.icon-ok
+                  a.btn(ng-click='editEmail = false') 
+                   i.icon-remove
+              td
+                span.btn-toolbar.pull-right
+                  .btn-group
+                    a.btn(ng-show='!editEmail', ng-click='editEmail = true')
+                      i.icon-pencil
+            tr
+              td
+                span Facebook 
+              td
+                span(ng-show='!editFacebook') {{user.facebook}}
+                form.form-no-margin(ng-show='editFacebook', ng-submit='editFacebook = false')
+                  input.input-small(type='text', placeholder='{{user.facebook}}')
+                  a.btn(ng-click='editFacebook = false') 
+                   i.icon-ok
+                  a.btn(ng-click='editFacebook = false') 
+                   i.icon-remove
+              td
+                span.btn-toolbar.pull-right
+                  .btn-group
+                    a.btn(ng-show='!editFacebook', ng-click='editFacebook = true')
+                      i.icon-pencil
+            tr
+              td
+                span Password
+              td
+                span(ng-show='!editPassword') ******
+              td
+                span.btn-toolbar.pull-right
+                  .btn-group
+                    a.btn(ng-show='!editPassword', ng-click='editPassword = true')
+                      i.icon-pencil
+                form.form-no-margin.form-inline(ng-show='editPassword', ng-submit='editPassword = false')
+                  .control-group
+                    input.input-small(type='text', placeholder='Old Password')
+                  .control-group
+                    input.input-small(type='text', placeholder='New Password')
+                  .control-group
+                    input.input-small(type='text', placeholder='Confirm Password')
+                  .control-group
+                    a.btn(ng-click='editPassword = false') 
+                     i.icon-ok
+                    a.btn(ng-click='editPassword = false') 
+                     i.icon-remove  p
   .row
-    .span12
-      .page-header
-        h3 Notifications
+    .span6
+      h3 Notifications
       strong
         | How would you like to get notifications?
-  .row.row-top-offset
-    .span12        
-      .row.row-spaced 
-        .span3
-          | Facebook
-        .span3
-          a(ng-show='!OnFacebook', ng-click='OnFacebook = true') Off
-          a(ng-show='OnFacebook', ng-click='OnFacebook = false') On
-      .row.row-spaced                
-        .span3
-          | Email
-        .span3
-          a(ng-show='!OnEmail', ng-click='OnEmail = true') Off
-          a(ng-show='OnEmail', ng-click='OnEmail = false') On
+      .row-fluid
+        table.table.table-hover
+          tbody
+            tr
+              td
+                span Facebook
+              td
+                .btn-group.pull-right
+                  a.btn(ng-show='!OnFacebook', ng-click='OnFacebook = true')
+                    i.icon-remove
+                  a.btn(ng-show='OnFacebook', ng-click='OnFacebook = false')
+                    i.icon-ok
+            tr
+              td
+                span Email
+              td
+                .btn-group.pull-right
+                  a.btn(ng-show='!OnEmail', ng-click='OnEmail = true')
+                    i.icon-remove
+                  a.btn(ng-show='OnEmail', ng-click='OnEmail = false')
+                    i.icon-ok
