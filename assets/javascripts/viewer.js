@@ -3095,7 +3095,7 @@ var TextLayerBuilder = function textLayerBuilder(textLayerDiv, pageIdx) {
       var end = match.end;
 
       var isSelected = isSelectedPage && i === selectedMatchIdx;
-      var highlightSuffix = (isSelected ? ' selected' : '');
+      var highlightSuffix = (isSelected ? ' pdf-selected' : '');
       if (isSelected)
         scrollIntoView(textDivs[begin.divIdx], {top: -50});
 
@@ -3112,13 +3112,13 @@ var TextLayerBuilder = function textLayerBuilder(textLayerDiv, pageIdx) {
       }
 
       if (begin.divIdx === end.divIdx) {
-        appendText(begin, end, 'highlight' + highlightSuffix);
+        appendText(begin, end, 'pdf-highlight' + highlightSuffix);
       } else {
-        appendText(begin, infty, 'highlight begin' + highlightSuffix);
+        appendText(begin, infty, 'pdf-highlight pdf-begin' + highlightSuffix);
         for (var n = begin.divIdx + 1; n < end.divIdx; n++) {
-          highlightDiv(n, 'highlight middle' + highlightSuffix);
+          highlightDiv(n, 'pdf-highlight pdf-middle' + highlightSuffix);
         }
-        beginText(end, 'highlight end' + highlightSuffix);
+        beginText(end, 'pdf-highlight pdf-end' + highlightSuffix);
       }
       prevEnd = end;
     }
