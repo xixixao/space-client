@@ -22,7 +22,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
           files: [
             name: "Introduction and Methods"
             uri: ""
-            date: "12/12/12"
+            date: "1/12/12"
           ,
             name: "Uninformed Search"
             uri: ""
@@ -42,7 +42,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
           ,
             name: "Planning Algorithms"
             uri: ""
-            date: "1/12/12"
+            date: "12/12/12"
           ,
             name: "KRR"
             uri: ""
@@ -110,7 +110,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
           ,
             name: "Blabla"
             uri: ""
-            date: "1/12/12"
+            date: "12/12/12"
           ]
 
         ]

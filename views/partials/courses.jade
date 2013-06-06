@@ -103,40 +103,4 @@
                                   i.icon-remove
                                 a.btn(ng-click='editFile = true')
                                   i.icon-pencil
-              tab(data-tab-id='tutorials', caption='Tutorials')
-                  table.table.table-hover
-                    tbody
-                      tr(ng-repeat='tutorial in topic.tutorials | orderBy:"name"')
-                        td 
-                          | {{$index + 1}}
-                        td
-                          a(href='{{tutorial.url}}') {{tutorial.name}}
-                        td 
-                          i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
-                          .span3
-                            a(ng-show='removeFile') Delete?
-                        td
-                          .span3
-                              a(ng-show='removeFile') Yes
-                        td
-                          .span3
-                              a(ng-show='removeFile', ng-click='removeFile = false') No
-              tab(data-tab-id='solutions', caption='Solutions')
-                  table.table.table-hover
-                    tbody
-                      tr(ng-repeat='solution in topic.solutions | orderBy:"name"')
-                        td 
-                          | {{$index + 1}}
-                        td
-                          a(href='{{solution.url}}') {{solution.name}}
-                        td 
-                          i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
-                          .span3
-                            a(ng-show='removeFile') Delete?
-                        td
-                          .span3
-                              a(ng-show='removeFile') Yes
-                        td
-                          .span3
-                              a(ng-show='removeFile', ng-click='removeFile = false') No
-
+              
