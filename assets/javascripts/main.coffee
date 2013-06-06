@@ -41,8 +41,19 @@ requirejs [
   'responseInterceptors/dispatcher'
 ], (app, $) ->
   app.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
-    $stateProvider
 
+    # Let's keep the structure of our app here (corresponds to the jade file names)
+    # - login             > Where user logs in
+    # - user (no url)
+    #   |- questions      > Display full pdf with questions
+    #   |- settings       > User credentials
+    #   |- split (no url)
+    #      |- home        > News and choose a topic
+    #         +(homeSideMenu, news)
+    #      |- topic       > See all files for given topic
+    #         +(topicSideMenu, files)
+
+    $stateProvider
     .state 'login',
       url: "/login"
       controller: 'login'
@@ -67,16 +78,22 @@ requirejs [
       templateUrl: 'partials/split'
     .state 'user.split.home',
       url: "/"
-      controller: 'news'
       views:
-        'sideMenu': templateUrl: 'partials/homeSideMenu'
-        'mainView': templateUrl: 'partials/news'
+        'sideMenu':
+          templateUrl: 'partials/homeSideMenu'
+          controller: 'news'
+        'mainView':
+          templateUrl: 'partials/news'
+          controller: 'news'
     .state 'user.split.topic',
       url: "/topics/:topicId"
-      controller: 'topic'
       views:
-        'sideMenu': templateUrl: 'partials/topicSideMenu'
-        'mainView': templateUrl: 'partials/files'
+        'sideMenu':
+          templateUrl: 'partials/topicSideMenu'
+          controller: 'topic'
+        'mainView':
+          templateUrl: 'partials/files'
+          controller: 'topic'
     $urlRouterProvider.otherwise '/login'
   ]
 

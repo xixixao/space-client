@@ -1,5 +1,3 @@
-###global define###
-
 define [
   'd/directives'
   'templates'

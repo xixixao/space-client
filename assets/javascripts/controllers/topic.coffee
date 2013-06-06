@@ -1,10 +1,27 @@
-define ['c/controllers', 'services/fakeuser'], (controllers) ->
+define ['c/controllers'], (controllers) ->
   'use strict'
 
   controllers.controller 'topic', [
     '$scope'
-    '$location'
-    'user'
-    ($scope, $location, service) ->
-      console.log "inside topic"
+    '$stateParams'
+    ($scope, $stateParams) ->
+
+      topicWithId = (topicId) ->
+        for course in $scope.user.courses when course.id is topicId
+          return course
+
+      $scope.topic = topicWithId $stateParams.topicId
+      $scope.canWrite = $scope.topic.permission == 'w'
+
+      $scope.filesToUpload = []
+
+      $scope.triggerFileBrowse = ->
+        fileInput = $('.pretty-file input[type="file"]')
+        fileInput.change -> $scope.$apply ->
+          files = fileInput[0].files
+          for file in files
+            file.nameWithoutExt = file.name[0...file.name.lastIndexOf '.']
+          $scope.filesToUpload = files
+
+        fileInput.click()
   ]

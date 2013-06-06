@@ -7,4 +7,5 @@ define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
     'user'
     ($scope, $location, service) ->
       $scope.user = user = service.user()
+      console.log "hello from user"
   ]
