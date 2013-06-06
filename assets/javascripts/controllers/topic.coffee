@@ -8,6 +8,7 @@ define ['c/controllers'], (controllers) ->
 
       topicWithId = (topicId) ->
         for course in $scope.user.courses when course.id is topicId
+          course.allFiles = [].concat (files for type, files of course.types)
           return course
 
       $scope.topic = topicWithId $stateParams.topicId

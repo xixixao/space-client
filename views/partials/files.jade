@@ -19,42 +19,42 @@
                 a.btn(ng-show='addFile') Upload
         .row-fluid
           tab(data-tab-id='notes', caption='Notes')
-              table.table.table-hover
-                tbody
-                  tr(ng-repeat='file in filesToUpload')
-                    td
-                      input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
-                    td
-                      span {{file.name}}
-                  tr(ng-repeat='file in topic.files | orderBy:"date"')
-                    td 
-                      span(ng-show='!canWrite') {{$index + 1}}
-                      span(ng-show='canWrite && !editFile') {{file.date}}
-                      span(ng-show='editFile')
-                        input.input-small(type='text', placeholder='{{file.date}}')
-                    td
-                      a(ng-show='!editFile && !removeFile', href='#/topics/{{topic.id}}/files/{{file.name}}') {{file.name}}
-                      settings(ng-show='removeFile')
-                        span.text-error {{file.name}}
-                      span(ng-show='editFile')
-                        input.input-small(type='text', placeholder='{{file.name}}')
-                      span.pull-right
-                        .btn-toolbar(ng-show='removeFile')
-                          .btn-group
-                              a.btn(ng-click='removeFile = false') 
-                                i.icon-ok
-                              a.btn(ng-click='removeFile = false') 
-                                i.icon-remove
-                        .btn-toolbar(ng-show='editFile')
-                          .btn-group
-                              a.btn(ng-click='editFile = false') 
-                                i.icon-ok
-                              a.btn(ng-click='editFile = false') 
-                                i.icon-remove
-                    td 
-                      span.btn-toolbar.pull-right
-                          .btn-group(ng-show='canWrite')
-                            a.btn(ng-click='removeFile = true')
-                              i.icon-remove
-                            a.btn(ng-click='editFile = true')
-                              i.icon-pencil
+            table.table.table-hover
+              tbody
+                tr(ng-repeat='file in filesToUpload')
+                  td
+                    input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
+                  td
+                    span {{file.name}}
+                tr(ng-repeat='file in topic.files | orderBy:"date"')
+                  td
+                    span(ng-show='!canWrite') {{$index + 1}}
+                    span(ng-show='canWrite && !editFile') {{file.date}}
+                    span(ng-show='editFile')
+                      input.input-small(type='text', placeholder='{{file.date}}')
+                  td
+                    a(ng-show='!editFile && !removeFile', href='topics/{{topic.id}}/{{file.url}}') {{file.name}}
+                    settings(ng-show='removeFile')
+                      span.text-error {{file.name}}
+                    span(ng-show='editFile')
+                      input.input-small(type='text', placeholder='{{file.name}}')
+                    span.pull-right
+                      .btn-toolbar(ng-show='removeFile')
+                        .btn-group
+                          a.btn(ng-click='removeFile = false') 
+                            i.icon-ok
+                          a.btn(ng-click='removeFile = false') 
+                            i.icon-remove
+                      .btn-toolbar(ng-show='editFile')
+                        .btn-group
+                          a.btn(ng-click='editFile = false') 
+                            i.icon-ok
+                          a.btn(ng-click='editFile = false') 
+                            i.icon-remove
+                  td
+                    span.btn-toolbar.pull-right
+                      .btn-group(ng-show='canWrite')
+                        a.btn(ng-click='removeFile = true')
+                          i.icon-remove
+                        a.btn(ng-click='editFile = true')
+                          i.icon-pencil
