@@ -19,6 +19,7 @@
             a Help
   .row-fluid
     .span3
+      h3 {{topic.name}}
       tabs
         tab(data-tab-id='feed', caption='Feed')
           ul
@@ -45,98 +46,97 @@
           // object(src='/img/ch5.pdf', type='application/pdf', width='100%', height='500')
       .row-fluid
         .span12
-          | {{topic.name}}
-          .row-top-offset
           tabs
             .row-fluid(ng-show='canWrite')
-              .span4
-                  btn(ng-show='!addFile', ng-click='addFile=true') 
-                    .span1
-                      i.icon-plus(ng-show='!addFile',ng-click='addFile=true')
-                    .span3
-                      | Add a file 
-                  btn(ng-show='addFile',ng-click='addFile=false') 
-                    .span1
-                      i.icon-minus(ng-show='addFile',ng-click='addFile=false')
-                    .span3
-                      | Cancel
-              .span8
+              .span2
+                a.btn.row-buttom-offset(ng-show='!addFile', ng-click='addFile=true')
+                  i.icon-plus
+                  | Upload
+                a.btn(ng-show='addFile',ng-click='addFile=false')
+                  i.icon-minus
+                  | Cancel
+              .span10
                 span.pretty-file
                   input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
                   .input-append
-                    // input.input-large(ng-show='addFile', ng-model='fileInfo', type='text')
+                    input.input-large(ng-show='addFile', ng-model='fileInfo', type='text')
                     a.btn(ng-click='triggerFileBrowse()', ng-show='addFile') Browse
                     a.btn(ng-show='addFile') Upload
-            tab(data-tab-id='notes', caption='Notes')
-                table.table.table-hover
-                  tbody
-                    tr(ng-repeat='file in filesToUpload')
-                      td
-                        input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
-                      td
-                        span {{file.name}}
-                    tr(ng-repeat='file in topic.files | orderBy:"date"')
-                      td 
-                        span(ng-show='!canWrite') {{$index + 1}}
-                        span(ng-show='canWrite') {{file.date}}
-                      td
-                        a.pull-left(ng-show='!editFile', href='{{file.url}}') {{file.name}}
-                        span(ng-show='editFile')
-                          input.input-small(type='text', placeholder='{{file.name}}')
-                          span.btn-toolbar
-                            .btn-group
-                                a.btn(ng-click='editFile = false') 
-                                  i.icon-ok
-                                a.btn(ng-click='editFile = false') 
+            .row-fluid
+              tab(data-tab-id='notes', caption='Notes')
+                  table.table.table-hover
+                    tbody
+                      tr(ng-repeat='file in filesToUpload')
+                        td
+                          input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
+                        td
+                          span {{file.name}}
+                      tr(ng-repeat='file in topic.files | orderBy:"date"')
+                        td 
+                          span(ng-show='!canWrite') {{$index + 1}}
+                          span(ng-show='canWrite && !editFile') {{file.date}}
+                          span(ng-show='editFile')
+                            input.input-small(type='text', placeholder='{{file.date}}')
+                        td
+                          a(ng-show='!editFile && !removeFile', href='{{file.url}}') {{file.name}}
+                          settings(ng-show='removeFile')
+                            span.text-error {{file.name}}
+                          span(ng-show='editFile')
+                            input.input-small(type='text', placeholder='{{file.name}}')
+                          span.pull-right
+                            .btn-toolbar(ng-show='removeFile')
+                              .btn-group
+                                  a.btn(ng-click='removeFile = false') 
+                                    i.icon-ok
+                                  a.btn(ng-click='removeFile = false') 
+                                    i.icon-remove
+                            .btn-toolbar(ng-show='editFile')
+                              .btn-group
+                                  a.btn(ng-click='editFile = false') 
+                                    i.icon-ok
+                                  a.btn(ng-click='editFile = false') 
+                                    i.icon-remove
+                        td 
+                          span.btn-toolbar.pull-right
+                              .btn-group(ng-show='canWrite')
+                                a.btn(ng-click='removeFile = true')
                                   i.icon-remove
-                      td 
-                        span.btn-toolbar.pull-right
-                            .btn-group
-                              a.btn(ng-show='!removeFile && canWrite', ng-click='removeFile = true')
-                                i.icon-remove
-                              a.btn(ng-show='canWrite', ng-click='editFile = true')
-                                i.icon-pencil
-                        .span9.pull-right(ng-show='removeFile')
-                          .span3.pull-right
-                            a.pull-right(ng-click='removeFile = false') No
-                          .span3.pull-right
-                            a.pull-right Yes
-                          .span3.pull-right
-                            span.pull-right Delete?
-            tab(data-tab-id='tutorials', caption='Tutorials')
-                table.table.table-hover
-                  tbody
-                    tr(ng-repeat='tutorial in topic.tutorials | orderBy:"name"')
-                      td 
-                        | {{$index + 1}}
-                      td
-                        a(href='{{tutorial.url}}') {{tutorial.name}}
-                      td 
-                        i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
-                        .span3
-                          a(ng-show='removeFile') Delete?
-                      td
-                        .span3
-                            a(ng-show='removeFile') Yes
-                      td
-                        .span3
-                            a(ng-show='removeFile', ng-click='removeFile = false') No
-            tab(data-tab-id='solutions', caption='Solutions')
-                table.table.table-hover
-                  tbody
-                    tr(ng-repeat='solution in topic.solutions | orderBy:"name"')
-                      td 
-                        | {{$index + 1}}
-                      td
-                        a(href='{{solution.url}}') {{solution.name}}
-                      td 
-                        i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
-                        .span3
-                          a(ng-show='removeFile') Delete?
-                      td
-                        .span3
-                            a(ng-show='removeFile') Yes
-                      td
-                        .span3
-                            a(ng-show='removeFile', ng-click='removeFile = false') No
+                                a.btn(ng-click='editFile = true')
+                                  i.icon-pencil
+              tab(data-tab-id='tutorials', caption='Tutorials')
+                  table.table.table-hover
+                    tbody
+                      tr(ng-repeat='tutorial in topic.tutorials | orderBy:"name"')
+                        td 
+                          | {{$index + 1}}
+                        td
+                          a(href='{{tutorial.url}}') {{tutorial.name}}
+                        td 
+                          i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
+                          .span3
+                            a(ng-show='removeFile') Delete?
+                        td
+                          .span3
+                              a(ng-show='removeFile') Yes
+                        td
+                          .span3
+                              a(ng-show='removeFile', ng-click='removeFile = false') No
+              tab(data-tab-id='solutions', caption='Solutions')
+                  table.table.table-hover
+                    tbody
+                      tr(ng-repeat='solution in topic.solutions | orderBy:"name"')
+                        td 
+                          | {{$index + 1}}
+                        td
+                          a(href='{{solution.url}}') {{solution.name}}
+                        td 
+                          i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
+                          .span3
+                            a(ng-show='removeFile') Delete?
+                        td
+                          .span3
+                              a(ng-show='removeFile') Yes
+                        td
+                          .span3
+                              a(ng-show='removeFile', ng-click='removeFile = false') No
 
