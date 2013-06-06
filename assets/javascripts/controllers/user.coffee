@@ -1,4 +1,4 @@
-define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
+define ['c/controllers', 'services/fakeuser'], (controllers) ->
   'use strict'
 
   controllers.controller 'user', [
@@ -7,5 +7,4 @@ define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
     'user'
     ($scope, $location, service) ->
       $scope.user = user = service.user()
-      console.log "hello from user"
   ]

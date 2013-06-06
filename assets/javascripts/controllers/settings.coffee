@@ -1,8 +1,10 @@
 ###global define###
 
-define ['c/controllers', 'services/fakeuser'], (controllers) ->
+define ['c/controllers'], (controllers) ->
   'use strict'
 
-  controllers.controller 'settings', ['$scope', 'user', ($scope, service) ->
-     $scope.user = service.user()
+  controllers.controller 'settings', [
+    '$scope'
+    ($scope) ->
+
   ]

@@ -1,25 +1,7 @@
-.courses.tb
-  .row
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        ul.nav
-          li
-            a(href='#/home') SPACE
-        ul.nav
-          li
-            a {{user.username}}
-        ul.nav.pull-right
-          li
-            a Log Out
-        ul.nav.pull-right
-          li
-            a(href='#/settings') Settings
-        ul.nav.pull-right
-          li
-            a Help
-  .row
+.settings-components.tb
+  .row-fluid
     .span6
-      h3 Account Details 
+      h3 Account Details
       .row-fluid
         table.table.table-hover
           tbody
@@ -30,11 +12,11 @@
                 span(ng-show='!editName') {{user.name}}
                 form.form-no-margin(ng-show='editName', ng-submit='editName = false')
                   input.input-small(type='text', placeholder='{{user.name}}')
-                  a.btn(ng-click='editName = false') 
+                  a.btn(ng-click='editName = false')
                    i.icon-ok
-                  a.btn(ng-click='editName = false') 
+                  a.btn(ng-click='editName = false')
                    i.icon-remove
-              td 
+              td
                 span.btn-toolbar.pull-right
                   .btn-group
                     a.btn(ng-show='!editName', ng-click='editName = true')
@@ -52,9 +34,9 @@
                 span(ng-show='!editEmail') {{user.email}}
                 form.form-no-margin(ng-show='editEmail', ng-submit='editEmail = false')
                   input.input-small(type='text', placeholder='{{user.email}}')
-                  a.btn(ng-click='editEmail = false') 
+                  a.btn(ng-click='editEmail = false')
                    i.icon-ok
-                  a.btn(ng-click='editEmail = false') 
+                  a.btn(ng-click='editEmail = false')
                    i.icon-remove
               td
                 span.btn-toolbar.pull-right
@@ -63,14 +45,14 @@
                       i.icon-pencil
             tr
               td
-                span Facebook 
+                span Facebook
               td
                 span(ng-show='!editFacebook') {{user.facebook}}
                 form.form-no-margin(ng-show='editFacebook', ng-submit='editFacebook = false')
                   input.input-small(type='text', placeholder='{{user.facebook}}')
-                  a.btn(ng-click='editFacebook = false') 
+                  a.btn(ng-click='editFacebook = false')
                    i.icon-ok
-                  a.btn(ng-click='editFacebook = false') 
+                  a.btn(ng-click='editFacebook = false')
                    i.icon-remove
               td
                 span.btn-toolbar.pull-right
@@ -95,11 +77,11 @@
                   .control-group
                     input.input-small(type='text', placeholder='Confirm Password')
                   .control-group
-                    a.btn(ng-click='editPassword = false') 
+                    a.btn(ng-click='editPassword = false')
                      i.icon-ok
-                    a.btn(ng-click='editPassword = false') 
-                     i.icon-remove  p
-  .row
+                    a.btn(ng-click='editPassword = false')
+                     i.icon-remove
+  .row-fluid
     .span6
       h3 Notifications
       strong

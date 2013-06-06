@@ -33,7 +33,7 @@
                       span(ng-show='editFile')
                         input.input-small(type='text', placeholder='{{file.date}}')
                     td
-                      a(ng-show='!editFile && !removeFile', href='{{file.url}}') {{file.name}}
+                      a(ng-show='!editFile && !removeFile', href='#/topics/{{topic.id}}/files/{{file.name}}') {{file.name}}
                       settings(ng-show='removeFile')
                         span.text-error {{file.name}}
                       span(ng-show='editFile')
