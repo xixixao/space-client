@@ -72,18 +72,23 @@
                   tbody
                     tr(ng-repeat='file in topic.files | orderBy:"name"')
                       td 
-                        .span1.pull-left {{$index + 1}}
+                        span.pull-left {{$index + 1}}
                       td
                         a.pull-left(href='{{file.url}}') {{file.name}}
                       td 
-                        i.icon-remove.pull-right(ng-show='!removeFile && canWrite', ng-click='removeFile = true')
-                        .span3.pull-right
-                          a.pull-right(ng-show='removeFile', ng-click='removeFile = false') No
-                        .span3.pull-right
-                          a.pull-right(ng-show='removeFile') Yes
-                        .span3.pull-right
-                          span.pull-right(ng-show='removeFile') Delete?
-
+                        .span3.pull-right(ng-show='!editFile && canWrite')
+                          btn.pull-right(ng-click='editFile = true')
+                            i.icon-pencil
+                        .span3.pull-right(ng-show='!removeFile && canWrite')
+                          btn.pull-right(ng-click='removeFile = true')
+                            i.icon-remove
+                        .span9.pull-right(ng-show='removeFile')
+                          .span3.pull-right
+                            a.pull-right(ng-click='removeFile = false') No
+                          .span3.pull-right
+                            a.pull-right Yes
+                          .span3.pull-right
+                            span.pull-right Delete?
             tab(data-tab-id='tutorials', caption='Tutorials')
                 table.table.table-hover
                   tbody
