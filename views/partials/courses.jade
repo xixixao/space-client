@@ -75,18 +75,27 @@
                         input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
                       td
                         span {{file.name}}
-                    tr(ng-repeat='file in topic.files | orderBy:"name"')
+                    tr(ng-repeat='file in topic.files | orderBy:"date"')
                       td 
-                        span.pull-left {{$index + 1}}
+                        span(ng-show='!canWrite') {{$index + 1}}
+                        span(ng-show='canWrite') {{file.date}}
                       td
-                        a.pull-left(href='{{file.url}}') {{file.name}}
+                        a.pull-left(ng-show='!editFile', href='{{file.url}}') {{file.name}}
+                        span(ng-show='editFile')
+                          input.input-small(type='text', placeholder='{{file.name}}')
+                          span.btn-toolbar
+                            .btn-group
+                                a.btn(ng-click='editFile = false') 
+                                  i.icon-ok
+                                a.btn(ng-click='editFile = false') 
+                                  i.icon-remove
                       td 
-                        .span3.pull-right(ng-show='!editFile && canWrite')
-                          btn.pull-right(ng-click='editFile = true')
-                            i.icon-pencil
-                        .span3.pull-right(ng-show='!removeFile && canWrite')
-                          btn.pull-right(ng-click='removeFile = true')
-                            i.icon-remove
+                        span.btn-toolbar.pull-right
+                            .btn-group
+                              a.btn(ng-show='!removeFile && canWrite', ng-click='removeFile = true')
+                                i.icon-remove
+                              a.btn(ng-show='canWrite', ng-click='editFile = true')
+                                i.icon-pencil
                         .span9.pull-right(ng-show='removeFile')
                           .span3.pull-right
                             a.pull-right(ng-click='removeFile = false') No

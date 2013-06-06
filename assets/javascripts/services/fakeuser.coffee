@@ -22,39 +22,51 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
           files: [
             name: "Introduction and Methods"
             uri: ""
+            date: "12/12/12"
           ,
             name: "Uninformed Search"
             uri: ""
+            date: "12/12/12"
           ,
             name: "Informed Search"
             uri: ""
+            date: "12/12/12"
           ,
             name: "Adversarial Search"
             uri: ""
+            date: "12/12/12"            
           ,
             name: "Planning and Logic"
             uri: ""
+            date: "12/12/12"
           ,
             name: "Planning Algorithms"
             uri: ""
+            date: "1/12/12"
           ,
             name: "KRR"
             uri: ""
+            date: "12/12/12"
           ,
             name: "SemanticWeb"
             uri: ""
+            date: "12/12/12"
           ,
             name: "NMR"
             uri: ""
+            date: "12/12/12"
           ,
             name: "IntroLearning"
             uri: ""
+            date: "12/12/12"
           ,
             name: "ReinfLearning"
             uri: ""
+            date: "12/12/12"
           ,
             name: "AbdArg"
             uri: ""
+            date: "12/12/12"
           ]
           tutorials: [
             name: "Tutorial 1"
@@ -94,9 +106,11 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
           files: [
             name: "Hello ronnie"
             uri: ""
+            date: "12/12/12"
           ,
             name: "Blabla"
             uri: ""
+            date: "1/12/12"
           ]
 
         ]
