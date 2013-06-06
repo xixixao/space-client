@@ -8,10 +8,9 @@ define [
   'use strict'
 
   directives.directive 'searchBar', [->
-    controller = ['$scope', '$element', ($scope, $element) ->
+    controller = ['$scope', '$element', '$location', ($scope, $element, $location) ->
       if !$scope.allFiles?
         throw new Error "Missing attribute all-files"
-      console.log $scope.allFiles
 
       fusedFiles = new Fuse $scope.allFiles, keys: ['name']
 
@@ -43,7 +42,7 @@ define [
         file = $scope.files[index]
         #course = file.course
         #$location.path "/#{course.code}/#{file.filename}"
-        $location.path "/file/222-MDK"
+        $location.path "/topics/222/files/MDK"
 
       deactivate = ->
         if $scope.lastActive?

@@ -1,4 +1,4 @@
-define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
+define ['c/controllers', 'services/fakeuser'], (controllers) ->
   'use strict'
 
   controllers.controller 'news', [
@@ -6,5 +6,6 @@ define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
     '$location'
     'user'
     ($scope, $location, service) ->
+      console.log "wtf"
 
   ]

@@ -26,6 +26,7 @@ requirejs [
   'c/login'
   'c/user'
   'c/topic'
+  'c/news'
   'c/questions'
   'c/settings'
   'd/ngController'
@@ -39,23 +40,6 @@ requirejs [
   'angui'
   'responseInterceptors/dispatcher'
 ], (app, $) ->
-  #app.config ['$routeProvider', ($routeProvider) ->
-  #  $routeProvider
-  #    .when '/login',
-  #      controller: 'login'
-  #      templateUrl: 'partials/login'
-  #    .when '/home',
-  #      controller: 'courses'
-  #      templateUrl: 'partials/courses'
-  #    .when '/file/:file',
-  #      controller: 'questions'
-  #      templateUrl: 'partials/questions'
-  #    .when '/settings',
-  #      controller: 'settings'
-  #      templateUrl: 'partials/settings'
-  #    .otherwise
-  #      redirectTo: '/login'
-  #]
   app.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
     $stateProvider
 
@@ -85,14 +69,14 @@ requirejs [
       url: "/"
       controller: 'news'
       views:
-        'sideMenu': 'partials/homeSideMenu'
-        'mainView': 'partials/news'
+        'sideMenu': templateUrl: 'partials/homeSideMenu'
+        'mainView': templateUrl: 'partials/news'
     .state 'user.split.topic',
       url: "/topics/:topicId"
       controller: 'topic'
       views:
-        'sideMenu': 'partials/topicSideMenu'
-        'mainView': 'partials/files'
+        'sideMenu': templateUrl: 'partials/topicSideMenu'
+        'mainView': templateUrl: 'partials/files'
     $urlRouterProvider.otherwise '/login'
   ]
 

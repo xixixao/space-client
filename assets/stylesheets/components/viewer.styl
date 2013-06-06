@@ -18,6 +18,10 @@
   margin: 0;
 }
 
+mainTopOffset = 40px
+toolbarHeight = 32px
+totalTopOffset = calc(mainTopOffset + toolbarHeight)
+
 /* These are parent to layout */
 
 
@@ -135,7 +139,7 @@ html[dir='rtl'] .pdf-innerCenter {
 
 #pdf-sidebarContainer {
   position: absolute;
-  top: 0;
+  top: mainTopOffset;
   bottom: 0;
   width: 200px;
   visibility: hidden;
@@ -180,7 +184,7 @@ html[dir='rtl'] #pdf-outerContainer.pdf-sidebarOpen > #pdf-sidebarContainer {
 
 #pdf-mainContainer {
   position: absolute;
-  top: 0;
+  top: mainTopOffset;
   right: 0;
   bottom: 0;
   left: 0;
@@ -214,7 +218,7 @@ html[dir='rtl'] #pdf-outerContainer.pdf-sidebarOpen > #pdf-mainContainer {
 }
 
 #pdf-sidebarContent {
-  top: 32px;
+  top: toolbarHeight;
   bottom: 0;
   overflow: auto;
   position: absolute;
@@ -234,7 +238,7 @@ html[dir='rtl'] #pdf-sidebarContent {
   overflow: auto;
   box-shadow: inset 1px 0 0 hsla(0,0%,100%,.05);
   position: absolute;
-  top: 32px;
+  top: toolbarHeight;
   right: 0;
   bottom: 0;
   left: 0;
@@ -294,7 +298,7 @@ html[dir='rtl'] #pdf-sidebarContent {
 
 #pdf-loadingBar .pdf-progress {
   position: absolute;
-  top: 0;
+  top: mainTopOffset;
   left: 0;
   width: 0%;
   height: 100%;
@@ -340,7 +344,7 @@ html[dir='rtl'] #pdf-sidebarContent {
 
 #pdf-loadingBar .pdf-indeterminate .pdf-glimmer {
   position: absolute;
-  top: 0;
+  top: mainTopOffset;
   left: 0;
   height: 100%;
   width: 50px;
@@ -355,7 +359,7 @@ html[dir='rtl'] #pdf-sidebarContent {
 }
 
 .pdf-findbar, .pdf-secondaryToolbar {
-  top: 32px;
+  top: totalTopOffset;
   position: absolute;
   z-index: 10000;
   height: 32px;
@@ -1193,7 +1197,7 @@ a:focus > .pdf-thumbnail > .pdf-thumbnailSelectionRing,
 #pdf-outlineView {
   position: absolute;
   width: 192px;
-  top: 0;
+  top: mainTopOffset;
   bottom: 0;
   padding: 4px 4px 0;
   overflow: auto;
@@ -1260,7 +1264,7 @@ html[dir='rtl'] .pdf-outlineItem > a {
 
 #pdf-findScrollView {
   position: absolute;
-  top: 10px;
+  top: calc(mainTopOffset + 10px);
   bottom: 10px;
   left: 10px;
   width: 280px;
@@ -1307,7 +1311,7 @@ canvas {
   position: absolute;
   display: block;
   left: 0;
-  top: 0;
+  top: mainTopOffset;
   right: 0;
   bottom: 0;
   background: url('/img/viewer/loading-icon.gif') center no-repeat;
@@ -1316,7 +1320,7 @@ canvas {
 .pdf-textLayer {
   position: absolute;
   left: 0;
-  top: 0;
+  top: mainTopOffset;
   right: 0;
   bottom: 0;
   color: #000;

@@ -1,0 +1,11 @@
+.tabbed-side-menu-component.tb
+  tabs
+    tab(data-tab-id='twitter', caption='Feed')
+      ul
+        li(ng-repeat='course in user.courses | orderBy:"name"')
+          a(href='{{course.url}}') {{course.name}}
+
+    tab(data-tab-id='gitHub', caption='Topic')
+      ul
+        li(ng-repeat='course in user.courses | orderBy:"name"')
+          a(href='{{course.url}}') {{course.name}}
