@@ -16,7 +16,17 @@
  */
 /* globals PDFJS, PDFBug, FirefoxCom, Stats */
 
-define([], function () {
+define([
+  './viewer/utilities'
+  , './viewer/cache'
+  , './viewer/progressBar'
+  , './viewer/settings'
+], function (
+  Utilities
+  , Cache
+  , ProgressBar
+  , Settings
+) {
 
 'use strict';
 
@@ -30,7 +40,6 @@ var SCROLLBAR_PADDING = 40;
 var VERTICAL_PADDING = 5;
 var MIN_SCALE = 0.25;
 var MAX_SCALE = 4.0;
-var SETTINGS_MEMORY = 20;
 var RenderingStates = {
   INITIAL: 0,
   RUNNING: 1,
@@ -50,196 +59,14 @@ PDFJS.workerSrc = '/javascripts/vendor/pdf.js';
 
 var mozL10n = document.mozL10n || document.webL10n;
 
-function getFileName(url) {
-  var anchor = url.indexOf('#');
-  var query = url.indexOf('?');
-  var end = Math.min(
-    anchor > 0 ? anchor : url.length,
-    query > 0 ? query : url.length);
-  return url.substring(url.lastIndexOf('/', end) + 1, end);
-}
 
-function scrollIntoView(element, spot) {
-  // Assuming offsetParent is available (it's not available when viewer is in
-  // hidden iframe or object). We have to scroll: if the offsetParent is not set
-  // producing the error. See also animationStartedClosure.
-  var parent = element.offsetParent;
-  var offsetY = element.offsetTop + element.clientTop;
-  if (!parent) {
-    console.error('offsetParent is not set -- cannot scroll');
-    return;
-  }
-  while (parent.clientHeight == parent.scrollHeight) {
-    offsetY += parent.offsetTop;
-    parent = parent.offsetParent;
-    if (!parent)
-      return; // no need to scroll
-  }
-  if (spot)
-    offsetY += spot.top;
-  parent.scrollTop = offsetY;
-}
+var getFileName = Utilities.getFileName;
+var scrollIntoView = Utilities.scrollIntoView;
 
-var Cache = function cacheCache(size) {
-  var data = [];
-  this.push = function cachePush(view) {
-    var i = data.indexOf(view);
-    if (i >= 0)
-      data.splice(i);
-    data.push(view);
-    if (data.length > size)
-      data.shift().destroy();
-  };
-};
-
-var ProgressBar = (function ProgressBarClosure() {
-
-  function clamp(v, min, max) {
-    return Math.min(Math.max(v, min), max);
-  }
-
-  function ProgressBar(id, opts) {
-
-    // Fetch the sub-elements for later
-    this.div = document.querySelector(id + ' .' + pdfClassPrefix + 'progress');
-
-    // Get options, with sensible defaults
-    this.height = opts.height || 100;
-    this.width = opts.width || 100;
-    this.units = opts.units || '%';
-
-    // Initialize heights
-    this.div.style.height = this.height + this.units;
-    this.percent = 0;
-  }
-
-  ProgressBar.prototype = {
-
-    updateBar: function ProgressBar_updateBar() {
-      if (this._indeterminate) {
-        this.div.classList.add(pdfClassPrefix + 'indeterminate');
-        this.div.style.width = this.width + this.units;
-        return;
-      }
-
-      this.div.classList.remove(pdfClassPrefix + 'indeterminate');
-      var progressSize = this.width * this._percent / 100;
-      this.div.style.width = progressSize + this.units;
-    },
-
-    get percent() {
-      return this._percent;
-    },
-
-    set percent(val) {
-      this._indeterminate = isNaN(val);
-      this._percent = clamp(val, 0, 100);
-      this.updateBar();
-    }
-  };
-
-  return ProgressBar;
-})();
 
 //#if FIREFOX || MOZCENTRAL
 //#include firefoxcom.js
 //#endif
-
-// Settings Manager - This is a utility for saving settings
-// First we see if localStorage is available
-// If not, we use FUEL in FF
-// Use asyncStorage for B2G
-var Settings = (function SettingsClosure() {
-//#if !(FIREFOX || MOZCENTRAL || B2G)
-  var isLocalStorageEnabled = (function localStorageEnabledTest() {
-    // Feature test as per http://diveintohtml5.info/storage.html
-    // The additional localStorage call is to get around a FF quirk, see
-    // bug #495747 in bugzilla
-    try {
-      return 'localStorage' in window && window['localStorage'] !== null &&
-          localStorage;
-    } catch (e) {
-      return false;
-    }
-  })();
-//#endif
-
-  function Settings(fingerprint) {
-    this.fingerprint = fingerprint;
-    this.initializedPromise = new PDFJS.Promise();
-
-    var resolvePromise = (function settingsResolvePromise(db) {
-      this.initialize(db || '{}');
-      this.initializedPromise.resolve();
-    }).bind(this);
-
-//#if B2G
-//  asyncStorage.getItem('database', resolvePromise);
-//#endif
-
-//#if FIREFOX || MOZCENTRAL
-//  resolvePromise(FirefoxCom.requestSync('getDatabase', null));
-//#endif
-
-//#if !(FIREFOX || MOZCENTRAL || B2G)
-    if (isLocalStorageEnabled)
-      resolvePromise(localStorage.getItem('database'));
-//#endif
-  }
-
-  Settings.prototype = {
-    initialize: function settingsInitialize(database) {
-      database = JSON.parse(database);
-      if (!('files' in database))
-        database.files = [];
-      if (database.files.length >= SETTINGS_MEMORY)
-        database.files.shift();
-      var index;
-      for (var i = 0, length = database.files.length; i < length; i++) {
-        var branch = database.files[i];
-        if (branch.fingerprint == this.fingerprint) {
-          index = i;
-          break;
-        }
-      }
-      if (typeof index != 'number')
-        index = database.files.push({fingerprint: this.fingerprint}) - 1;
-      this.file = database.files[index];
-      this.database = database;
-    },
-
-    set: function settingsSet(name, val) {
-      if (!this.initializedPromise.isResolved)
-        return;
-
-      var file = this.file;
-      file[name] = val;
-      var database = JSON.stringify(this.database);
-
-//#if B2G
-//    asyncStorage.setItem('database', database);
-//#endif
-
-//#if FIREFOX || MOZCENTRAL
-//    FirefoxCom.requestSync('setDatabase', database);
-//#endif
-
-//#if !(FIREFOX || MOZCENTRAL || B2G)
-      if (isLocalStorageEnabled)
-        localStorage.setItem('database', database);
-//#endif
-    },
-
-    get: function settingsGet(name, defaultValue) {
-      if (!this.initializedPromise.isResolved)
-        return defaultValue;
-
-      return this.file[name] || defaultValue;
-    }
-  };
-
-  return Settings;
-})();
 
 var cache = new Cache(CACHE_SIZE);
 var currentPageNumber = 1;
@@ -1167,7 +994,7 @@ var PDFView = {
 
   initPassiveLoading: function pdfViewInitPassiveLoading() {
     if (!PDFView.loadingBar) {
-      PDFView.loadingBar = new ProgressBar('#' + pdfClassPrefix + 'loadingBar', {});
+      PDFView.loadingBar = new ProgressBar('#' + pdfClassPrefix + 'loadingBar', pdfClassPrefix, {});
     }
 
     var pdfDataRangeTransport = {
@@ -1272,7 +1099,7 @@ var PDFView = {
     }
 
     if (!PDFView.loadingBar) {
-      PDFView.loadingBar = new ProgressBar('#' + pdfClassPrefix + 'loadingBar', {});
+      PDFView.loadingBar = new ProgressBar('#' + pdfClassPrefix + 'loadingBar', pdfClassPrefix, {});
     }
 
     this.pdfDocument = null;
