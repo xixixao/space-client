@@ -1,23 +1,20 @@
-define ['c/controllers', 'jquery', 'vendor/fuse', 'services/fakeuser'], (controllers, $) ->
+define [
+  'd/directives'
+  'templates'
+  'vendor/fuse'
+], (directives, templates) ->
   'use strict'
 
-  controllers.controller 'courses', [
-    '$scope'
-    '$location'
-    'user'
-    ($scope, $location, service) ->
-      $scope.user = user = service.user()
-      allFiles = new Fuse user.files, keys: ['name']
+  directives.directive 'searchBar', [->
+    controller = ['$scope', '$element', '$location', ($scope, $element, $location) ->
+      if !$scope.allFiles?
+        throw new Error "Missing attribute all-files"
 
-      $scope.setTopic = (course) ->
-        $scope.topic = course
-        $scope.canWrite = course.permission == 'w'
-
-      $scope.setTopic user.courses[0]
+      fusedFiles = new Fuse $scope.allFiles, keys: ['name']
 
       $scope.$watch 'query', (query = "") ->
         deactivate()
-        $scope.files = allFiles.search query
+        $scope.files = fusedFiles.search query
         if $scope.files.length > 0
           $scope.activate 0
         else
@@ -43,21 +40,22 @@ define ['c/controllers', 'jquery', 'vendor/fuse', 'services/fakeuser'], (control
         file = $scope.files[index]
         #course = file.course
         #$location.path "/#{course.code}/#{file.filename}"
-        $location.path "/file/222-MDK"
+        $location.path "/topics/222/files/MDK"
 
       deactivate = ->
         if $scope.lastActive?
           $scope.files[$scope.lastActive].active = ""
+    ]
 
-      $scope.filesToUpload = []
+    controller: controller
+    link: ($scope, $element) ->
+      true
 
-      $scope.triggerFileBrowse = ->
-        fileInput = $('.pretty-file input[type="file"]')
-        fileInput.change -> $scope.$apply ->
-          files = fileInput[0].files
-          for file in files
-            file.nameWithoutExt = file.name[0...file.name.lastIndexOf '.']
-          $scope.filesToUpload = files
-
-        fileInput.click()
+    replace: true
+    restrict: 'E'
+    scope: {
+      allFiles: '='
+    }
+    template: templates.searchBar
+    transclude: true
   ]

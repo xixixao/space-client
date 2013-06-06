@@ -19,6 +19,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
         courses: [
           name: "AI"
           permission: "w"
+          id: "222"
           files: [
             name: "Introduction and Methods"
             uri: ""
@@ -103,6 +104,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
         ,
           name: "Architecture"
           permission: "r"
+          id: "223"
           files: [
             name: "Hello ronnie"
             uri: ""

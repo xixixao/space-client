@@ -1,0 +1,21 @@
+.pdf-small-small-viewer
+  #pdf-small-outerContainer.pdf-small-loadingInProgress
+    #pdf-small-mainContainer
+      .pdf-small-toolbar
+        #pdf-small-loadingBar
+          .pdf-small-progress
+            .pdf-small-glimmer
+      #pdf-small-viewerContainer
+        #pdf-small-viewer
+      #pdf-small-errorWrapper(hidden='true')
+        #pdf-small-errorMessageLeft
+          span#pdf-small-errorMessage
+          button#pdf-small-errorShowMore(onclick='', oncontextmenu='return false;', data-l10n-id='error_more_info')
+            | More Information
+          button#pdf-small-errorShowLess(onclick='', oncontextmenu='return false;', data-l10n-id='error_less_info', hidden='true')
+            | Less Information
+        #pdf-small-errorMessageRight
+          button#pdf-small-errorClose(oncontextmenu='return false;', data-l10n-id='error_close')
+            | Close
+        .pdf-small-clearBoth
+        textarea#pdf-small-errorMoreInfo(hidden='true', readonly='readonly')
