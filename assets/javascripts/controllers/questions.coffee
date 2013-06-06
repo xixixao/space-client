@@ -1,7 +1,7 @@
 define ['c/controllers',  'viewer', 'services/fakeuser'], (controllers, PDFViewer) ->
   'use strict'
 
-  controllers.controller 'file', [
+  controllers.controller 'questions', [
     '$scope'
     '$routeParams'
     '$http'

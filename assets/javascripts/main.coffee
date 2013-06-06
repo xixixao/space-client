@@ -24,7 +24,7 @@ requirejs [
   'bootstrap'
   'c/login'
   'c/courses'
-  'c/file'
+  'c/questions'
   'c/settings'
   'd/ngController'
   'd/tab'
@@ -44,8 +44,8 @@ requirejs [
           controller: 'courses'
           templateUrl: 'partials/courses'
         .when '/file/:file',
-          controller: 'file'
-          templateUrl: 'partials/file'
+          controller: 'questions'
+          templateUrl: 'partials/questions'
         .when '/settings',
           controller: 'settings'
           templateUrl: 'partials/settings'
