@@ -1,17 +1,23 @@
-define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
+###global define###
+
+define [
+  'd/directives'
+  'templates'
+  'vendor/fuse'
+], (directives, templates) ->
   'use strict'
 
-  controllers.controller 'courses', [
-    '$scope'
-    '$location'
-    'user'
-    ($scope, $location, service) ->
-      $scope.user = user = service.user()
-      allFiles = new Fuse user.files, keys: ['name']
+  directives.directive 'searchBar', [->
+    controller = ['$scope', '$element', ($scope, $element) ->
+      if !$scope.allFiles?
+        throw new Error "Missing attribute all-files"
+      console.log $scope.allFiles
+
+      fusedFiles = new Fuse $scope.allFiles, keys: ['name']
 
       $scope.$watch 'query', (query = "") ->
         deactivate()
-        $scope.files = allFiles.search query
+        $scope.files = fusedFiles.search query
         if $scope.files.length > 0
           $scope.activate 0
         else
@@ -42,4 +48,17 @@ define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
       deactivate = ->
         if $scope.lastActive?
           $scope.files[$scope.lastActive].active = ""
+    ]
+
+    controller: controller
+    link: ($scope, $element) ->
+      true
+
+    replace: true
+    restrict: 'E'
+    scope: {
+      allFiles: '='
+    }
+    template: templates.searchBar
+    transclude: true
   ]

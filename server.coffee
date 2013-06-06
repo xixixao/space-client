@@ -42,24 +42,4 @@ exports.startServer = (config, callback) ->
   app.get '/partials/:name', (req, res) ->
     res.render "partials/#{req.params.name}", options
 
-  app.get '/people', (req, res) -> res.json people
-  app.post '/people', (req, res) ->
-    name = req.body.name
-    message =
-      "title": "Duplicate!"
-      "message": "#{name} is a duplicate.  Please enter a new name."
-    return res.send(message, 403) if not isUniqueName name
-    person =
-      "id": "#{nextId++}"
-      "name": "#{name}"
-      "age": "0"
-    people.push person
-    res.json person
-
-  app.get '/people/details/:id', (req, res) ->
-    id = req.params.id
-    current = person for person in people when parseInt(person.id, 10) is parseInt(id, 10)
-    res.json current
-
-
   callback server

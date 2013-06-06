@@ -1,5 +1,6 @@
 define [
 	'ang'
+	'angui'
 	'c/controllers'
 	'd/directives'
 	'filters/filters'
@@ -11,6 +12,7 @@ define [
 
 
 	angular.module 'app', [
+		'ui.state'
 		'controllers'
 		'directives'
 		'filters'

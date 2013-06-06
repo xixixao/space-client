@@ -1,0 +1,46 @@
+.courses.tb
+  .row
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        ul.nav
+          li
+            a(href='#/home') SPACE
+        ul.nav
+          li
+            a {{user.username}}
+        ul.nav.pull-right
+          li
+            a(href='#/login') Log Out
+        ul.nav.pull-right
+          li
+            a(href='#/settings') Settings
+        ul.nav.pull-right
+          li
+            a Help
+  .row-fluid
+    .span3
+      tabs
+        tab(data-tab-id='twitter', caption='Feed')
+          ul
+            li(ng-repeat='course in user.courses | orderBy:"name"')
+              a(href='{{course.url}}') {{course.name}}
+
+        tab(data-tab-id='gitHub', caption='Topic')
+          ul
+            li(ng-repeat='course in user.courses | orderBy:"name"')
+              a(href='{{course.url}}') {{course.name}}
+    .span9.search-bar-container
+      .row-fluid
+        .span11
+          .input-append
+            input.search-bar(type='text', ng-model='query', focus-in, ng-keypress='scroll($event)')
+            .add-on
+              i.icon-search
+      .row-fluid
+        .span12
+          ul
+            li(ng-repeat='file in files', ng-class='file.active', ng-mouseover='activate($index)')
+              a(href='{{file.uri}}', ng-click='open($index)')
+                {{file.name}}
+        .span12
+          small-viewer
