@@ -1,4 +1,4 @@
-define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
+define ['c/controllers', 'jquery', 'vendor/fuse', 'services/fakeuser'], (controllers, $) ->
   'use strict'
 
   controllers.controller 'courses', [
@@ -7,11 +7,13 @@ define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
     'user'
     ($scope, $location, service) ->
       $scope.user = user = service.user()
-      $scope.topic = user.courses[0]
       allFiles = new Fuse user.files, keys: ['name']
 
       $scope.setTopic = (course) ->
         $scope.topic = course
+        $scope.canWrite = course.permission == 'w'
+
+      $scope.setTopic user.courses[0]
 
       $scope.$watch 'query', (query = "") ->
         deactivate()
@@ -46,4 +48,20 @@ define ['c/controllers', 'vendor/fuse', 'services/fakeuser'], (controllers) ->
       deactivate = ->
         if $scope.lastActive?
           $scope.files[$scope.lastActive].active = ""
+
+
+      $scope.clickFile = ->
+        fileInput = $('.pretty-file input[type="file"]')
+        fileInput.change ->
+          files = fileInput[0].files
+          if files.length > 1 
+            info = files.length + ' files selected'
+          else 
+            path = fileInput.val().split('\\')
+            info = path[path.length - 1]
+          $scope.fileInfo = info
+          $('.pretty-file .input-append input').val info
+        
+        fileInput.click()
+        
   ]

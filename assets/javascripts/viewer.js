@@ -3697,6 +3697,8 @@ window.addEventListener('hashchange', function webViewerHashchange(evt) {
 });
 
 window.addEventListener('change', function webViewerChange(evt) {
+  if (!PDFView.initialized) return;
+  
   var files = evt.target.files;
   if (!files || files.length === 0)
     return;

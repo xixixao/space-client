@@ -29,7 +29,7 @@
           ul
             li(ng-repeat='course in user.courses | orderBy:"name"')
               a(href='{{course.url}}') {{course.name}}
-    .span6.search-bar-container
+    .span9.search-bar-container
       .row-fluid
         .span11
           .input-append
@@ -48,36 +48,41 @@
           | {{topic.name}}
           .row-top-offset
           tabs
-            .row-fluid
+            .row-fluid(ng-show='canWrite')
               .span4
-                  i.icon-plus(ng-show='!addFile',ng-click='addFile=true')
-                  i.icon-minus(ng-show='addFile',ng-click='addFile=false')
-                  | Add a file 
+                  btn(ng-show='!addFile', ng-click='addFile=true') 
+                    .span1
+                      i.icon-plus(ng-show='!addFile',ng-click='addFile=true')
+                    .span3
+                      | Add a file 
+                  btn(ng-show='addFile',ng-click='addFile=false') 
+                    .span1
+                      i.icon-minus(ng-show='addFile',ng-click='addFile=false')
+                    .span3
+                      | Cancel
               .span8
                 span.pretty-file
                   input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
                   .input-append
                     input.input-large(ng-show='addFile', type='text')
-                    a.btn(ng-show='addFile') Browse
+                    a.btn(ng-click='clickFile()', ng-show='addFile') Browse
                     a.btn(ng-show='addFile') Upload
             tab(data-tab-id='notes', caption='Notes')
                 table.table.table-hover
                   tbody
                     tr(ng-repeat='file in topic.files | orderBy:"name"')
                       td 
-                        | {{$index + 1}}
+                        .span1.pull-left {{$index + 1}}
                       td
-                        a(href='{{file.url}}') {{file.name}}
+                        a.pull-left(href='{{file.url}}') {{file.name}}
                       td 
-                        i.icon-remove(ng-show='!removeFile', ng-click='removeFile = true')
-                        .span3
-                          a(ng-show='removeFile') Delete?
-                      td
-                        .span3
-                            a(ng-show='removeFile') Yes
-                      td
-                        .span3
-                            a(ng-show='removeFile', ng-click='removeFile = false') No
+                        i.icon-remove.pull-right(ng-show='!removeFile && canWrite', ng-click='removeFile = true')
+                        .span3.pull-right
+                          a.pull-right(ng-show='removeFile', ng-click='removeFile = false') No
+                        .span3.pull-right
+                          a.pull-right(ng-show='removeFile') Yes
+                        .span3.pull-right
+                          span.pull-right(ng-show='removeFile') Delete?
 
             tab(data-tab-id='tutorials', caption='Tutorials')
                 table.table.table-hover
