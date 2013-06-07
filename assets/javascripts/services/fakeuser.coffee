@@ -125,14 +125,17 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
           name: "Architecture"
           permission: "r"
           id: "223"
-          files: [
-            name: "Hello ronnie"
-            uri: ""
-            date: "12/12/12"
-          ,
-            name: "Blabla"
-            uri: ""
-            date: "12/12/12"
+          types: [
+            name: 'Cool notes'
+            files: [
+              name: "Hello ronnie"
+              uri: ""
+              date: "12/12/12"
+            ,
+              name: "Blabla"
+              uri: ""
+              date: "12/12/12"
+            ]
           ]
         ]
         files: [

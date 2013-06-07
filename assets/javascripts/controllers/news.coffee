@@ -4,5 +4,5 @@ define ['c/controllers'], (controllers) ->
   controllers.controller 'news', [
     '$scope'
     ($scope) ->
-      console.log "wtf"
+      console.log "wtffff"
   ]

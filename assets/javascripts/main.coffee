@@ -26,6 +26,7 @@ requirejs [
   'c/login'
   'c/user'
   'c/topic'
+  'c/topicBound'
   'c/news'
   'c/questions'
   'c/settings'
@@ -79,19 +80,15 @@ requirejs [
     .state 'user.split.home',
       url: "/"
       views:
-        'sideMenu':
-          templateUrl: 'partials/homeSideMenu'
-          controller: 'news'
-        'mainView':
-          templateUrl: 'partials/news'
-          controller: 'news'
+        'sideMenu@user.split': templateUrl: 'partials/homeSideMenu'
+        'mainView@user.split': templateUrl: 'partials/news'
     .state 'user.split.topic',
       url: "/topics/:topicId"
       views:
-        'sideMenu':
+        'sideMenu@user.split': 
           templateUrl: 'partials/topicSideMenu'
-          controller: 'topic'
-        'mainView':
+          controller: 'topicBound'
+        'mainView@user.split':
           templateUrl: 'partials/files'
           controller: 'topic'
     $urlRouterProvider.otherwise '/login'

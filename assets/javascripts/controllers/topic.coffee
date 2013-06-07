@@ -1,10 +1,12 @@
-define ['c/controllers'], (controllers) ->
+define ['c/controllers', 'services/topic'], (controllers) ->
   'use strict'
 
   controllers.controller 'topic', [
     '$scope'
     '$stateParams'
-    ($scope, $stateParams) ->
+    'topic'
+    ($scope, $stateParams, service) ->
+
 
       groupFiles = (topic) ->
         dates = {}
@@ -18,10 +20,11 @@ define ['c/controllers'], (controllers) ->
       topicWithId = (topicId) ->
         for course in $scope.user.courses when course.id is topicId
           if !course.allFiles?
+            console.log course
             course.allFiles = groupFiles course
           return course
 
-      $scope.topic = topicWithId $stateParams.topicId
+      $scope.topic = service.topic = topicWithId $stateParams.topicId
       $scope.canWrite = $scope.topic.permission == 'w'
 
       $scope.filesToUpload = []

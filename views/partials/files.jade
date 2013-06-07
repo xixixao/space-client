@@ -59,7 +59,7 @@
                           a.btn(ng-click='editFile = true')
                             i.icon-pencil
             tab(data-tab-id='timetable', caption='Timetable')
-              table
+              table.table.table-hover
                 tbody
                   tr(ng-repeat='date in topic.allFiles | orderBy:"date":reverse')
                     td
