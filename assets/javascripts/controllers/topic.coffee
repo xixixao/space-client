@@ -6,9 +6,19 @@ define ['c/controllers'], (controllers) ->
     '$stateParams'
     ($scope, $stateParams) ->
 
+      groupFiles = (topic) ->
+        dates = {}
+        for {files} in topic.types
+          for file in files
+            if !dates[file.date]?
+              dates[file.date] = date: file.date, files: []
+            dates[file.date].files.push file
+        return dates
+
       topicWithId = (topicId) ->
         for course in $scope.user.courses when course.id is topicId
-          course.allFiles = [].concat (files for type, files of course.types)
+          if !course.allFiles?
+            course.allFiles = groupFiles course
           return course
 
       $scope.topic = topicWithId $stateParams.topicId
