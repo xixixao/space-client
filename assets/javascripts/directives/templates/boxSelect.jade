@@ -1,4 +1,3 @@
-section
-  section(ng-transclude, ng-mousedown='down($event)', ng-mouseup='up($event)', ng-mousemove='move($event)')
-  div(ng-show='open')
-    highlighter(from='from', to='to')
+section.box-select-component(ng-mousedown='down($event)', ng-mouseup='up($event)', ng-mousemove='move($event)')
+  section(ng-transclude)
+  highlighter(from='from', to='to')

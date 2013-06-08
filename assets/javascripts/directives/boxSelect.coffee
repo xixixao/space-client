@@ -9,15 +9,18 @@ define [
 
         $scope.down = (event) ->
           if event.ctrlKey
+            event.preventDefault()
             $scope.open = true
             $scope.from = [event.pageX, event.pageY]
 
         $scope.move = (event) ->
           if $scope.open
+            event.preventDefault()
             $scope.to = [event.pageX, event.pageY]
 
         $scope.up = (event) ->
           if $scope.open
+            event.preventDefault()
             $scope.boxSelect $from: $scope.from, $to: $scope.to
             reset()
 

@@ -7,7 +7,7 @@ define [
     ->
       link: ($scope, $element) ->
 
-        position = ([x1, y1], [x2, y2]) ->
+        position = (el, [x1, y1], [x2, y2]) ->
           if y1 > y2
             tmp = y2
             y2 = y1
@@ -16,15 +16,15 @@ define [
             tmp = x2
             x2 = x1
             x1 = tmp
-          $element.offset
+          el.offset
             left: x1
             top: y1
-          $element.width x2 - x1
-          $element.height y2 - y1
+          el.width x2 - x1
+          el.height y2 - y1
 
         listener = (value) ->
-          if $scope.from? and $scope.to?
-            position $scope.from, $scope.to
+          if $scope.visible = $scope.from? and $scope.to?
+            position $element, $scope.from, $scope.to
 
         $scope.$watch 'from', listener
         $scope.$watch 'to', listener
