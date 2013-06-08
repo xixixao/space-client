@@ -5,14 +5,13 @@ define [
 ], (directives, V, Rectangle) ->
 
   directives.directive 'outside', [
-    '$window'
-    ($window) ->
-      link: ($scope, $element) ->
+    ->
+      link: ($scope, $element, $attributes) ->
 
         boundingBox = ->
           new Rectangle new V(0, 0), new V($element.width(), $element.height())
 
-        $scope.$watch 'outside', (rect) ->
+        $scope.$watch $attributes.outside, (rect) ->
           if rect?
             box = boundingBox()
             $element.offset rect.center()
@@ -23,7 +22,4 @@ define [
             $element.hide()
 
         $element.hide()
-
-      scope:
-        outside: '='
   ]

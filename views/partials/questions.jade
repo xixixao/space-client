@@ -115,9 +115,9 @@
           menuitem#pdf-contextPageRotateCw(label='Rotate Clockwise', data-l10n-id='page_rotate_cw')
         #pdf-viewerContainer(box-select='selection = $rect')
           #pdf-viewer
-          .question-input(outside='selection').tb
+          .question-input.tb(outside='selection', style='z-index: 1000')
             form.form-inline.question-input-wrapper
-              textarea(rows='2', ng-model='question.text', keypress='prevent($event)')
+              textarea(rows='2', ng-model='question.text')
               a.btn(ng-click='addQuestion()')
                 i.icon-ok
         #pdf-errorWrapper(hidden='true')

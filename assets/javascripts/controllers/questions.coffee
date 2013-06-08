@@ -41,7 +41,15 @@ define ['c/controllers',  'viewer', 'jquery', 'services/fakeuser'], (controllers
         y: pdfCoors[1]
         page: pageNumber
 
-      $scope.prevent = (event) -> event.preventDefault()
+      $scope.prevent = (event) ->
+        event.preventDefault()
+        console.log "preventing"
+
+      $scope.question =
+        text: "hello"
+
+      $scope.askQuestion = ->
+        console.log "FUCK"
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
   ]
