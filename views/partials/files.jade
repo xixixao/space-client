@@ -18,7 +18,7 @@
                 a.btn(ng-show='addFile') Upload
         .row-fluid
           tabs
-            tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type.name}}')
+            tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type}}')
               table.table.table-hover
                 tbody
                   tr(ng-repeat='file in filesToUpload')
@@ -26,7 +26,7 @@
                       input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
                     td
                       span {{file.name}}
-                  tr(ng-repeat='file in type.files | orderBy:"date"')
+                  tr(ng-repeat='(fileId, file) in filter(topic.files, type) | orderBy:"date"')
                     td
                       span(ng-show='!canWrite') {{$index + 1}}
                       span(ng-show='canWrite && !editFile') {{file.date}}

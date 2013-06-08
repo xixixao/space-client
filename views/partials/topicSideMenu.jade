@@ -3,10 +3,10 @@
   tabs
     tab(data-tab-id='feed', caption='Topics')
       ul
-        li(ng-repeat='course in user.courses | orderBy:"name"')
-          a(href='#/topics/{{course.id}}') {{course.name}}
+        li(ng-repeat='(id, topic) in user.topics | orderBy:"name"')
+          a(href='#/topics/{{id}}') {{topic.name}}
 
     tab(data-tab-id='topics', caption='Feed WIP')
       ul
-        li(ng-repeat='course in user.courses | orderBy:"name"')
-          a(href='{{course.url}}') asd {{course.name}}
+        li(ng-repeat='(topic, id) in user.topics | orderBy:"name"')
+          a(href='{{topic.url}}') asd {{topic.name}}

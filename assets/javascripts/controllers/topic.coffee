@@ -9,18 +9,16 @@ define ['c/controllers', 'services/topic'], (controllers) ->
 
       groupFiles = (topic) ->
         dates = {}
-        for {files} in topic.types
-          for file in files
-            if !dates[file.date]?
-              dates[file.date] = date: file.date, files: []
-            dates[file.date].files.push file
+        for id, file of topic.files
+          if !dates[file.date]?
+            dates[file.date] = date: file.date, files: []
+          dates[file.date].files.push file
         return dates
 
       topicWithId = (topicId) ->
-        for topic in $scope.user.topics when topic.id is topicId
-          if !topic.allFiles?
-            topic.allFiles = groupFiles topic
-          return topic
+        topic = $scope.user.topics[topicId]
+        topic.allFiles = groupFiles topic
+        return topic
 
       $scope.topic = service.topic = topicWithId $stateParams.topicId
       $scope.canWrite = $scope.topic.permission == 'w'
@@ -36,4 +34,9 @@ define ['c/controllers', 'services/topic'], (controllers) ->
           $scope.filesToUpload = files
 
         fileInput.click()
+
+      $scope.filter = (files, type) ->
+        filtered = {}
+        filtered[id] = file for id, file of files when file.type is type
+        return filtered
   ]
