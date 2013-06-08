@@ -28,6 +28,8 @@ requirejs [
   'c/topic'
   'c/topicBound'
   'c/news'
+  'c/feed'
+  'c/preview'
   'c/questions'
   'c/settings'
   'd/ngController'
@@ -37,6 +39,7 @@ requirejs [
   'd/searchBar'
   'd/focusIn'
   'filters/twitterfy'
+  'filters/fromUrl'
   'ang'
   'angui'
   'responseInterceptors/dispatcher'
@@ -80,15 +83,26 @@ requirejs [
     .state 'user.split.home',
       url: "/"
       views:
-        'sideMenu@user.split': templateUrl: 'partials/homeSideMenu'
-        'mainView@user.split': templateUrl: 'partials/news'
+        'sideMenu':
+          templateUrl: 'partials/homeSideMenu'
+        'mainView':
+          templateUrl: 'partials/news'
+          controller: 'news'
+    .state 'user.split.preview',
+      url: "/preview/topics/:topicId/files/:fileId/questions/:questionId"
+      views:
+        'sideMenu':
+          templateUrl: 'partials/homeSideMenu'
+        'mainView':
+          templateUrl: 'partials/preview'
+          controller: 'preview'
     .state 'user.split.topic',
       url: "/topics/:topicId"
       views:
-        'sideMenu@user.split': 
+        'sideMenu': 
           templateUrl: 'partials/topicSideMenu'
           controller: 'topicBound'
-        'mainView@user.split':
+        'mainView':
           templateUrl: 'partials/files'
           controller: 'topic'
     $urlRouterProvider.otherwise '/login'

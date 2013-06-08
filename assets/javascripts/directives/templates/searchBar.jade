@@ -8,6 +8,6 @@
   .row-fluid
     .span12
       ul
-        li(ng-repeat='file in files', ng-class='file.active', ng-mouseover='activate($index)')
+        li(ng-repeat='file in files | limitTo:5', ng-class='file.active', ng-mouseover='activate($index)')
           a(href='{{file.uri}}', ng-click='open($index)')
             {{file.name}}

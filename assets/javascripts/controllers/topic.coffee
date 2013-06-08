@@ -7,7 +7,6 @@ define ['c/controllers', 'services/topic'], (controllers) ->
     'topic'
     ($scope, $stateParams, service) ->
 
-
       groupFiles = (topic) ->
         dates = {}
         for {files} in topic.types
@@ -18,11 +17,10 @@ define ['c/controllers', 'services/topic'], (controllers) ->
         return dates
 
       topicWithId = (topicId) ->
-        for course in $scope.user.courses when course.id is topicId
-          if !course.allFiles?
-            console.log course
-            course.allFiles = groupFiles course
-          return course
+        for topic in $scope.user.topics when topic.id is topicId
+          if !topic.allFiles?
+            topic.allFiles = groupFiles topic
+          return topic
 
       $scope.topic = service.topic = topicWithId $stateParams.topicId
       $scope.canWrite = $scope.topic.permission == 'w'
