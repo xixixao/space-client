@@ -2,10 +2,8 @@ define ['c/controllers',  'viewer', 'jquery', 'services/fakeuser'], (controllers
   'use strict'
 
   controllers.controller 'questions', [
-    '$scope'
-    '$routeParams'
-    '$http'
-    'user', ($scope, $routeParams, $http, service) ->
+    '$scope', '$routeParams', '$http', 'user',
+    ($scope, $routeParams, $http, service) ->
 
       file = $routeParams.file
       #$http.get('/files/#{file}')
@@ -43,18 +41,7 @@ define ['c/controllers',  'viewer', 'jquery', 'services/fakeuser'], (controllers
         y: pdfCoors[1]
         page: pageNumber
 
-      $scope.viewerDown = (event) ->
-        if event.ctrlKey
-          console.log pdfPosition event.pageX, event.pageY
-
-      $scope.viewerUp = (event) ->
-        console.log pdfPosition event.pageX, event.pageY
-
-      $scope.selected = null
-      $scope.$watch 'selected', (value) ->
-        console.log value
-      $scope.select = (from, to) ->
-        console.log from, to
+      $scope.prevent = (event) -> event.preventDefault()
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
   ]
