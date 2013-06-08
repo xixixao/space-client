@@ -112,7 +112,7 @@
         menuitem#pdf-contextLastPage(label='Last Page', data-l10n-id='last_page')
         menuitem#pdf-contextPageRotateCcw(label='Rotate Counter-Clockwise', data-l10n-id='page_rotate_ccw')
         menuitem#pdf-contextPageRotateCw(label='Rotate Clockwise', data-l10n-id='page_rotate_cw')
-      #pdf-viewerContainer
+      #pdf-viewerContainer(box-select='select($from, $to)')
         #pdf-viewer
       #pdf-errorWrapper(hidden='true')
         #pdf-errorMessageLeft

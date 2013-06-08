@@ -3894,6 +3894,6 @@ window.addEventListener('afterprint', function afterPrint(evt) {
 //#endif
 
 
-return {loadFile: webViewerLoad};
+return {loadFile: webViewerLoad, View: PDFView};
 
 });
