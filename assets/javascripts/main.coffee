@@ -37,6 +37,7 @@ requirejs [
   'd/tabs'
   'd/smallViewer'
   'd/searchBar'
+  'd/discussionBoard'
   'd/highlighter'
   'd/focusIn'
   'd/draggable'

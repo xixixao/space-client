@@ -1,18 +1,46 @@
-
 questionsWidth = 300px
+transitionDelay = 200ms
 
-#pdf-viewerContainer
-  transition-duration 200ms
+#pdf-viewerContainer, .discussion-board-component
+  transition-duration transitionDelay
   transition-timing-function ease
 
-html[dir='ltr'] #pdf-mainContainer.discussion #pdf-viewerContainer
-  transition-property right
-  right questionsWidth
+html[dir='ltr']
+  .discussion-board-component
+    transition-property right, visibility
+    transition-duration transitionDelay, 0ms
+    transition-delay 0ms, transitionDelay
+    right -(questionsWidth)
 
-html[dir='rtl'] #pdf-mainContainer.discussion #pdf-viewerContainer
-  transition-property left
-  left questionsWidth
+  #pdf-mainContainer.discussion
+    #pdf-viewerContainer
+      transition-property right
+      right questionsWidth
+    .discussion-board-component
+      visibility visible
+      transition-delay 0ms
+      right 0
+
+html[dir='rtl']
+  .discussion-board-component
+    transition-property left, visibility
+    left -(questionsWidth)
+
+  #pdf-mainContainer.discussion
+    #pdf-viewerContainer
+      transition-property left
+      left questionsWidth
+    .discussion-board-component
+      visibility visible
+      left 0
 
 .open-discussion-button::before
   display inline-block
-  content url('/img/viewer/toolbarButton-sidebarToggle.png');
+  content url('/img/viewer/toolbarButton-sidebarToggle.png')
+
+.discussion-board-component
+  position fixed
+  top totalTopOffset
+  bottom 0px
+  visibility hidden
+  width questionsWidth
