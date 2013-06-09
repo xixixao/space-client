@@ -123,7 +123,7 @@
               form.form-inline.question-input-wrapper
                 textarea(rows='2', ng-model='question.text')
                 a.btn(ng-click='askQuestion()') Ask
-        discussion-board(question='question')
+        discussion-board(question='discussed', questions='file.questions')
         #pdf-errorWrapper(hidden='true')
           #pdf-errorMessageLeft
             span#pdf-errorMessage

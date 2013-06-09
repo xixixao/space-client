@@ -1,11 +1,17 @@
-define ['c/controllers',  'viewer', 'jquery', 'services/fakeuser'], (controllers, PDFViewer, $) ->
-  'use strict'
-
+define [
+  'c/controllers'
+  'viewer'
+  'jquery'
+  'services/question'
+], (controllers, PDFViewer, $) ->
   controllers.controller 'questions', [
-    '$scope', '$routeParams', '$http', 'user',
-    ($scope, $routeParams, $http, service) ->
+    '$scope', '$stateParams', '$http', 'question'
+    ($scope, $stateParams, $http, service) ->
 
-      file = $routeParams.file
+      console.log $stateParams
+
+
+      file = $stateParams.file
       #$http.get('/files/#{file}')
       #.success (data) ->
       #  console.log data
@@ -44,6 +50,7 @@ define ['c/controllers',  'viewer', 'jquery', 'services/fakeuser'], (controllers
 
       $scope.askQuestion = ->
         console.log $scope.selection, $scope.question.text
+        $scope.discussed = service.newQuestion $scope.question.text, $scope.user
         reset()
         $scope.showDiscussion = true
 
@@ -54,6 +61,12 @@ define ['c/controllers',  'viewer', 'jquery', 'services/fakeuser'], (controllers
       reset()
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
+
+      $scope.file =
+        questions:
+          "1":
+            text: "Really?"
+            url: "topics/222/files/lecture9/questions/1"
   ]
 
 

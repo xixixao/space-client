@@ -1,2 +1,30 @@
 .discussion-board-component
-  h1 {{question.text}}
+  .no-question-selected(ng-show='!question')
+    ul
+      li(ng-repeat='(id, question) in questions')
+        a(href='{{question.id}}') {{question.text}}
+  .discussion(ng-show='question')
+    a.btn(ng-click='question = null') All questions
+    .row-fluid
+      .span12
+        .question
+          {{question.text}}
+    .row-fluid
+      .span6.pull-right
+        {{question.user.name}}
+    .row-fluid
+      .span11.pull-right
+        .row-fluid(ng-repeat='(id, comment) in question.comments')
+          .span12
+            {{comment.text}}}
+    .row-fluid
+      .span11.pull-right
+        .row-fluid(ng-repeat='(id, answer) in question.answers')
+          .row-fluid
+            .span12
+              {{question.text}}}
+          .row-fluid
+            .span11
+              .row-fluid(ng-repeat='(id, comment) in answer.comments')
+                .span12
+                  {{comment.text}}}
