@@ -8,8 +8,29 @@ define [
     '$scope', '$stateParams', '$http', 'question'
     ($scope, $stateParams, $http, service) ->
 
-      console.log $stateParams
+      {topicId, fileId} = $stateParams
+      [questionId, commentId, answerId, commentAId] = $stateParams.params.match(///
+        (?:
+          /questions/([^/]+)
+          (?:
+            /comments/([^/]+)
+          )?
+          (?:
+            /answers/([^/]+)
+            (?:
+              /comments/([^/]+)
+            )?
+          )?
+        )?
+      ///)[1..]
 
+      $scope.focused = {topicId, fileId, questionId, commentId, answerId, commentAId}
+
+      if questionId
+        console.log $scope.focused
+        console.log $scope.user.topics[topicId].files
+        $scope.discussed = $scope.user.topics[topicId].files[fileId].questions[questionId]
+        $scope.showDiscussion = true
 
       file = $stateParams.file
       #$http.get('/files/#{file}')

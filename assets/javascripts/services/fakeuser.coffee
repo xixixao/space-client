@@ -18,10 +18,10 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
         facebook: "michal@facebook.com"
         events: [
           timestamp: new Date()
-          url: 'topics/222/files/introduction-and-methods/questions/1'
+          url: 'topics/222/files/intro/questions/1'
         ,
           timestamp: new Date()
-          url: 'topics/222/files/introduction-and-methods'
+          url: 'topics/222/files/intro'
         ]
         topics:
           "222":
@@ -33,7 +33,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
               'Solutions'
             ]
             files:
-              'introduction-and-methods':
+              'intro':
                 name: "Introduction and Methods"
                 uri: ""
                 date: "1/12/12"

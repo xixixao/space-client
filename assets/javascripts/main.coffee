@@ -74,7 +74,7 @@ requirejs [
       templateUrl: 'partials/user'
 
     .state 'user.questions',
-      url: "/topics/:topicId/files/:fileId{page:(?:/.+)?}"
+      url: "/topics/:topicId/files/:fileId{params:(?:/.+)?}"
       controller: 'questions'
       templateUrl: 'partials/questions'
     .state 'user.settings',
