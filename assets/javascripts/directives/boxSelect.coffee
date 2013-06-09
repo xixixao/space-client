@@ -14,6 +14,7 @@ define [
             event.preventDefault()
             $scope.open = true
             $scope.from = new V(event.pageX, event.pageY)
+            $scope.to = null
 
         $scope.move = (event) ->
           if $scope.open
@@ -23,16 +24,22 @@ define [
         $scope.up = (event) ->
           if $scope.open
             event.preventDefault()
-            $scope.boxSelect $rect: new Rectangle $scope.from, $scope.to
+            $scope.boxSelect = new Rectangle $scope.from, $scope.to
             $scope.open = false
+
+        $scope.$watch 'boxSelect', (value) ->
+          console.log value
+          if !value?
+            reset()
 
         reset = ->
           $scope.from = $scope.to = null
+          $scope.open = false
 
         reset()
 
       scope:
-        boxSelect: '&'
+        boxSelect: '='
       template: templates.boxSelect
       replace: true
       transclude: true

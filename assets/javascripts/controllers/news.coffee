@@ -2,7 +2,7 @@ define ['c/controllers'], (controllers) ->
   'use strict'
 
   controllers.controller 'news', [
-    '$scope'
-    ($scope) ->
-      console.log "wtffff"
+    '$scope', '$stateParams'
+    ($scope, $stateParams) ->
+      console.log "wtffff", $stateParams
   ]

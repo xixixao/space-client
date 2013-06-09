@@ -1,0 +1,18 @@
+
+questionsWidth = 300px
+
+#pdf-viewerContainer
+  transition-duration 200ms
+  transition-timing-function ease
+
+html[dir='ltr'] #pdf-mainContainer.discussion #pdf-viewerContainer
+  transition-property right
+  right questionsWidth
+
+html[dir='rtl'] #pdf-mainContainer.discussion #pdf-viewerContainer
+  transition-property left
+  left questionsWidth
+
+.open-discussion-button::before
+  display inline-block
+  content url('/img/viewer/toolbarButton-sidebarToggle.png');
