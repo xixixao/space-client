@@ -25,3 +25,5 @@ define ['c/controllers'], (controllers) ->
 
         fileInput.click()
   ]
+
+

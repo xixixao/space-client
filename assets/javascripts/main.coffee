@@ -34,6 +34,7 @@ requirejs [
   'd/tabs'
   'd/smallViewer'
   'd/searchBar'
+  'd/datePicker'
   'd/focusIn'
   'filters/twitterfy'
   'ang'

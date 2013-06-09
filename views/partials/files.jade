@@ -21,7 +21,7 @@
           tab(data-tab-id='notes', caption='Notes')
               table.table.table-hover
                 tbody
-                  tr(ng-repeat='file in filesToUpload')
+                  tr(ng-show='addFile', ng-repeat='file in filesToUpload')
                     td
                       input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
                     td
@@ -29,15 +29,25 @@
                   tr(ng-repeat='file in topic.files | orderBy:"date"')
                     td 
                       span(ng-show='!canWrite') {{$index + 1}}
-                      span(ng-show='canWrite && !editFile') {{file.date}}
+                      span(ng-show='canWrite && !editFile') {{file.date | date}}
                       span(ng-show='editFile')
-                        input.input-small(type='text', placeholder='{{file.date}}')
+                        input.input-small(type='text', placeholder='{{file.date | date}}')
+                        date-picker
+   
                     td
                       a(ng-show='!editFile && !removeFile', href='#/topics/{{topic.id}}/files/{{file.name}}') {{file.name}}
                       settings(ng-show='removeFile')
                         span.text-error {{file.name}}
                       span(ng-show='editFile')
                         input.input-small(type='text', placeholder='{{file.name}}')
+                      
+                    td 
+                      span.btn-toolbar.pull-right
+                          .btn-group(ng-show='canWrite && !removeFile && !editFile')
+                            a.btn(ng-click='removeFile = true')
+                              i.icon-remove
+                            a.btn(ng-click='editFile = true')
+                              i.icon-pencil
                       span.pull-right
                         .btn-toolbar(ng-show='removeFile')
                           .btn-group
@@ -51,10 +61,36 @@
                                 i.icon-ok
                               a.btn(ng-click='editFile = false') 
                                 i.icon-remove
+        .row-fluid
+          tab(data-tab-id='timeTable', caption='Time Table')
+              table.table.table-hover
+                tbody
+                  tr(ng-show='addFile', ng-repeat='file in filesToUpload')
+                    td
+                      input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
+                    td
+                      span {{file.name}}
+                  tr(ng-repeat='file in topic.files | orderBy:"date"')
+                    td 
+                      span {{file.date | date}}
+                      a(ng-repeat='file2 in topic.files && file.date==file2.date' , href='#/topics/{{topic.id}}/files/{{file.name}}') {{file.name}}
                     td 
                       span.btn-toolbar.pull-right
-                          .btn-group(ng-show='canWrite')
+                          .btn-group(ng-show='canWrite && !removeFile && !editFile')
                             a.btn(ng-click='removeFile = true')
                               i.icon-remove
                             a.btn(ng-click='editFile = true')
                               i.icon-pencil
+                      span.pull-right
+                        .btn-toolbar(ng-show='removeFile')
+                          .btn-group
+                              a.btn(ng-click='removeFile = false') 
+                                i.icon-ok
+                              a.btn(ng-click='removeFile = false') 
+                                i.icon-remove
+                        .btn-toolbar(ng-show='editFile')
+                          .btn-group
+                              a.btn(ng-click='editFile = false') 
+                                i.icon-ok
+                              a.btn(ng-click='editFile = false') 
+                                i.icon-remove
