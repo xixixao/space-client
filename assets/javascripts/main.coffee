@@ -39,6 +39,7 @@ requirejs [
   'd/searchBar'
   'd/discussionBoard'
   'd/highlighter'
+  'd/datePicker'
   'd/focusIn'
   'd/draggable'
   'd/boxSelect'

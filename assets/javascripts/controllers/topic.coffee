@@ -40,3 +40,5 @@ define ['c/controllers', 'services/topic'], (controllers) ->
         filtered[id] = file for id, file of files when file.type is type
         return filtered
   ]
+
+
