@@ -42,6 +42,7 @@ requirejs [
   'd/datePicker'
   'd/focusIn'
   'd/draggable'
+  'd/resize'
   'd/boxSelect'
   'd/outside'
   'filters/twitterfy'

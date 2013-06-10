@@ -26,8 +26,7 @@ define [
           if $scope.open
             event.preventDefault()
             $scope.boxSelect = new Rectangle $scope.from, $scope.to
-            $scope.from = $scope.from + 1
-            $scope.to = $scope.to
+            $scope.selected $selection: $scope.boxSelect
             $scope.open = false
 
         $scope.deselect = (event) ->
@@ -38,6 +37,10 @@ define [
         $scope.$watch 'boxSelect', (value) ->
           if !value?
             reset()
+          else
+            console.log "BOX SELECT"
+            $scope.from = value.tl
+            $scope.to = value.br
 
         reset = ->
           $scope.from = $scope.to = null
@@ -47,6 +50,7 @@ define [
 
       scope:
         boxSelect: '='
+        selected: '&selected'
       template: templates.boxSelect
       replace: true
       transclude: true

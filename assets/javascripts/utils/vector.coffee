@@ -1,8 +1,6 @@
 define ->
   class V
-    constructor: (x_, y_) ->
-      @x = x_
-      @y = y_
+    constructor: (@x, @y, @page) ->
 
     # vector * scalar
     mulS: (value) -> new V(@x * value, @y * value)

@@ -2,8 +2,9 @@ define [
   'c/controllers'
   'viewer'
   'jquery'
+  'utils/vector'
   'services/question'
-], (controllers, PDFViewer, $) ->
+], (controllers, PDFViewer, $, V) ->
   controllers.controller 'questions', [
     '$scope', '$stateParams', '$location', 'question'
     ($scope, $stateParams, $location, service) ->
@@ -42,7 +43,6 @@ define [
       prefix = 'pdf-'
 
       # x, y are window relative pixel coordinates
-      # TODO: we could have two pages open, that would break stuff (we take question as put on the topmost visible page)
       pdfPosition = (onScreen) ->
         View = PDFViewer.View
         visible = View.getVisiblePages()
@@ -61,12 +61,31 @@ define [
           relativeX = container.scrollLeft + onScreen.x - viewport.left
           relativeY = container.scrollTop - page.y + onScreen.y - viewportContainer.top
 
-          pdfCoors = currentPage.getPagePoint relativeX, relativeY
+          pdfCoors = currentPage.viewport.convertToPdfPoint relativeX, relativeY
           break if pdfCoors[1] > 0
 
-        x: pdfCoors[0]
-        y: pdfCoors[1]
-        page: pageNumber
+        v = new V pdfCoors[0], pdfCoors[1], pageNumber
+
+      pagePosition = (inPdf) ->
+        View = PDFViewer.View
+        visible = View.getVisiblePages()
+
+        container = View.container
+        viewportContainer = $("##{prefix}viewerContainer").offset()
+        viewport = $(".#{prefix}textLayer").offset()
+
+        visiblePages = visible.views.sort (a, b) ->
+          a.y - b.y
+
+        page = visiblePages[inPdf.page - 1]
+
+        currentPage = View.pages[inPdf.page - 1]
+        pageCoors = currentPage.viewport.convertToViewportPoint inPdf.x, inPdf.y
+
+        relativeX = Math.floor pageCoors[0] - container.scrollLeft + viewport.left
+        relativeY = Math.floor pageCoors[1] - container.scrollTop + page.y + viewportContainer.top
+        new V relativeX, relativeY
+
 
       $scope.askQuestion = ->
         console.log $scope.selection, $scope.question.text
@@ -81,8 +100,8 @@ define [
           e.preventDefault()
           allowStateTransition()
 
-      $scope.$watch 'discussed', (value, old) ->
-        if value != old
+      $scope.$watch 'discussed', (value, oldValue) ->
+        if value != oldValue
           preventStateTransition()
           if value?
             # TODO: use a promise for value.id
@@ -95,6 +114,18 @@ define [
         $scope.selection = null
 
       reset()
+
+      $scope.userSelected = (value) ->
+        $scope.pdfSelection = value.translate pdfPosition
+
+      window.addEventListener 'scalechange', (event) ->
+        $scope.$apply ->
+          $scope.selection = $scope.pdfSelection?.translate pagePosition
+
+      containerResized = (event) ->
+        console.log event
+
+
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
   ]

@@ -17,6 +17,7 @@ define [
           if rect?
             box = boundingBox()
             $element.show()
+            $element.offset top: 0, left: 0 # need to reset offset
             $element.offset rect.center()
             .addV(new V(0, margin + rect.size().y / 2 + box.size().y / 2))
             .subV(box.size().divS(2)).offset()
