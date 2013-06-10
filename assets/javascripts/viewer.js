@@ -2257,6 +2257,8 @@ var PageView = function pageView(container, id, scale, navigateTo, defaultViewpo
   };
 
   this.scrollIntoView = function pageViewScrollIntoView(dest) {
+          console.log('VIEWER HERE', dest);
+
       if (!dest) {
         scrollIntoView(div);
         return;
@@ -2271,6 +2273,7 @@ var PageView = function pageView(container, id, scale, navigateTo, defaultViewpo
       var scale = 0;
       switch (dest[1].name) {
         case 'XYZ':
+          console.log('VIEWER HERE');
           x = dest[2];
           y = dest[3];
           scale = dest[4];

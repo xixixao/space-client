@@ -13,13 +13,13 @@ define [
           rect = new Rectangle from, to
           #rect.@tl.x += (if rect.@tl.x % 2 == 0 then 0 else 1)
           size = rect.size()
+          $element.show() # needs to be set for offset to work correctly
           el.width size.x# + (if size.x % 2 == 0 then 0 else 1)
           el.height size.y
           el.offset rect.offset()
 
         listener = (value) ->
           if $scope.visible = $scope.from? and $scope.to?
-            $element.css display: 'block' # needs to be set for offset to work correctly
             position $element, $scope.from, $scope.to
 
         $scope.$watch '[from, to]', listener, true
