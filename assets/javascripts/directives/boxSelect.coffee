@@ -38,7 +38,6 @@ define [
           if !value?
             reset()
           else
-            console.log "BOX SELECT"
             $scope.from = value.tl
             $scope.to = value.br
 

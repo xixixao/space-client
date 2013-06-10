@@ -15,3 +15,11 @@ define ['utils/vector'], (V) ->
 
     translate: (fun) ->
       new Rectangle fun(@tl), fun(@br)
+
+    toJSON: ->
+      JSON.stringify [@tl.toJSON(), @br.toJSON()]
+
+    @fromJSON = (json) ->
+      [tl, br] = JSON.parse json
+      console.log tl, br
+      new Rectangle V.fromJSON(tl), V.fromJSON(br)

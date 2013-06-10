@@ -58,3 +58,9 @@ define ->
       left: @x
       top: @y
 
+    toJSON: ->
+      JSON.stringify [@x, @y, @page]
+
+    @fromJSON = (json) ->
+      new V (JSON.parse json)...
+
