@@ -5,8 +5,8 @@ define [
   'services/question'
 ], (controllers, PDFViewer, $) ->
   controllers.controller 'questions', [
-    '$scope', '$stateParams', '$http', 'question'
-    ($scope, $stateParams, $http, service) ->
+    '$scope', '$stateParams', '$location', 'question'
+    ($scope, $stateParams, $location, service) ->
 
       {topicId, fileId} = $stateParams
       [questionId, commentId, answerId, commentAId] = $stateParams.params.match(///
@@ -25,12 +25,12 @@ define [
       ///)[1..]
 
       $scope.focused = {topicId, fileId, questionId, commentId, answerId, commentAId}
+      $scope.file = $scope.user.topics[topicId]?.files[fileId]
 
       if questionId
-        console.log $scope.focused
-        console.log $scope.user.topics[topicId].files
-        $scope.discussed = $scope.user.topics[topicId].files[fileId].questions[questionId]
-        $scope.showDiscussion = true
+        $scope.discussed = service.get "topics/#{topicId}/files/#{fileId}/questions/#{questionId}"
+        if $scope.discussed?
+          $scope.showDiscussion = true
 
       file = $stateParams.file
       #$http.get('/files/#{file}')
@@ -43,7 +43,7 @@ define [
 
       # x, y are window relative pixel coordinates
       # TODO: we could have two pages open, that would break stuff (we take question as put on the topmost visible page)
-      pdfPosition = (x, y) ->
+      pdfPosition = (onScreen) ->
         View = PDFViewer.View
         visible = View.getVisiblePages()
 
@@ -58,8 +58,8 @@ define [
           pageNumber = page.id
           currentPage = View.pages[pageNumber - 1]
 
-          relativeX = container.scrollLeft + x - viewport.left
-          relativeY = container.scrollTop - page.y + y - viewportContainer.top
+          relativeX = container.scrollLeft + onScreen.x - viewport.left
+          relativeY = container.scrollTop - page.y + onScreen.y - viewportContainer.top
 
           pdfCoors = currentPage.getPagePoint relativeX, relativeY
           break if pdfCoors[1] > 0
@@ -68,12 +68,27 @@ define [
         y: pdfCoors[1]
         page: pageNumber
 
-
       $scope.askQuestion = ->
         console.log $scope.selection, $scope.question.text
+        console.log pdfPosition($scope.selection.tl), pdfPosition($scope.selection.br)
         $scope.discussed = service.newQuestion $scope.question.text, $scope.user
-        reset()
+        $scope.question = {}
+        $scope.hideQuestionInput = true
         $scope.showDiscussion = true
+
+      preventStateTransition = ->
+        allowStateTransition = $scope.$on '$stateChangeStart', (e) ->
+          e.preventDefault()
+          allowStateTransition()
+
+      $scope.$watch 'discussed', (value, old) ->
+        if value != old
+          preventStateTransition()
+          if value?
+            # TODO: use a promise for value.id
+            $location.path "topics/#{topicId}/files/#{fileId}/questions/#{value.id}"
+          else
+            $location.path "topics/#{topicId}/files/#{fileId}"
 
       reset = ->
         $scope.question = {}
@@ -82,12 +97,6 @@ define [
       reset()
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
-
-      $scope.file =
-        questions:
-          "1":
-            text: "Really?"
-            url: "topics/222/files/lecture9/questions/1"
   ]
 
 

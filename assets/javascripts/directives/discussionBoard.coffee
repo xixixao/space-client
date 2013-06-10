@@ -7,15 +7,13 @@ define [
     controller: [
       '$scope', '$element', '$location', 'question'
       ($scope, $element, $location, service) ->
-        console.log $scope.question
-        console.log $scope.questions
+        $scope.getQuestion = service.get
     ]
     link: ($scope, $element) ->
       true
-    scope: {
+    scope:
       question: '='
       questions: '='
-    }
     template: templates.discussionBoard
     transclude: true
     replace: true

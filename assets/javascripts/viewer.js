@@ -1546,7 +1546,6 @@ var PDFView = {
       // Initialize the browsing history.
       PDFHistory.initialize({ hash: storedHash, page: (pageNum || 1) },
                             PDFView.documentFingerprint);
-      debugger;
       self.setInitialView(storedHash, scale);
 
       // Make all navigation keys work on document load,
@@ -1715,7 +1714,6 @@ var PDFView = {
   // Render a page or thumbnail view. This calls the appropriate function based
   // on the views state. If the view is already rendered it will return false.
   renderView: function pdfViewRender(view, type) {
-    debugger;
     var state = view.renderingState;
     switch (state) {
       case RenderingStates.FINISHED:

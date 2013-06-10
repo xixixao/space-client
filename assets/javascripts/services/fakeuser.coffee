@@ -40,17 +40,17 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
                 type: 'Notes'
                 questions:
                   '1':
-                    author: "Anonymous"
+                    owner:
+                      name: "Anonymous"
+                      username: "an2211"
                     text: "I am not sure what this means."
-                    position:
-                      x: 220
-                      y: 100
-                    area: [
-                        x: 230
-                        y: 120
-                        w: 500
-                        h: 300
-                    ]
+                    uri: "topics/222/files/intro/questions/1"
+                    timestamp: new Date()
+                  '2':
+                    owner:
+                      name: "Anonymous"
+                    text: "How come?"
+                    uri: "topics/222/files/intro/questions/2"
                     timestamp: new Date()
               'uninformed-search':
                 name: "Uninformed Search"

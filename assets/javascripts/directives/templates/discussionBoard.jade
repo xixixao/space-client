@@ -1,8 +1,8 @@
 .discussion-board-component
   .no-question-selected(ng-show='!question')
     ul
-      li(ng-repeat='(id, question) in questions')
-        a(href='{{question.id}}') {{question.text}}
+      li(ng-repeat='(id, q) in questions')
+        a(ng-click='$parent.question = getQuestion(q.uri)') {{q.text}}
   .discussion(ng-show='question')
     a.btn(ng-click='question = null') All questions
     .row-fluid
@@ -11,20 +11,19 @@
           {{question.text}}
     .row-fluid
       .span6.pull-right
-        {{question.user.name}}
+        {{question.owner.name}}
     .row-fluid
-      .span11.pull-right
+      .span10.pull-right
         .row-fluid(ng-repeat='(id, comment) in question.comments')
           .span12
-            {{comment.text}}}
+            {{comment.text}}
     .row-fluid
       .span11.pull-right
         .row-fluid(ng-repeat='(id, answer) in question.answers')
           .row-fluid
-            .span12
-              {{question.text}}}
+            .span12(ng-bind-html-unsafe='answer.text')
           .row-fluid
-            .span11
+            .span11.pull-right
               .row-fluid(ng-repeat='(id, comment) in answer.comments')
                 .span12
-                  {{comment.text}}}
+                  {{comment.text}}
