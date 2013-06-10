@@ -25,9 +25,9 @@ define [
         $scope.up = (event) ->
           if $scope.open
             event.preventDefault()
+            $scope.open = false
             $scope.boxSelect = new Rectangle $scope.from, $scope.to
             $scope.selected $selection: $scope.boxSelect
-            $scope.open = false
 
         $scope.deselect = (event) ->
           if !event.ctrlKey and $('#pdf-viewer').has(event.target).length

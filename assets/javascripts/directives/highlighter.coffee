@@ -10,9 +10,10 @@ define [
 
         position = (el, from, to) ->
           rect = new Rectangle from, to
+          #rect.@tl.x += (if rect.@tl.x % 2 == 0 then 0 else 1)
           size = rect.size()
           el.offset rect.offset()
-          el.width size.x
+          el.width size.x# + (if size.x % 2 == 0 then 0 else 1)
           el.height size.y
 
         listener = (value) ->

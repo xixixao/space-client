@@ -122,9 +122,6 @@ define [
         $scope.$apply ->
           $scope.selection = $scope.pdfSelection?.translate pagePosition
 
-      containerResized = (event) ->
-        console.log event
-
 
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix

@@ -1,3 +1,5 @@
+# THIS DOESNT WORK, BUT IS A USEFUL TEMPLATE FOR ACTION DIRECTIVES
+
 define [
   'ang'
   'd/directives'
