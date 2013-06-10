@@ -3,7 +3,8 @@ define [
   'templates'
   'utils/vector'
   'utils/rectangle'
-], (directives, templates, V, Rectangle) ->
+  'jquery'
+], (directives, templates, V, Rectangle, $) ->
 
   directives.directive 'boxSelect', [
     ->
@@ -16,7 +17,6 @@ define [
             $scope.from = new V(event.pageX, event.pageY)
             $scope.to = null
 
-
         $scope.move = (event) ->
           if $scope.open
             event.preventDefault()
@@ -26,16 +26,16 @@ define [
           if $scope.open
             event.preventDefault()
             $scope.boxSelect = new Rectangle $scope.from, $scope.to
+            $scope.from = $scope.from + 1
+            $scope.to = $scope.to
             $scope.open = false
 
         $scope.deselect = (event) ->
-          if !event.ctrlKey
-            console.log event.target
+          if !event.ctrlKey and $('#pdf-viewer').has(event.target).length
             reset()
             $scope.boxSelect = null
 
         $scope.$watch 'boxSelect', (value) ->
-          console.log value
           if !value?
             reset()
 
