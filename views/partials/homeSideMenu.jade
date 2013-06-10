@@ -1,11 +1,10 @@
 .tabbed-side-menu-component.tb
   tabs
+    tab(data-tab-id='questions', caption='Questions')
+      ul
+        li(ng-repeat='question in user.events | filter:{url: "questions"} | fromUrl')
+          a(href='#/preview/{{question.url}}') {{question.text}}
     tab(data-tab-id='feed', caption='Topics')
       ul
-        li(ng-repeat='course in user.courses | orderBy:"name"')
-          a(href='#/topics/{{course.id}}') {{course.name}}
-
-    tab(data-tab-id='topic', caption='Feed WIP')
-      ul
-        li(ng-repeat='course in user.courses | orderBy:"name"')
-          a(href='{{course.url}}') {{course.name}}
+        li(ng-repeat='topics in user.topics | orderBy:"name"')
+          a(href='#/topics/{{topics.id}}') {{topics.name}}

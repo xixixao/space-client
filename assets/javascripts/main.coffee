@@ -26,7 +26,10 @@ requirejs [
   'c/login'
   'c/user'
   'c/topic'
+  'c/topicBound'
   'c/news'
+  'c/feed'
+  'c/preview'
   'c/questions'
   'c/settings'
   'd/ngController'
@@ -37,6 +40,7 @@ requirejs [
   'd/datePicker'
   'd/focusIn'
   'filters/twitterfy'
+  'filters/fromUrl'
   'ang'
   'angui'
   'responseInterceptors/dispatcher'
@@ -82,16 +86,23 @@ requirejs [
       views:
         'sideMenu':
           templateUrl: 'partials/homeSideMenu'
-          controller: 'news'
         'mainView':
           templateUrl: 'partials/news'
           controller: 'news'
+    .state 'user.split.preview',
+      url: "/preview/topics/:topicId/files/:fileId/questions/:questionId"
+      views:
+        'sideMenu':
+          templateUrl: 'partials/homeSideMenu'
+        'mainView':
+          templateUrl: 'partials/preview'
+          controller: 'preview'
     .state 'user.split.topic',
       url: "/topics/:topicId"
       views:
-        'sideMenu':
+        'sideMenu': 
           templateUrl: 'partials/topicSideMenu'
-          controller: 'topic'
+          controller: 'topicBound'
         'mainView':
           templateUrl: 'partials/files'
           controller: 'topic'

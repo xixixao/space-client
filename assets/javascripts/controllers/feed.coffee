@@ -1,8 +1,7 @@
 define ['c/controllers'], (controllers) ->
   'use strict'
 
-  controllers.controller 'news', [
+  controllers.controller 'feed', [
     '$scope'
     ($scope) ->
-      console.log "wtffff"
   ]

@@ -10,26 +10,10 @@ define [
   'use strict'
 
   directives.directive 'smallViewer', [->
-    controller = ['$scope', '$element', '$rootScope', ($scope, $element, $rootScope) ->
-      $scope.tabs = []
-      #
-
-      #     $scope.select = (tab) ->
-      #       return if tab.selected is true
-      #
-      #       angular.forEach $scope.tabs, (tab) ->
-      #         tab.selected = false
-      #
-      #       tab.selected = true
-      #
-      #     @addTab = (tab, tabId) ->
-      #       $scope.select tab if $scope.tabs.length is 0
-      #
-      #       $scope.tabs.push tab
-      #
-      #       if tabId
-      #         $rootScope.$on "changeTab##{tabId}", ->
-      #           $scope.select tab
+    controller = ['$scope', '$element', '$location', ($scope, $element, $location) ->
+      $scope.action = ->
+        console.log $scope.goto
+        $location.path $scope.goto
     ]
 
     controller: controller
@@ -38,7 +22,9 @@ define [
 
     replace: true
     restrict: 'E'
-    scope: {}
+    scope: {
+      goto: '@'
+    }
     template: templates.smallViewer
     transclude: true
   ]
