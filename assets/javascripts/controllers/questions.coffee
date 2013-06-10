@@ -67,6 +67,7 @@ define [
 
       window.addEventListener 'scalechange', (event) ->
         $scope.$apply ->
+          console.log $scope.pdfSelection
           $scope.selection = $scope.pdfSelection?.translate converter().toScreen
 
       $scope.askQuestion = ->
@@ -99,16 +100,22 @@ define [
 
       $scope.focused = {topicId, fileId, questionId, commentId, answerId, commentAId}
       $scope.file = $scope.user.topics[topicId]?.files[fileId]
-      
+
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
 
       if questionId
         $scope.discussed = service.get "topics/#{topicId}/files/#{fileId}/questions/#{questionId}"
         if $scope.discussed?
           $scope.showDiscussion = true
-          #displayQuestion $scope.discussed
 
       file = $stateParams.file
+
+      window.addEventListener 'pagesRendered', (event) ->
+        console.log event
+        $scope.$apply ->
+          if $scope.discussed?
+            displayQuestion $scope.discussed
+
       #$http.get('/files/#{file}')
       #.success (data) ->
       #  console.log data

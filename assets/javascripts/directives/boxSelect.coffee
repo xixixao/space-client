@@ -38,6 +38,7 @@ define [
           if !value?
             reset()
           else
+            console.log value
             $scope.from = value.tl
             $scope.to = value.br
 

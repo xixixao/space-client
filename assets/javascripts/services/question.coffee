@@ -17,7 +17,7 @@ define ['services/services'], (services) ->
                 name: "Anonymous"
                 username: "an211"
               text: "I am not sure what this means."
-              position: "[\"[200, 100, 1]\",\"[400, 200, 1]\"]"
+              position: "[\"[200, 600, 1]\",\"[400, 700, 1]\"]"
               timestamp: new Date()
               comments:
                 '1':
