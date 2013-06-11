@@ -46,12 +46,14 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
                     text: "I am not sure what this means."
                     uri: "topics/222/files/intro/questions/1"
                     timestamp: new Date()
+                    position: "[\"[200, 600, 1]\",\"[400, 700, 1]\"]"
                   '2':
                     owner:
                       name: "Anonymous"
                     text: "How come?"
                     uri: "topics/222/files/intro/questions/2"
                     timestamp: new Date()
+                    position: "[\"[300, 100, 1]\",\"[500, 200, 1]\"]"
               'uninformed-search':
                 name: "Uninformed Search"
                 uri: ""

@@ -53,12 +53,13 @@ define [
 
           v = new V pdfCoors[0], pdfCoors[1], pageNumber
         toScreen: (inPdf) ->
-          page = visiblePages[inPdf.page - 1]
           currentPage = View.pages[inPdf.page - 1]
           pageCoors = currentPage.viewport.convertToViewportPoint inPdf.x, inPdf.y
 
+          currentPageY = currentPage.el.offsetTop + currentPage.el.clientTop
+
           relativeX = Math.floor pageCoors[0] - container.scrollLeft + viewport.left
-          relativeY = Math.floor pageCoors[1] - container.scrollTop + page.y + viewportContainer.top
+          relativeY = Math.floor pageCoors[1] - container.scrollTop + currentPageY + viewportContainer.top
           new V relativeX, relativeY
 
       $scope.userSelected = (value) ->
@@ -68,15 +69,19 @@ define [
 
       window.addEventListener 'scalechange', (event) ->
         $scope.$apply ->
-          console.log $scope.pdfSelection
-          makeVisible $scope.pdfSelection
-          $scope.selection = $scope.pdfSelection?.translate converter().toScreen
+          if $scope.pdfSelection?
+            makeVisible $scope.pdfSelection
+            $scope.selection = $scope.pdfSelection.translate converter().toScreen
 
       $scope.askQuestion = ->
         $scope.discussed = service.newQuestion $scope.question.text, $scope.user
         $scope.question = null
         $scope.hideQuestionInput = true
         $scope.showDiscussion = true
+
+      $scope.questionPosition = (question) ->
+        pdfPosition = Rectangle.fromJSON(question.position)
+        pdfPosition.translate converter().toScreen
 
       preventStateTransition = ->
         allowStateTransition = $scope.$on '$stateChangeStart', (e) ->
@@ -93,9 +98,9 @@ define [
 
       displayQuestion = (question) ->
         $scope.pdfSelection = pdfPosition = Rectangle.fromJSON(question.position)
+        makeVisible pdfPosition
         $scope.selection = pdfPosition.translate converter().toScreen
         # bottom left because pdf has normal cartesian system
-        makeVisible pdfPosition
         $scope.hideQuestionInput = true
 
       $scope.$watch 'discussed', (value, oldValue) ->
@@ -111,6 +116,10 @@ define [
             console.log $scope.selection
           else
             $location.path "topics/#{topicId}/files/#{fileId}"
+
+      $scope.$watch 'selection', (value) ->
+        if !value? and $scope.discussed?
+          $scope.discussed = null
 
       $scope.focused = {topicId, fileId, questionId, commentId, answerId, commentAId}
       $scope.file = $scope.user.topics[topicId]?.files[fileId]

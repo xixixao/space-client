@@ -20,6 +20,7 @@ define ['utils/vector'], (V) ->
       JSON.stringify [@tl.toJSON(), @br.toJSON()]
 
     @fromJSON = (json) ->
+      console.log json
       [tl, br] = JSON.parse json
       console.log tl, br
       new Rectangle V.fromJSON(tl), V.fromJSON(br)
