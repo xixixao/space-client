@@ -1,8 +1,6 @@
 define ->
   class V
-    constructor: (x_, y_) ->
-      @x = x_
-      @y = y_
+    constructor: (@x, @y, @page) ->
 
     # vector * scalar
     mulS: (value) -> new V(@x * value, @y * value)
@@ -59,4 +57,10 @@ define ->
     offset: ->
       left: @x
       top: @y
+
+    toJSON: ->
+      JSON.stringify [@x, @y, @page]
+
+    @fromJSON = (json) ->
+      new V (JSON.parse json)...
 

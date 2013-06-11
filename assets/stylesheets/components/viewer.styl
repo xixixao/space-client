@@ -174,7 +174,7 @@ html[dir='rtl'] #pdf-sidebarContainer {
   right: -200px;
 }
 
-#pdf-outerContainer.sidebarMoving > #pdf-sidebarContainer,
+#pdf-outerContainer.pdf-sidebarMoving > #pdf-sidebarContainer,
 #pdf-outerContainer.pdf-sidebarOpen > #pdf-sidebarContainer {
   visibility: visible;
 }
@@ -1553,12 +1553,12 @@ canvas {
 }
 
 @media all and (max-width: 960px) {
-  html[dir='ltr'] #pdf-outerContainer.sidebarMoving .pdf-outerCenter,
+  html[dir='ltr'] #pdf-outerContainer.pdf-sidebarMoving .pdf-outerCenter,
   html[dir='ltr'] #pdf-outerContainer.pdf-sidebarOpen .pdf-outerCenter {
     float: left;
     left: 185px;
   }
-  html[dir='rtl'] #pdf-outerContainer.sidebarMoving .pdf-outerCenter,
+  html[dir='rtl'] #pdf-outerContainer.pdf-sidebarMoving .pdf-outerCenter,
   html[dir='rtl'] #pdf-outerContainer.pdf-sidebarOpen .pdf-outerCenter {
     float: right;
     right: 185px;
@@ -1647,13 +1647,13 @@ canvas {
   .pdf-visibleSmallView {
     display: inherit;
   }
-  html[dir='ltr'] #pdf-outerContainer.sidebarMoving .pdf-outerCenter,
-  html[dir='ltr'] #pdf-outerContainer.sidebarOpen .pdf-outerCenter,
+  html[dir='ltr'] #pdf-outerContainer.pdf-sidebarMoving .pdf-outerCenter,
+  html[dir='ltr'] #pdf-outerContainer.pdf-sidebarOpen .pdf-outerCenter,
   html[dir='ltr'] .pdf-outerCenter {
     left: 156px;
   }
-  html[dir='rtl'] #pdf-outerContainer.sidebarMoving .pdf-outerCenter,
-  html[dir='rtl'] #pdf-outerContainer.sidebarOpen .pdf-outerCenter,
+  html[dir='rtl'] #pdf-outerContainer.pdf-sidebarMoving .pdf-outerCenter,
+  html[dir='rtl'] #pdf-outerContainer.pdf-sidebarOpen .pdf-outerCenter,
   html[dir='rtr'] #pdf-outerContainer .pdf-outerCenter {
     right: 156px;
   }

@@ -16,10 +16,9 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
         password: "12345678"
         email: "ms6611@ic.ac.uk"
         facebook: "michal@facebook.com"
-
         events: [
           timestamp: new Date()
-          url: 'topics/222/files/introduction-and-methods/questions/1'
+          url: 'topics/222/files/intro/questions/1'
         ,
           timestamp: new Date()
           url: 'topics/222/files/intro'

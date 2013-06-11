@@ -5,7 +5,6 @@ define [
   'templates'
   'jquery'
 ], (angular, directives, PDFViewer, templates, $) ->
-  'use strict'
 
   directives.directive 'smallViewer', [->
     controller = ['$scope', '$element', '$location', ($scope, $element, $location) ->

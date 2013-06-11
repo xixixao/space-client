@@ -17,15 +17,7 @@ define ['services/services'], (services) ->
                 name: "Anonymous"
                 username: "an211"
               text: "I am not sure what this means."
-              position:
-                x: 220
-                y: 100
-              area: [
-                  x: 230
-                  y: 120
-                  w: 500
-                  h: 300
-              ]
+              position: "[\"[200, 600, 1]\",\"[400, 700, 1]\"]"
               timestamp: new Date()
               comments:
                 '1':
@@ -68,15 +60,7 @@ define ['services/services'], (services) ->
               owner:
                 name: "Anonymous"
               text: "How come?"
-              position:
-                x: 220
-                y: 100
-              area: [
-                  x: 230
-                  y: 120
-                  w: 500
-                  h: 300
-              ]
+              position: "[\"[300, 100, 1]\",\"[500, 200, 1]\"]"
               timestamp: new Date()
               comments: {}
               answers: {}

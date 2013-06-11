@@ -5,5 +5,5 @@ define ['c/controllers'], (controllers) ->
     '$scope'
     ($scope) ->
       $scope.question =
-        url: 'topics/222/files/blabla'
+        url: 'topics/222/files/intro'
   ]

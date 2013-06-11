@@ -1085,8 +1085,7 @@ var PDFView = {
   },
 
   // TODO(mack): This function signature should really be pdfViewOpen(url, args)
-  open: function pdfViewOpen(url, scale, password,
-                             pdfDataRangeTransport, args) {
+  open: function pdfViewOpen(url, scale, password, pdfDataRangeTransport, args) {
     var parameters = {password: password};
     if (typeof url === 'string') { // URL
       this.setTitleUsingUrl(url);
@@ -1557,6 +1556,10 @@ var PDFView = {
     });
 
     pagesPromise.then(function() {
+      var event = document.createEvent('CustomEvent');
+      event.initCustomEvent('pagesRendered', true, true, {});
+      window.dispatchEvent(event);
+
       if (PDFView.supportsPrinting) {
         pdfDocument.getJavaScript().then(function(javaScript) {
           if (javaScript.length) {
@@ -2254,6 +2257,8 @@ var PageView = function pageView(container, id, scale, navigateTo, defaultViewpo
   };
 
   this.scrollIntoView = function pageViewScrollIntoView(dest) {
+          console.log('VIEWER HERE', dest);
+
       if (!dest) {
         scrollIntoView(div);
         return;
@@ -2268,6 +2273,7 @@ var PageView = function pageView(container, id, scale, navigateTo, defaultViewpo
       var scale = 0;
       switch (dest[1].name) {
         case 'XYZ':
+          console.log('VIEWER HERE');
           x = dest[2];
           y = dest[3];
           scale = dest[4];
