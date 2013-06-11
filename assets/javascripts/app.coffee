@@ -1,6 +1,7 @@
 define [
 	'ang'
 	'angui'
+	'vendor/angular-ui-bootstrap'
 	'c/controllers'
 	'd/directives'
 	'filters/filters'
@@ -13,6 +14,7 @@ define [
 
 	angular.module 'app', [
 		'ui.state'
+		'ui.bootstrap'
 		'controllers'
 		'directives'
 		'filters'

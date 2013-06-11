@@ -6,24 +6,24 @@
   .discussion(ng-show='question')
     a.btn(ng-click='question = null') All questions
     .row-fluid
-      .span12
-        .question
-          {{question.text}}
-    .row-fluid
-      .span6.pull-right
-        {{question.owner.name}}
-    .row-fluid
-      .span10.pull-right
-        .row-fluid(ng-repeat='(id, comment) in question.comments')
-          .span12
-            {{comment.text}}
-    .row-fluid
-      .span11.pull-right
-        .row-fluid(ng-repeat='(id, answer) in question.answers')
+      accordion(close-others=true)
+        accordion-group(heading='QUESTION: {{question.text}}')
+          span 
+            | {{question.text}}
+          span.pull-right
+            | {{question.owner.name}}
+          .row-fluid
+            .span10.pull-right
+              .row-fluid(ng-repeat='(id, comment) in question.comments')
+                .span12
+                  {{comment.text}}
+        accordion-group(ng-repeat='(id, answer) in question.answers', heading='ANSWER: {{(answer.text.substr(0, 300) + (answer.text.length > 300 ? "..." : ""))}}')
           .row-fluid
             .span12(ng-bind-html-unsafe='answer.text')
           .row-fluid
             .span11.pull-right
               .row-fluid(ng-repeat='(id, comment) in answer.comments')
                 .span12
-                  {{comment.text}}
+                  | {{comment.text}}
+
+
