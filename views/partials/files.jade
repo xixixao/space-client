@@ -32,7 +32,7 @@
                     li
                       a Type1
               td
-                .btn-group
+                .btn-group.pull-right
                   a.btn(ng-click='uploadFile = true') 
                     i.icon-ok
                   a.btn(ng-click='uploadFile = true') 
@@ -42,6 +42,22 @@
             tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type}}')
               table.table.table-hover
                 tbody
+                  tr(ng-show='canWrite')
+                    td
+                      a.btn(ng-show='!deleteTopic', ng-click='deleteTopic = true')
+                        i.icon-trash
+                        | Delete Topic
+                      a.btn.btn-danger(ng-show='deleteTopic')
+                        i.icon-trash.icon-white
+                        | Delete Topic
+                    td
+                    td
+                      .btn-toolbar(ng-show='deleteTopic')
+                        .btn-group.pull-right
+                          a.btn(ng-click='deleteTopic = false') 
+                            i.icon-ok
+                          a.btn(ng-click='deleteTopic = false') 
+                            i.icon-remove                      
                   tr(ng-repeat='(fileId, file) in filter(topic.files, type) | orderBy:"date"')
                     td
                       span(ng-show='!canWrite') {{$index + 1}}
