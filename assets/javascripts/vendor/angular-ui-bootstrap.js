@@ -1981,7 +1981,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position'])
 angular.module("template/accordion/accordion-group.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/accordion/accordion-group.html",
     "<div class=\"accordion-group\">\n" +
-    "  <div class=\"accordion-heading\" ><a class=\"accordion-toggle\" ng-click=\"isOpen = !isOpen\" accordion-transclude=\"heading\">{{heading}}</a></div>\n" +
+    "  <div class=\"accordion-heading\" ><a class=\"accordion-toggle\" ng-click=\"isOpen = !isOpen\" accordion-transclude=\"heading\">{{!isOpen ? heading : heading.substr(0, 9)}}</a></div>\n" +
     "  <div class=\"accordion-body\" collapse=\"!isOpen\">\n" +
     "    <div class=\"accordion-inner\" ng-transclude></div>  </div>\n" +
     "</div>");
@@ -2109,7 +2109,7 @@ angular.module("template/tabs/tabs.html", []).run(["$templateCache", function($t
     "<div class=\"tabbable\">\n" +
     "  <ul class=\"nav nav-tabs\">\n" +
     "    <li ng-repeat=\"pane in panes\" ng-class=\"{active:pane.selected}\">\n" +
-    "      <a ng-click=\"select(pane)\">{{pane.heading}}</a>\n" +
+    "      asdsa<a ng-click=\"select(pane)\">{{pane.heading}}</a>\n" +
     "    </li>\n" +
     "  </ul>\n" +
     "  <div class=\"tab-content\" ng-transclude></div>\n" +
