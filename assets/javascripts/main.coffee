@@ -44,6 +44,7 @@ requirejs [
   'd/draggable'
   'd/boxSelect'
   'd/outside'
+  'd/position'
   'filters/twitterfy'
   'filters/fromUrl'
   'ang'

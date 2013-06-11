@@ -4,8 +4,9 @@ define [
   'jquery'
   'utils/vector'
   'utils/rectangle'
+  'vendor/q'
   'services/question'
-], (controllers, PDFViewer, $, V, Rectangle) ->
+], (controllers, PDFViewer, $, V, Rectangle, Q) ->
   controllers.controller 'questions', [
     '$scope', '$stateParams', '$location', 'question'
     ($scope, $stateParams, $location, service) ->
@@ -80,8 +81,14 @@ define [
         $scope.showDiscussion = true
 
       $scope.questionPosition = (question) ->
-        pdfPosition = Rectangle.fromJSON(question.position)
-        pdfPosition.translate converter().toScreen
+        $scope.rendered.then ->
+          console.log "questionPosition", question
+          pdfPosition = Rectangle.fromJSON(question.position)
+          [pdfPosition.translate(converter().toScreen), pdfPosition]
+
+      $scope.setDiscussed = (question) ->
+        console.log "discussing", question
+        $scope.discussed = question
 
       preventStateTransition = ->
         allowStateTransition = $scope.$on '$stateChangeStart', (e) ->
@@ -97,11 +104,12 @@ define [
         ]
 
       displayQuestion = (question) ->
-        $scope.pdfSelection = pdfPosition = Rectangle.fromJSON(question.position)
-        makeVisible pdfPosition
-        $scope.selection = pdfPosition.translate converter().toScreen
-        # bottom left because pdf has normal cartesian system
-        $scope.hideQuestionInput = true
+        $scope.questionPosition(question).then ([screenPosition, pdfPosition]) ->
+          console.log "displayQuestion", screenPosition, pdfPosition
+          $scope.pdfSelection = pdfPosition
+          makeVisible pdfPosition
+          $scope.selection = screenPosition
+          $scope.hideQuestionInput = true
 
       $scope.$watch 'discussed', (value, oldValue) ->
         if !value?
@@ -133,11 +141,14 @@ define [
 
       file = $stateParams.file
 
+      console.log Q
+      deferred = Q.defer()
       window.addEventListener 'pagesRendered', (event) ->
-        console.log event
-        $scope.$apply ->
-          if $scope.discussed?
-            displayQuestion $scope.discussed
+        deferred.resolve()
+      $scope.rendered = deferred.promise
+
+      if $scope.discussed?
+        displayQuestion $scope.discussed
 
       #$http.get('/files/#{file}')
       #.success (data) ->

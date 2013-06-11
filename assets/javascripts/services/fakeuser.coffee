@@ -40,6 +40,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
                 type: 'Notes'
                 questions:
                   '1':
+                    id: '1'
                     owner:
                       name: "Anonymous"
                       username: "an2211"
@@ -48,6 +49,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
                     timestamp: new Date()
                     position: "[\"[200, 600, 1]\",\"[400, 700, 1]\"]"
                   '2':
+                    id: '2'
                     owner:
                       name: "Anonymous"
                     text: "How come?"
