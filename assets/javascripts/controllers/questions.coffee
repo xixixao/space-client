@@ -69,6 +69,7 @@ define [
       window.addEventListener 'scalechange', (event) ->
         $scope.$apply ->
           console.log $scope.pdfSelection
+          makeVisible $scope.pdfSelection
           $scope.selection = $scope.pdfSelection?.translate converter().toScreen
 
       $scope.askQuestion = ->
@@ -82,16 +83,19 @@ define [
           e.preventDefault()
           allowStateTransition()
 
-      displayQuestion = (question) ->
-        pdfPosition = Rectangle.fromJSON(question.position)
-        $scope.selection = pdfPosition.translate converter().toScreen
-        # bottom left because pdf has normal cartesian system
+      makeVisible = (pdfPosition) ->
         PDFViewer.View.pages[pdfPosition.br.page - 1].scrollIntoView [
           null
           name: 'XYZ'
           pdfPosition.tl.x
           pdfPosition.br.y + 200
         ]
+
+      displayQuestion = (question) ->
+        $scope.pdfSelection = pdfPosition = Rectangle.fromJSON(question.position)
+        $scope.selection = pdfPosition.translate converter().toScreen
+        # bottom left because pdf has normal cartesian system
+        makeVisible pdfPosition
         $scope.hideQuestionInput = true
 
       $scope.$watch 'discussed', (value, oldValue) ->
