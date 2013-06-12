@@ -13,6 +13,6 @@
     tab(data-tab-id='feed', caption='Topics')
       table.table.table-hover
         tbody
-          tr(ng-repeat='topics in user.topics | orderBy:"name"')
+          tr(ng-repeat='topic in user.topics | orderBy:"name"')
             td
-              a(href='#/topics/{{topics.id}}') {{topics.name}}
+              a(href='#/topics/{{topic._id}}') {{topic.name}}

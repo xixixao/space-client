@@ -1,4 +1,4 @@
-define ['filters/filters', 'services/fakeuser'], (filters) ->
+define ['filters/filters', 'services/user'], (filters) ->
   'use strict'
 
   filters.filter 'fromUrl', ['user', (service) -> (events) ->

@@ -1,4 +1,4 @@
-define ['c/controllers', 'services/fakeuser'], (controllers) ->
+define ['c/controllers', 'services/user'], (controllers) ->
   'use strict'
 
   controllers.controller 'login', [
@@ -12,7 +12,6 @@ define ['c/controllers', 'services/fakeuser'], (controllers) ->
       $scope.values = {}
 
       $scope.login = ->
-        console.log "Loginning in %o", $scope.values
         service.login(_id: $scope.values.username, password: $scope.values.password)
         .success (data) ->
           $location.path '/'
