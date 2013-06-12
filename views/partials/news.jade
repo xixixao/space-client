@@ -1,4 +1,17 @@
 .news-component.tb
   .row-fluid
-    .span12
-      | Bunch of news
+    .span3
+    .span8
+      h3.newsfeed-title  What's new in your SPACE?
+    .span1
+  .row-fluid
+    table.table.table-hover
+      tbody
+        tr(ng-repeat='question in user.events | filter:{url: "questions"} | fromUrl')
+          td          
+            .row-fluid(ng-show='{url: "questions"}')
+              strong.question-mark ? 
+              strong {{question.topic}}, {{question.file}}
+            .row-fluid
+                em {{question.timestamp | date}} by {{question.owner.name}}:
+            a(href='#/preview/{{question.url}}') {{(question.text.substr(0, 150) + (question.text.length > 150 ? "..." : ""))}}
