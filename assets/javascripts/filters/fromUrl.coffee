@@ -17,6 +17,9 @@ define ['filters/filters', 'services/fakeuser'], (filters) ->
         file = elem topic.files, fileId
         return file unless questionId?
         question = elem file.questions, questionId
+        question.topic = topic.name
+        question.file = file.name
+        return question
 
       transform = (event) ->
         elem = fetch event.url
