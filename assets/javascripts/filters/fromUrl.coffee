@@ -10,21 +10,55 @@ define ['filters/filters', 'services/fakeuser'], (filters) ->
         el.id = id
         return el
 
-      fetch = (url) ->
-        [_1, topicId, _2, fileId, _3, questionId] = url.split('/').concat [null, null]
+      fetch = (url, event) ->
+        [topicId, fileId, questionId, commentId, answerId, commentAId] = url.match(///
+          (?:
+            topics/([^/]+)
+            (?:
+              /files/([^/]+)
+              (?:
+                /questions/([^/]+)
+                (?:
+                  /comments/([^/]+)
+                )?
+                (?:
+                  /answers/([^/]+)
+                  (?:
+                    /comments/([^/]+)
+                  )?
+                )?
+              )?
+            )?
+          )?
+        ///)[1..]
         topic = elem user.topics, topicId
+        topic.type = 'topic'
         return topic unless fileId?
         file = elem topic.files, fileId
+        file.type = 'file'
         return file unless questionId?
         question = elem file.questions, questionId
         question.topic = topic.name
         question.file = file.name
-        return question
+        question.type = 'question'
+        return question unless commentId? or answerId?
+        if commentId?
+          comment = event
+          comment.type = 'commentQ'
+          return comment
+        else
+          answer = event
+          answer.type = 'answer'
+          return answer unless commentAId?
+          comment = event
+          comment.type = 'commentA'
+          return comment
+
 
       transform = (event) ->
-        elem = fetch event.url
-        elem.url = event.url
-        return elem
+        element = fetch event.url, event
+        element.url = event.url
+        return element
 
       events.map transform
   ]

@@ -1,18 +1,20 @@
 .tabbed-side-menu-component.tb
   tabs
+    tab(data-tab-id='feed', caption='Topics')
+      table.table.table-hover
+        tbody
+          tr(ng-repeat='(id, topic) in user.topics | orderBy:"name"')
+            td
+              strong
+                a.black(href='#/topics/{{topic.id}}') {{topic.name}}
     tab(data-tab-id='questions', caption='Questions')
       table.table.table-hover
         tbody
           tr(ng-repeat='question in user.events | filter:{url: "questions"} | fromUrl')
             td          
               .row-fluid
-                strong {{question.topic}}, {{question.file}}
+                strong.red {{question.topic}}: {{question.file}}
               .row-fluid
+                strong
                   em {{question.timestamp | date}} by {{question.owner.name}}:
-              a(href='#/preview/{{question.url}}') {{(question.text.substr(0, 150) + (question.text.length > 150 ? "..." : ""))}}
-    tab(data-tab-id='feed', caption='Topics')
-      table.table.table-hover
-        tbody
-          tr(ng-repeat='topics in user.topics | orderBy:"name"')
-            td
-              a(href='#/topics/{{topics.id}}') {{topics.name}}
+              a.grey(href='#/preview/{{question.url}}') {{(question.text.substr(0, 75) + (question.text.length > 75 ? "..." : ""))}}

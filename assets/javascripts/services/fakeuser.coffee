@@ -40,22 +40,18 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
                 type: 'Notes'
                 questions:
                   '1':
-                    id: '1'
                     owner:
                       name: "Anonymous"
                       username: "an2211"
-                    text: "I am not sure what this means. Please help me I am lost I need some solutions as fast as you can! please help!!! help!!! I am not sure what this means. Please help me I am lost I need some solutions as fast as you can! please help!!! help!!! I am not sure what this means. Please help me I am lost I need some solutions as fast as you can! please help!!! help!!! I am not sure what this means. Please help me I am lost I need some solutions as fast as you can! please help!!! help!!!"
+                    text: "I am not sure what this means. Please help me I am lost I need some solutions as fast as you can! please help!!! help!!! I am not sure what this means. Please help me I am lost I need some solutions as fast as you can! please help!!! help!!! I am not sure what this means. Please help me I am lost I need some solutions as fast as you can! please help!!! help!!!"
                     uri: "topics/222/files/intro/questions/1"
                     timestamp: new Date()
-                    position: "[\"[200, 600, 1]\",\"[400, 700, 1]\"]"
                   '2':
-                    id: '2'
                     owner:
                       name: "Anonymous"
                     text: "How come?"
                     uri: "topics/222/files/intro/questions/2"
                     timestamp: new Date()
-                    position: "[\"[300, 100, 1]\",\"[500, 200, 1]\"]"
               'uninformed-search':
                 name: "Uninformed Search"
                 uri: ""
@@ -152,6 +148,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
                 uri: ""
                 type: 'Solutions'
           "223":
+            id: "223"
             name: "Architecture"
             permission: "r"
             types: [

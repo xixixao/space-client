@@ -5,7 +5,7 @@
         input.search-bar(type='text', ng-model='query', focus-in, ng-keypress='scroll($event)')
         .add-on
           i.icon-search
-  .row-fluid
+  .row-fluid(ng-hide='true')
     .span12
       ul
         li(ng-repeat='file in files | limitTo:5', ng-class='file.active', ng-mouseover='activate($index)')
