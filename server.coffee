@@ -1,17 +1,9 @@
 express = require 'express'
 engines = require 'consolidate'
+httpProxy =  require 'http-proxy'
 
 
 exports.startServer = (config, callback) ->
-
-  nextId = 0
-  people = [
-    {"id": "#{nextId++}", "name": "Saasha", "age": "5"}
-    {"id": "#{nextId++}", "name": "Planet", "age": "7"}
-  ]
-
-  isUniqueName = (name) ->
-    (name for person in people when person.name is name).length is 0
 
   app = express()
   server = app.listen config.server.port, ->
@@ -23,7 +15,7 @@ exports.startServer = (config, callback) ->
     app.engine config.server.views.extension, engines[config.server.views.compileWith]
     app.set 'view engine', config.server.views.extension
     app.use express.favicon()
-    app.use express.bodyParser()
+    #app.use express.bodyParser()
     app.use express.methodOverride()
     app.use express.compress()
     app.use app.router
@@ -41,5 +33,14 @@ exports.startServer = (config, callback) ->
     res.render 'index', options
   app.get '/partials/:name', (req, res) ->
     res.render "partials/#{req.params.name}", options
+
+  # Redirect api requests (*all* HTTP verbs) to the Cloud
+  apiProxy = new httpProxy.RoutingProxy
+  app.all '/api/*', (req, res) ->
+    console.log req.originalUrl
+    req.url = req.url.replace "/api", ''
+    apiProxy.proxyRequest req, res,
+      host: 'localhost'
+      port: 3333
 
   callback server

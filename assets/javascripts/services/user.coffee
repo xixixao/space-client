@@ -12,9 +12,10 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
     login = (values) ->
       handle = $http.post(URL, values)
       handle.success (data) ->
-        {auth, user} = data
+        user = data
+        console.log user
 
-    courses = -> user.courses
+    user = -> user
 
-    {login, courses}
+    {login, user}
   ]
