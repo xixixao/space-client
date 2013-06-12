@@ -14,15 +14,21 @@
         accordion-group(heading='QUESTION: {{question.text}}')
           span 
             | {{question.text}}
-          span.pull-right
-            | {{question.owner.name}}
+          .row-fluid
+            span
+              | {{question.timestamp | date}}
+            span.pull-right
+              | {{question.owner.name}}
           .row-fluid
             accordion(close-others=true)
               accordion-group(ng-repeat='(id, comment) in question.comments', heading='COMMENT: {{comment.text}}')
                 span
                   | {{comment.text}}
-                span.pull-right
-                  | {{question.owner.name}}
+                .row-fluid
+                  span
+                    | {{comment.timestamp | date}}
+                  span.pull-right
+                    | {{comment.owner.name}}
               .row-fluid
                 textarea.answer-comment-textbox-width(rows='2', placeholder="Comment",ng-click='addComment=true')
               .row-fluid(ng-show='addComment')
@@ -36,15 +42,21 @@
         accordion-group(ng-repeat='(id, answer) in question.answers', heading='ANSWER:  {{(answer.text.substr(0, 300) + (answer.text.length > 300 ? "..." : ""))}} <<RANK>>')
           .row-fluid
             .span12(ng-bind-html-unsafe='answer.text')
-            span.pull-right
-              | {{question.owner.name}}
+            .row-fluid
+              span
+                | {{answer.timestamp | date}}
+              span.pull-right
+                | {{answer.owner.name}}
           .row-fluid
             accordion(close-others=true)
               accordion-group(ng-repeat='(id, comment) in answer.comments', heading='COMMENT: {{comment.text}}')
                 span
                   | {{comment.text}}
-                span.pull-right
-                  | {{question.owner.name}}
+                .row-fluid
+                  span
+                    | {{comment.timestamp | date}}
+                  span.pull-right
+                    | {{comment.owner.name}}
               .row-fluid
                 textarea.answer-comment-textbox-width(rows='2', placeholder="Comment",ng-click='addComment=true')
               .row-fluid(ng-show='addComment')

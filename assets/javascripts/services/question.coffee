@@ -24,10 +24,12 @@ define ['services/services'], (services) ->
                   owner:
                     name: "Anonymous"
                   text: "Interesting question."
+                  timestamp: new Date()
                 '2':
                   owner:
                     name: "Anonymous"
                   text: "Or just a stupid one."
+                  timestamp: new Date()
               answers:
                 '1':
                   owner:
@@ -42,19 +44,23 @@ define ['services/services'], (services) ->
                     > Invigilators can check the status of all currently running exams<br>
                     ...etc...
                     <p>If your app is a game, then we want a brief summary of the rules and how the user plays the game."""
+                  timestamp: new Date()
                   comments:
                     '1':
                       owner:
                         name: "Anonymous"
                       text: "A lion?"
+                      timestamp: new Date()
                     '2':
                       owner:
                         name: "Anonymous"
                       text: "A cat for sure."
+                      timestamp: new Date()
                 '2':
                   owner:
                     name: "Anonymous"
                   text: "I think it is concerned with the abdominal spacial features of enlarged natural language complexities."
+                  timestamp: new Date()
             when "topics/222/files/intro/questions/2"
               id: 1
               owner:
