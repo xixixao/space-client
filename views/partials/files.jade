@@ -44,19 +44,19 @@ h3.topic-title {{topic.name}}
             tbody
               tr(ng-show='canWrite')
                 td
-                  a.btn(ng-show='!deleteTopic', ng-click='deleteTopic = true')
+                  a.btn(ng-show='!deleteType', ng-click='deleteType = true')
                     i.icon-trash
-                    | Delete Topic
-                  a.btn.btn-danger(ng-show='deleteTopic')
+                    | Delete Type
+                  a.btn.btn-danger(ng-show='deleteType')
                     i.icon-trash.icon-white
-                    | Delete Topic
+                    | Delete Type
                 td
                 td
-                  .btn-toolbar(ng-show='deleteTopic')
+                  .btn-toolbar(ng-show='deleteType')
                     .btn-group.pull-right
-                      a.btn(ng-click='deleteTopic = false') 
+                      a.btn(ng-click='deleteType = false') 
                         i.icon-ok
-                      a.btn(ng-click='deleteTopic = false') 
+                      a.btn(ng-click='deleteType = false') 
                         i.icon-remove                      
               tr(ng-repeat='(fileId, file) in filter(topic.files, type) | orderBy:"date"')
                 td

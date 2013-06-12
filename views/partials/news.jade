@@ -7,11 +7,10 @@
       tbody
         tr(ng-repeat='event in user.events | fromUrl')
           td    
-            .span12      
-              .row-fluid(ng-show='event.type == "question"')
+            .row-fluid(ng-show='event.type == "question"')
               strong.red New question 
               strong in {{event.topic}} - {{event.file}} 
-                em by {{event.owner.name}}
+                em by {{event.owner.name}} 
               a.black(href='#/preview/{{event.url}}') {{(event.text.substr(0, 280) + (event.text.length > 280 ? "..." : ""))}}                    
               span.pull-right
                 em {{event.timestamp | date}} 
@@ -19,7 +18,7 @@
             .row-fluid(ng-show='event.type == "commentQ"')            
               strong.blue New comment 
               strong in {{event.topic}} - {{event.file}} 
-                em by {{event.owner.name}}
+                em by {{event.owner.name}} 
               a.black(href='#/preview/{{event.url}}') {{(event.text.substr(0, 280) + (event.text.length > 280 ? "..." : ""))}}                    
               span.pull-right
                 em {{event.timestamp | date}} 
@@ -27,7 +26,7 @@
             .row-fluid(ng-show='event.type == "commentA"')            
               strong.blue New comment             
               strong in {{event.topic}} - {{event.file}} 
-                em by {{event.owner.name}}
+                em by {{event.owner.name}} 
               a.black(href='#/preview/{{event.url}}') {{(event.text.substr(0, 280) + (event.text.length > 280 ? "..." : ""))}}                    
               span.pull-right
                 em {{event.timestamp | date}} 
@@ -35,7 +34,7 @@
             .row-fluid(ng-show='event.type == "answer"')
               strong.green New answer 
               strong in {{event.topic}} - {{event.file}} 
-                em by {{event.owner.name}}
+                em by {{event.owner.name}} 
               a.black(href='#/preview/{{event.url}}') {{(event.text.substr(0, 280) + (event.text.length > 280 ? "..." : ""))}}                    
               span.pull-right
                 em {{event.timestamp | date}} 
@@ -43,15 +42,13 @@
             .row-fluid(ng-show='event.type == "topic"')
               strong.purple New topic
               strong in {{event.topic}} - {{event.file}} 
-                em by {{event.owner.name}}
-              a.black(href='#/preview/{{event.url}}') {{(event.text.substr(0, 280) + (event.text.length > 280 ? "..." : ""))}}                    
+                em by {{event.owner.name}} 
               span.pull-right
                 em {{event.timestamp | date}} 
 
             .row-fluid(ng-show='event.type == "file"')
               strong.purple New file 
-              strong in {{event.topic}} - {{event.file}} 
-                em by {{event.owner.name}}
-              a.black(href='#/preview/{{event.url}}') {{(event.text.substr(0, 280) + (event.text.length > 280 ? "..." : ""))}}                    
+              strong in {{event.topic}} - {{event.name}} 
+                em by {{event.owner.name}} 
               span.pull-right
-                em {{event.timestamp | date}} 
+                em {{event.date | date}} 

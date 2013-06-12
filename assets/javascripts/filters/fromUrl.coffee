@@ -35,6 +35,7 @@ define ['filters/filters', 'services/fakeuser'], (filters) ->
         topic.type = 'topic'
         return topic unless fileId?
         file = elem topic.files, fileId
+        file.topic = topic.name
         file.type = 'file'
         return file unless questionId?
         question = elem file.questions, questionId
