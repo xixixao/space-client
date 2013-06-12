@@ -49,6 +49,7 @@ requirejs [
   'filters/fromUrl'
   'ang'
   'angui'
+  'vendor/angular-strap'
   'responseInterceptors/dispatcher'
 ], (app, $) ->
   app.config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
