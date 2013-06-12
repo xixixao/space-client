@@ -13,7 +13,7 @@ define ['c/controllers', 'services/fakeuser'], (controllers) ->
 
       $scope.login = ->
         console.log "Loginning in %o", $scope.values
-        service.login($scope.values)
+        service.login(_id: $scope.values.username, password: $scope.values.password)
         .success (data) ->
           $location.path '/'
         .error (error) ->

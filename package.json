@@ -6,7 +6,8 @@
     "coffee-script": "~1.4.0",
     "jade": "~0.27.7",
     "express": "~3.0.2",
-    "require-jade": "*"
+    "require-jade": "*",
+    "http-proxy": "*"
   },
   "engine": "node >= 0.8.1"
 }
