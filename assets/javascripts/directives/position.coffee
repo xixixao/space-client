@@ -8,6 +8,8 @@ define [
     ->
       link: ($scope, $element, $attributes) ->
 
+        $element.hide()
+
         $scope.$watch $attributes.position, (at) ->
           if at?
             $scope.questionPosition(at).then ([questionPos]) ->

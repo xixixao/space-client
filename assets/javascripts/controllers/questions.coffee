@@ -78,7 +78,6 @@ define [
         $scope.discussed = service.newQuestion $scope.question.text, $scope.user
         $scope.question = null
         $scope.hideQuestionInput = true
-        $scope.showDiscussion = true
 
       $scope.questionPosition = (question) ->
         $scope.rendered.then ->
@@ -121,6 +120,7 @@ define [
             $location.path "topics/#{topicId}/files/#{fileId}/questions/#{value.id}"
             console.log "DISCUSSED SET"
             displayQuestion value
+            $scope.showDiscussion = true
             console.log $scope.selection
           else
             $location.path "topics/#{topicId}/files/#{fileId}"
