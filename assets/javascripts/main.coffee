@@ -67,7 +67,7 @@ requirejs [
 
     $stateProvider
     .state 'login',
-      url: "/login"
+      url: "^/login"
       controller: 'login'
       templateUrl: 'partials/login'
 
@@ -77,11 +77,11 @@ requirejs [
       templateUrl: 'partials/user'
 
     .state 'user.questions',
-      url: "/topics/:topicId/files/:fileId{params:(?:/.+)?}"
+      url: "^/topics/:topicId/files/:fileId{params:(?:/.+)?}"
       controller: 'questions'
       templateUrl: 'partials/questions'
     .state 'user.settings',
-      url: "/settings"
+      url: "^/settings"
       controller: 'settings'
       templateUrl: 'partials/settings'
 
@@ -89,7 +89,7 @@ requirejs [
       abstract: true
       templateUrl: 'partials/split'
     .state 'user.split.home',
-      url: "/"
+      url: "^/"
       views:
         'sideMenu':
           templateUrl: 'partials/homeSideMenu'
@@ -97,7 +97,7 @@ requirejs [
           templateUrl: 'partials/news'
           controller: 'news'
     .state 'user.split.preview',
-      url: "/preview/topics/:topicId/files/:fileId/questions/:questionId"
+      url: "^/preview/topics/:topicId/files/:fileId/questions/:questionId"
       views:
         'sideMenu':
           templateUrl: 'partials/homeSideMenu'
@@ -105,7 +105,7 @@ requirejs [
           templateUrl: 'partials/preview'
           controller: 'preview'
     .state 'user.split.topic',
-      url: "/topics/:topicId"
+      url: "^/topics/:topicId"
       views:
         'sideMenu': 
           templateUrl: 'partials/topicSideMenu'

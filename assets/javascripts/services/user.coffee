@@ -6,8 +6,7 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
   services.factory 'user', ['$http', ($http) ->
 
     URL = '/api/login'
-    userData = {}
-    auth = {}
+    userData = null
 
     login = (values) ->
       handle = $http.post(URL, values)

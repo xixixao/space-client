@@ -5,8 +5,9 @@ define ['c/controllers', 'services/user'], (controllers) ->
     '$scope'
     '$http'
     '$location'
+    '$rootScope'
     'user'
-    ($scope, $http, $location, service) ->
+    ($scope, $http, $location, $rootScope, service) ->
 
       $scope.error = ''
       $scope.values = {}
@@ -14,7 +15,10 @@ define ['c/controllers', 'services/user'], (controllers) ->
       $scope.login = ->
         service.login(_id: $scope.values.username, password: $scope.values.password)
         .success (data) ->
-          $location.path '/'
+          if $rootScope.beforeRedirect?
+            $location.path $rootScope.beforeRedirect
+          else
+            $location.path '/'
         .error (error) ->
           $scope.error = error
   ]
