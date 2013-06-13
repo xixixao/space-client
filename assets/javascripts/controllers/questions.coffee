@@ -6,10 +6,10 @@ define [
   'utils/rectangle'
   'vendor/q'
   'services/question'
-], (controllers, PDFViewer, $, V, Rectangle, Q) ->
+], (controllers, PDFViewer, $, V, Rectangle) ->
   controllers.controller 'questions', [
-    '$scope', '$stateParams', '$location', 'question'
-    ($scope, $stateParams, $location, service) ->
+    '$scope', '$stateParams', '$location', '$q', 'question'
+    ($scope, $stateParams, $location, Q, service) ->
 
       {topicId, fileId} = $stateParams
       [questionId, commentId, answerId, commentAId] = $stateParams.params.match(///

@@ -1,4 +1,4 @@
-define(['ang'], function (angular) {
+define(['ang', 'vendor/bootstrap'], function (angular) {
 
 /**
  * AngularStrap - Twitter Bootstrap directives for AngularJS

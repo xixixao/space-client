@@ -15,6 +15,7 @@ define [
 	angular.module 'app', [
 		'ui.state'
 		'ui.bootstrap'
+		'$strap.directives'
 		'controllers'
 		'directives'
 		'filters'

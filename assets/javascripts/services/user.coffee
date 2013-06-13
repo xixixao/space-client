@@ -24,8 +24,6 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
         console.log userData
 
     user = ->
-      console.log "Getting user"
-      console.log userData
       userData
 
     {login, user}
