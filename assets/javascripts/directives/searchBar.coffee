@@ -10,49 +10,26 @@ define [
       if !$scope.allFiles?
         throw new Error "Missing attribute all-files"
 
-      fusedFiles = new Fuse $scope.allFiles, keys: ['name']
+      labelKey = 'name'
+      fusedFiles = new Fuse $scope.allFiles, keys: [labelKey]
 
-      #$scope.$watch 'query', (query = "") ->
-      #  deactivate()
-      #  $scope.files = fusedFiles.search query
-      #  if $scope.files.length > 0
-      #    $scope.activate 0
-      #  else
-      #    $scope.lastActive = undefined
+      mappedFiles = {}
+      for file in $scope.allFiles
+        mappedFiles[file[labelKey]] = file
 
       $scope.matchQuery = (query) ->
         return (name for {name} in fusedFiles.search(query))
 
-#      $scope.scroll = (event) ->
-#        KEYUP   = 38
-#        KEYDOWN = 40
-#        ENTER = 13
-#        numFiles = $scope.files.length
-#        switch event.keyCode
-#          when KEYUP   then $scope.activate ($scope.lastActive - 1 + numFiles) % numFiles
-#          when KEYDOWN then $scope.activate ($scope.lastActive + 1) % numFiles
-#          when ENTER then $scope.open $scope.lastActive
-#
-#      $scope.activate = (index) ->
-#        if $scope.lastActive?
-#          $scope.files[$scope.lastActive].active = ""
-#        $scope.lastActive = index
-#        $scope.files[index].active = "current-active"
-#
-#      $scope.open = (index) ->
-#        file = $scope.files[index]
-#        #course = file.course
-#        #$location.path "/#{course.code}/#{file.filename}"
-#        $location.path "/topics/222/files/MDK"
-#
-#      deactivate = ->
-#        if $scope.lastActive?
-#          $scope.files[$scope.lastActive].active = ""
+      $scope.selected = ->
+        #$location.path "/topics/222/files/#{mappedFiles[$scope.query]}"
+        $scope.$apply ->
+          $location.path "/topics/222/files/intro"
     ]
 
     controller: controller
     link: ($scope, $element) ->
-      true
+      $scope.$on 'typeahead-updated', ->
+        $scope.selected()
 
     replace: true
     restrict: 'E'
