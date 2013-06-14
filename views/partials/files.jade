@@ -91,16 +91,16 @@
                           span.pull-right
                             .btn-toolbar(ng-show='removeFile')
                               .btn-group
-                                a.btn(ng-click='removeFile = false') 
-                                  i.icon-ok
-                                a.btn(ng-click='removeFile = false') 
-                                  i.icon-remove
+                                a.btn.btn-warning(ng-click='removeFile = false') 
+                                  i.icon-ok.icon-white
+                                a.btn.btn-danger(ng-click='removeFile = false') 
+                                  i.icon-remove.icon-white
                             .btn-toolbar(ng-show='editFile')
                               .btn-group
-                                a.btn(ng-click='editFile = false') 
-                                  i.icon-ok
-                                a.btn(ng-click='editFile = false') 
-                                  i.icon-remove
+                                a.btn.btn-warning(ng-click='editFile = false') 
+                                  i.icon-ok.icon-white
+                                a.btn.btn-danger(ng-click='editFile = false') 
+                                  i.icon-remove.icon-white
                 tab(data-tab-id='timetable', caption='Timetable')
                   table.table.table-hover
                     tbody
