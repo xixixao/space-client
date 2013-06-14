@@ -1,9 +1,9 @@
 .topic-side-menue-component.tb
-  .grey-backgroound
+  .span12
     tabs
       tab(data-tab-id='topics', caption='Feed WIP')
-        table.table.table-hover
-          tr(ng-repeat='(topic, id) in user.topics | orderBy:"name"')
+        table.table.table-hover.topic-table
+          tr.left-border(ng-repeat='(topic, id) in user.topics | orderBy:"name"')
             td
               strong
                 a.black(href='{{topic.url}}') Topic name {{topic.name}}
