@@ -12,10 +12,10 @@
     .row-fluid
       .span12
         | {{question.text}}
-    .row-fluid(data-collapsable='parent')
+    .row-fluid(data-collapsing='parent')
       .row-fluid
         .comments-label(collapsable) Comments
-      .row-fluid.collapse(data-collapsable='collapse')
+      .row-fluid.collapse(data-collapsing='collapse')
         .row-fluid(ng-repeat='(id, comment) in question.comments')
           | {{comment.text}}
         .row-fluid
@@ -23,6 +23,48 @@
             | {{comment.timestamp | date}}
           span.pull-right
             | {{comment.owner.name}}
+        .row-fluid
+          textarea.answer-comment-textbox-width(rows='2', placeholder="Comment",ng-click='addComment=true')
+        .row-fluid(ng-show='addComment')
+          .span6
+            label.checkbox
+              input(type='checkbox', value='')
+              | Anonymous
+          .span6
+            a.btn.pull-right Post
+            a.btn.pull-right(ng-click='addComment=false') Cancel
+    .row-fluid(ng-repeat='(id, answer) in question.answers')
+      .row-fluid
+        .span12(ng-bind-html-unsafe='answer.text')
+      .row-fluid
+        span
+          | {{answer.timestamp | date}}
+        span.pull-right
+          | {{answer.owner.name}}
+      .row-fluid(data-collapsing='parent')
+        .row-fluid
+          .comments-label(collapsable) Comments
+        .row-fluid.collapse(data-collapsing='collapse')
+          .row-fluid(ng-repeat='(id, comment) in answer.comments')
+            .row-fluid
+              span
+                | {{comment.text}}
+            .row-fluid
+              span
+                | {{comment.timestamp | date}}
+              span.pull-right
+                | {{comment.owner.name}}
+          .row-fluid
+            textarea.answer-comment-textbox-width(rows='2', placeholder="Comment",ng-click='addComment=true')
+          .row-fluid(ng-show='addComment')
+            .span6
+              label.checkbox
+                input(type='checkbox', value='')
+                | Anonymous
+            .span6
+              a.btn.pull-right Post
+              a.btn.pull-right(ng-click='addComment=false') Cancel
+
     .row-fluid
       accordion(close-others=true)
         accordion-group(heading='QUESTION: {{question.text}}')

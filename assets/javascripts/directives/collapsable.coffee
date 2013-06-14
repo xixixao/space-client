@@ -9,9 +9,9 @@ define [
   directives.directive 'collapsable', [
     ->
       link: ($scope, $element) ->
-        console.log "element", $element
         $element.click ->
-          console.log "closest", $element.closest('[data-collapsable=parent]').length
-          console.log "target", $element.closest('[data-collapsable=parent]').find('[data-collapsable=collapse]').length
-          $element.closest('[data-collapsable=parent]').find('[data-collapsable=collapse]').collapse('toggle')
+          console.log "element", $element
+          console.log "closest", $element.closest('[data-collapsing=parent]').length
+          console.log "target", $element.closest('[data-collapsing=parent]').find('[data-collapsing=collapse]').length
+          $element.closest('[data-collapsing=parent]').find('[data-collapsing=collapse]').collapse('toggle')
   ]
