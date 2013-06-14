@@ -17,14 +17,15 @@
         .comments-label(collapsable) Comments
       .row-fluid.collapse(data-collapsing='collapse')
         .row-fluid(ng-repeat='(id, comment) in question.comments')
-          | {{comment.text}}
+          .row-fluid
+            | {{comment.text}}
+          .row-fluid
+            span
+              | {{comment.timestamp | date}}
+            span.pull-right
+              | {{comment.owner.name}}
         .row-fluid
-          span
-            | {{comment.timestamp | date}}
-          span.pull-right
-            | {{comment.owner.name}}
-        .row-fluid
-          textarea.answer-comment-textbox-width(rows='2', placeholder="Comment",ng-click='addComment=true')
+          textarea.answer-comment-textbox-width(rows='1', placeholder="Comment",ng-click='addComment=true')
         .row-fluid(ng-show='addComment')
           .span6
             label.checkbox
@@ -64,75 +65,3 @@
             .span6
               a.btn.pull-right Post
               a.btn.pull-right(ng-click='addComment=false') Cancel
-
-    .row-fluid
-      accordion(close-others=true)
-        accordion-group(heading='QUESTION: {{question.text}}')
-          span 
-            | {{question.text}}
-          .row-fluid
-            span
-              | {{question.createdTime | date}}
-            span.pull-right
-              | {{question.owner.name}}
-          .row-fluid
-            accordion(close-others=true)
-              accordion-group(ng-repeat='(id, comment) in question.comments', heading='COMMENT: {{comment.text}}')
-                span
-                  | {{comment.text}}
-                .row-fluid
-                  span
-                    | {{comment.timestamp | date}}
-                  span.pull-right
-                    | {{comment.owner.name}}
-              .row-fluid
-                textarea.answer-comment-textbox-width(rows='2', placeholder="Comment",ng-click='addComment=true')
-              .row-fluid(ng-show='addComment')
-                .span6
-                  label.checkbox
-                    input(type='checkbox', value='')
-                    | Anonymous
-                .span6
-                  a.btn.pull-right Post
-                  a.btn.pull-right(ng-click='addComment=false') Cancel
-        accordion-group(ng-repeat='(id, answer) in question.answers', heading='ANSWER:  {{(answer.text.substr(0, 300) + (answer.text.length > 300 ? "..." : ""))}} <<RANK>>')
-          .row-fluid
-            .span12(ng-bind-html-unsafe='answer.text')
-            .row-fluid
-              span
-                | {{answer.timestamp | date}}
-              span.pull-right
-                | {{answer.owner.name}}
-          .row-fluid
-            accordion(close-others=true)
-              accordion-group(ng-repeat='(id, comment) in answer.comments', heading='COMMENT: {{comment.text}}')
-                span
-                  | {{comment.text}}
-                .row-fluid
-                  span
-                    | {{comment.timestamp | date}}
-                  span.pull-right
-                    | {{comment.owner.name}}
-              .row-fluid
-                textarea.answer-comment-textbox-width(rows='2', placeholder="Comment",ng-click='addComment=true')
-              .row-fluid(ng-show='addComment')
-                .span6
-                  label.checkbox
-                    input(type='checkbox', value='')
-                    | Anonymous
-                .span6
-                  a.btn.pull-right Post
-                  a.btn.pull-right(ng-click='addComment=false') Cancel
-        .row-fluid
-          textarea.comment-textbox-width(rows='3', placeholder="Comment", ng-click='addComment=true')
-        .row-fluid(ng-show='addComment')
-          .span6
-            label.checkbox
-              input(type='checkbox', value='')
-              | Anonymous
-          .span6
-            a.btn.pull-right Post
-            a.btn.pull-right(ng-click='addComment=false') Cancel
-
-
-

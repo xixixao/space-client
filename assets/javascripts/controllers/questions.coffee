@@ -117,7 +117,8 @@ define [
           preventStateTransition()
           if value?
             # TODO: use a promise for value.id
-            $location.path "topics/#{topicId}/files/#{fileId}/questions/#{value.id}"
+            $location.path "topics/#{topicId}/files/#{fileId}/questions/#{value._id}"
+            console.log $scope.user
             console.log "DISCUSSED SET"
             displayQuestion value
             $scope.showDiscussion = true
@@ -135,7 +136,8 @@ define [
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
 
       if questionId
-        $scope.discussed = service.get "topics/#{topicId}/files/#{fileId}/questions/#{questionId}"
+        #$scope.discussed = service.get "topics/#{topicId}/files/#{fileId}/questions/#{questionId}"
+        $scope.discussed = $scope.file?.questions[questionId]
         if $scope.discussed?
           $scope.showDiscussion = true
 
