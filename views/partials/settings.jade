@@ -12,10 +12,10 @@
                 span(ng-show='!editName') {{user.name}}
                 form.form-no-margin(ng-show='editName', ng-submit='editName = false')
                   input.input-small(type='text', placeholder='{{user.name}}')
-                  a.btn(ng-click='editName = false')
-                   i.icon-ok
-                  a.btn(ng-click='editName = false')
-                   i.icon-remove
+                  a.btn.btn-success(ng-click='editName = false')
+                   i.icon-ok.icon-white
+                  a.btn.btn-danger(ng-click='editName = false')
+                   i.icon-remove.icon-white
               td
                 span.btn-toolbar.pull-right
                   .btn-group
@@ -34,15 +34,15 @@
                 span(ng-show='!editEmail') {{user.email}}
                 form.form-no-margin(ng-show='editEmail', ng-submit='editEmail = false')
                   input.input-small(type='text', placeholder='{{user.email}}')
-                  a.btn(ng-click='editEmail = false')
-                   i.icon-ok
-                  a.btn(ng-click='editEmail = false')
-                   i.icon-remove
+                  a.btn.btn-success(ng-click='editEmail = false')
+                   i.icon-ok.icon-white
+                  a.btn.btn-danger(ng-click='editEmail = false')
+                   i.icon-remove.icon-white
               td
                 span.btn-toolbar.pull-right
                   .btn-group
-                    a.btn(ng-show='!editEmail', ng-click='editEmail = true')
-                      i.icon-pencil
+                    a.btn.btn-warning(ng-show='!editEmail', ng-click='editEmail = true')
+                      i.icon-pencil.icon-white
             tr
               td
                 span Facebook
@@ -50,15 +50,15 @@
                 span(ng-show='!editFacebook') {{user.facebook}}
                 form.form-no-margin(ng-show='editFacebook', ng-submit='editFacebook = false')
                   input.input-small(type='text', placeholder='{{user.facebook}}')
-                  a.btn(ng-click='editFacebook = false')
-                   i.icon-ok
-                  a.btn(ng-click='editFacebook = false')
-                   i.icon-remove
+                  a.btn.btn-success(ng-click='editFacebook = false')
+                   i.icon-ok.icon-white
+                  a.btn.btn-danger(ng-click='editFacebook = false')
+                   i.icon-remove.icon-white
               td
                 span.btn-toolbar.pull-right
                   .btn-group
-                    a.btn(ng-show='!editFacebook', ng-click='editFacebook = true')
-                      i.icon-pencil
+                    a.btn.btn-warning(ng-show='!editFacebook', ng-click='editFacebook = true')
+                      i.icon-pencil.icon-white
             tr
               td
                 span Password
@@ -67,8 +67,8 @@
               td
                 span.btn-toolbar.pull-right
                   .btn-group
-                    a.btn(ng-show='!editPassword', ng-click='editPassword = true')
-                      i.icon-pencil
+                    a.btn.btn-warning(ng-show='!editPassword', ng-click='editPassword = true')
+                      i.icon-pencil.icon-white
                 form.form-no-margin.form-inline(ng-show='editPassword', ng-submit='editPassword = false')
                   .control-group
                     input.input-small(type='text', placeholder='Old Password')
@@ -77,10 +77,10 @@
                   .control-group
                     input.input-small(type='text', placeholder='Confirm Password')
                   .control-group
-                    a.btn(ng-click='editPassword = false')
-                     i.icon-ok
-                    a.btn(ng-click='editPassword = false')
-                     i.icon-remove
+                    a.btn.btn-success(ng-click='editPassword = false')
+                     i.icon-ok.icon-white
+                    a.btn.btn-danger(ng-click='editPassword = false')
+                     i.icon-remove.icon-white
   .row-fluid
     .span6
       h3 Notifications
@@ -94,16 +94,16 @@
                 span Facebook
               td
                 .btn-group.pull-right
-                  a.btn(ng-show='!OnFacebook', ng-click='OnFacebook = true')
-                    i.icon-remove
-                  a.btn(ng-show='OnFacebook', ng-click='OnFacebook = false')
-                    i.icon-ok
+                  a.btn.btn-danger(ng-show='!OnFacebook', ng-click='OnFacebook = true')
+                    i.icon-remove.icon-white
+                  a.btn.btn-success(ng-show='OnFacebook', ng-click='OnFacebook = false')
+                    i.icon-ok.icon-white
             tr
               td
                 span Email
               td
                 .btn-group.pull-right
-                  a.btn(ng-show='!OnEmail', ng-click='OnEmail = true')
-                    i.icon-remove
-                  a.btn(ng-show='OnEmail', ng-click='OnEmail = false')
-                    i.icon-ok
+                  a.btn.btn-danger(ng-show='!OnEmail', ng-click='OnEmail = true')
+                    i.icon-remove.icon-white
+                  a.btn.btn-success(ng-show='OnEmail', ng-click='OnEmail = false')
+                    i.icon-ok.icon-white
