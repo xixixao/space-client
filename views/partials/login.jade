@@ -1,30 +1,39 @@
 .login-box.tb
+  .row-fluid
+    .navbar.navbar-fixed-top
+      .navbar-inner
+  .row-fluid
+    .span12.sub-navbar-view
+      ui-view
   .row
-    .span6
+    .span8
       strong
-        h1.text-center.logo SPACE
+        .logo
+          h1.text-center Welcome to Space!
+          h2.text-center.blue Share and discuss files with your colleagues and tutors.
     .span6
       .span3
       .span6
         .visible.widget-box
-          .widget-body
-            .widget-main
-              h4.text-center.blue.lighter-bigger
-              form.login-form.form-horizontal(ng-submit='login()')
-                .row.text-center
-                    .login-margin
-                      .control-group.field-margin
-                        input.login-value-username(type='text', placeholder="Username", name='username', ng-model='values.username', focus-in)
-                      .control-group.field-margin
-                        input.login-value-password(type='password', placeholder="Password", name='password', ng-model='values.password')
+          .username
+            .widget-body
+              .widget-main
+                h4.text-center.blue.lighter-bigger
+                form.login-form.form-horizontal(ng-submit='login()')
+                  .row.text-center
+                      .login-margin
+                        .control-group.field-margin
+                          input.login-value-username(type='text', placeholder="Username", name='username', ng-model='values.username', focus-in)
+                        .control-group.field-margin
+                          input.login-value-password(type='password', placeholder="Password", name='password', ng-model='values.password')
 
-                .text-center
-                  input.btn.btn-medium.btn-primary.login-buttonLogin(type='submit', value='Log in')
-                .row.text-center
-                    p.text-error {{error}}
-                .row-fluid.text-center
-                  a.green() Forgot your password?
-                .row-fluid.text-center 
-                  a.green() Register
+                  .text-center
+                    input.btn.btn-medium.btn-primary.login-buttonLogin(type='submit', value='Log in')
+                  .row.text-center
+                      p.text-error {{error}}
+                  .row-fluid.text-center
+                    a.blue() Forgot your password?
+                  .row-fluid.text-center 
+                    a.blue() Register
      .span3
 
