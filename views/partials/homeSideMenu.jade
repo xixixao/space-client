@@ -13,7 +13,7 @@
           tr(ng-repeat='question in user.events | filter:{url: "questions"} | fromUrl')
             td
               .row-fluid
-                strong.red {{question.topic}}: {{question.file}}
+                 {{question.topic}}: {{question.file}}
               .row-fluid
                 strong
                   em {{question.timestamp | date}} by {{question.owner.name}}:

@@ -1,21 +1,22 @@
-.row-fluid.tb
-  .navbar.navbar-fixed-top
-    .navbar-inner
-      ul.nav
-        li
-          a(href='#/') SPACE
-      ul.nav
-        li
-          a {{user.username}}
-      ul.nav.pull-right
-        li
-          a(href='#/login') Log Out
-      ul.nav.pull-right
-        li
-          a(href='#/settings') Settings
-      ul.nav.pull-right
-        li
-          a Help
-.row-fluid
-  .span12.sub-navbar-view
-    ui-view
+.user-component.tb
+  .row-fluid
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        ul.nav
+          li
+            a(href='#/') SPACE
+        ul.nav
+          li
+            a {{user.username}}
+        ul.nav.pull-right
+          li
+            a(href='#/login') Log Out
+        ul.nav.pull-right
+          li
+            a(href='#/settings') Settings
+        ul.nav.pull-right
+          li
+            a Help
+  .row-fluid
+    .span12.sub-navbar-view
+      ui-view

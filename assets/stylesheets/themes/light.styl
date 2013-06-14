@@ -33,7 +33,7 @@ $purple =                #7a43b6;
 // Scaffolding
 // -------------------------
 $bodyBackground =       $white;
-$textColor =            $grayDark;
+$textColor =            $black;
 
 
 // Links
@@ -44,7 +44,20 @@ $linkColorHover =       darken($linkColor, 15%);
 
 // Typography
 // -------------------------
-$sansFontFamily =       "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
+} 
+
+$sansFontFamily =       'Open Sans'
 $serifFontFamily =      Georgia, "Times New Roman", Times, serif;
 $monoFontFamily =       Monaco, Menlo, Consolas, "Courier New", monospace;
 
@@ -79,8 +92,8 @@ $borderRadiusSmall =     3px;
 // -------------------------
 $tableBackground =                  transparent; // overall background-color
 $tableBackgroundAccent =            #f9f9f9; // for striping
-$tableBackgroundHover =             #f5f5f5; // for hover
-$tableBorder =                      #ddd; // table and cell border
+$tableBackgroundHover =             #F9F9F9; // for hover
+$tableBorder =                      #bbb; // table and cell border
 
 // Buttons
 // -------------------------
@@ -88,20 +101,20 @@ $btnBackground =                    $white;
 $btnBackgroundHighlight =           darken($white, 10%);
 $btnBorder =                        #bbb;
 
-$btnPrimaryBackground =             $linkColor;
-$btnPrimaryBackgroundHighlight =    spin($btnPrimaryBackground, 20%);
+$btnPrimaryBackground =             #2283C5;
+$btnPrimaryBackgroundHighlight =    #2283C5;
 
-$btnInfoBackground =                #5bc0de;
-$btnInfoBackgroundHighlight =       #2f96b4;
+$btnInfoBackground =                #892E65;
+$btnInfoBackgroundHighlight =       #892E65;
 
-$btnSuccessBackground =             #62c462;
-$btnSuccessBackgroundHighlight =    #51a351;
+$btnSuccessBackground =             #87B87F;
+$btnSuccessBackgroundHighlight =    #87B87F
 
-$btnWarningBackground =             lighten($orange, 15%);
-$btnWarningBackgroundHighlight =    $orange;
+$btnWarningBackground =             #FAA732;
+$btnWarningBackgroundHighlight =    #FAA732;
 
-$btnDangerBackground =              #ee5f5b;
-$btnDangerBackgroundHighlight =     #bd362f;
+$btnDangerBackground =              #DA4F49;
+$btnDangerBackgroundHighlight =     #DA4F49;
 
 $btnInverseBackground =             #444;
 $btnInverseBackgroundHighlight =    $grayDarker;
@@ -181,14 +194,14 @@ $navbarCollapseWidth =            979px;
 $navbarCollapseDesktopWidth =      $navbarCollapseWidth + 1;
 
 $navbarHeight =                   40px;
-$navbarBackgroundHighlight =      #ffffff;
+$navbarBackgroundHighlight =      #438EB9;
 $navbarBackground =               darken($navbarBackgroundHighlight, 5%);
 $navbarBorder =                   darken($navbarBackground, 12%);
 
-$navbarText =                     #777;
-$navbarLinkColor =                #777;
-$navbarLinkColorHover =           $grayDark;
-$navbarLinkColorActive =          $gray;
+$navbarText =                     #fff;
+$navbarLinkColor =                #fff;
+$navbarLinkColorHover =           $white;
+$navbarLinkColorActive =          $white;
 $navbarLinkBackgroundHover =      transparent;
 $navbarLinkBackgroundActive =     darken($navbarBackground, 5%);
 
