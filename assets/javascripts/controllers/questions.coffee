@@ -8,8 +8,8 @@ define [
   'services/question'
 ], (controllers, PDFViewer, $, V, Rectangle) ->
   controllers.controller 'questions', [
-    '$scope', '$stateParams', '$location', '$q', 'question'
-    ($scope, $stateParams, $location, Q, service) ->
+    '$scope', '$stateParams', '$location', '$q', 'question', '$resource'
+    ($scope, $stateParams, $location, Q, service, $resource) ->
 
       {topicId, fileId} = $stateParams
       [questionId, commentId, answerId, commentAId] = $stateParams.params.match(///
@@ -27,6 +27,26 @@ define [
         )?
       ///)[1..]
 
+      # Resource service
+      Question = $resource '/api/topics/:topicId/files/:fileId/questions/:questionId',
+        topicId: topicId
+        fileId: fileId
+      $scope.questions = Question.query()
+
+      $scope.setQuestion = (id) ->
+        console.log "calling setQuestion"
+        $scope.discussed = Question.get questionId: id
+
+      $scope.askQuestion = ->
+        newQuestion = new Question
+          text: $scope.question.text
+          owner: $scope.user._id
+          position: $scope.pdfSelection.toJSON()
+        newQuestion.$save()
+        $scope.questions.push newQuestion
+        $scope.discussed = newQuestion
+        $scope.question = null
+        $scope.hideQuestionInput = true
 
       prefix = 'pdf-'
 
@@ -74,11 +94,6 @@ define [
             makeVisible $scope.pdfSelection
             $scope.selection = $scope.pdfSelection.translate converter().toScreen
 
-      $scope.askQuestion = ->
-        $scope.discussed = service.newQuestion $scope.question.text, $scope.user
-        $scope.question = null
-        $scope.hideQuestionInput = true
-
       $scope.questionPosition = (question) ->
         $scope.rendered.then ->
           console.log "questionPosition", question
@@ -104,27 +119,50 @@ define [
 
       displayQuestion = (question) ->
         $scope.questionPosition(question).then ([screenPosition, pdfPosition]) ->
-          console.log "displayQuestion", screenPosition, pdfPosition
           $scope.pdfSelection = pdfPosition
           makeVisible pdfPosition
           $scope.selection = screenPosition
           $scope.hideQuestionInput = true
 
       $scope.$watch 'discussed', (value, oldValue) ->
+        console.log "discussed", value
         if !value?
           $scope.selection = null
         if value != oldValue
           preventStateTransition()
           if value?
-            # TODO: use a promise for value.id
+            console.log "id", value._id
             $location.path "topics/#{topicId}/files/#{fileId}/questions/#{value._id}"
-            console.log $scope.user
-            console.log "DISCUSSED SET"
             displayQuestion value
             $scope.showDiscussion = true
-            console.log $scope.selection
+
+            Answer = $resource '/api/topics/:topicId/files/:fileId/questions/:questionId/answers/:answerId',
+              topicId: topicId
+              fileId: fileId
+              questionId: value._id
+
+            $scope.submitAnswer = (text, anonymous) ->
+              newAnswer = new Answer
+                text: text
+                owner: $scope.user._id
+              newAnswer.$save()
+              value.answers.push newAnswer
+
+            $scope.submitCommentA = (answer, text, anonymous) ->
+              Comment = $resource '/api/topics/:topicId/files/:fileId/questions/:questionId/answers/:answerId/comments/:commentId',
+                topicId: topicId
+                fileId: fileId
+                questionId: value._id
+                answerId: answer._id
+              newComment = new Comment
+                text: text
+                owner: $scope.user._id
+              newComment.$save()
+              answer.comments.push newComment
+
           else
             $location.path "topics/#{topicId}/files/#{fileId}"
+      , true
 
       $scope.$watch 'selection', (value) ->
         if !value? and $scope.discussed?

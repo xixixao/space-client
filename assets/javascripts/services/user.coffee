@@ -3,7 +3,7 @@
 define ['ang', 'services/services', 'vendor/angularResource'], (angular, services) ->
   'use strict'
 
-  services.factory 'user', ['$http', ($http) ->
+  services.factory 'user', ['$http', '$resource', ($http, $resource) ->
 
     URL = '/api/login'
     userData = null

@@ -125,7 +125,91 @@
                 a.btn(ng-click='askQuestion()') Ask
           .centerer
             .dot(ng-repeat='(id, question) in file.questions', position='question', ng-click='setDiscussed(question)')
-        discussion-board(question='discussed', questions='file.questions')
+        .discussion-board-component.tb
+          .no-question-selected(ng-show='!discussed')
+            span
+              h4 Questions
+            table.table.table-hover
+              tbody
+                tr(ng-repeat='(id, q) in questions')
+                  td.table-column-width {{q.timestamp | date}}
+                  td(ng-click='setQuestion(q._id)') {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
+          .discussion(ng-show='discussed')
+            a.btn.row-top-offset.row-buttom-offset(ng-click='discussed = null') Back to questions
+            .row-fluid
+              .span12
+                | {{discussed.text}}
+            .row-fluid(data-collapsing='parent')
+              .row-fluid
+                .comments-label(collapsable) Comments
+              .row-fluid.collapse(data-collapsing='collapse')
+                .row-fluid(ng-repeat='(id, comment) in discussed.comments')
+                  .row-fluid
+                    | {{comment.text}}
+                  .row-fluid
+                    span
+                      | {{comment.timestamp | date}}
+                    span.pull-right
+                      | {{comment.owner.name}}
+                .row-fluid
+                  textarea.answer-comment-textbox-width(rows='1', placeholder="Comment",ng-click='addComment=true')
+                .row-fluid(ng-show='addComment')
+                  .span6
+                    label.checkbox
+                      input(type='checkbox', value='')
+                      | Anonymous
+                  .span6
+                    input.btn.pull-right(type='submit', value='Post')
+                    a.btn.pull-right(ng-click='addComment=false') Cancel
+            .row-fluid(ng-repeat='(id, answer) in discussed.answers')
+              .row-fluid
+                .span12(ng-bind-html-unsafe='answer.text')
+              .row-fluid
+                span
+                  | {{answer.timestamp | date}}
+                span.pull-right
+                  | {{answer.owner.name}}
+              .row-fluid(data-collapsing='parent')
+                .row-fluid
+                  .comments-label(collapsable) Comments
+                .row-fluid.collapse(data-collapsing='collapse')
+                  .row-fluid(ng-repeat='(id, comment) in answer.comments')
+                    .row-fluid
+                      span
+                        | {{comment.text}}
+                    .row-fluid
+                      span
+                        | {{comment.timestamp | date}}
+                      span.pull-right
+                        | {{comment.owner.name}}
+                  .row-fluid
+                    form(ng-submit='submitCommentA(commentAText, anonymous); commentAText = ""')
+                      .row-fluid
+                        textarea.answer-comment-textbox-width(rows='2', ng-model='commentAText', placeholder="Comment", ng-click='addComment=true')
+                      .row-fluid(ng-show='addComment')
+                        .span6
+                          label.checkbox
+                            input(type='checkbox', ng-model='anonymous', value='')
+                            | Anonymous
+                        .span6
+                          input.btn.pull-right(type='submit', value='Post')
+                          a.btn.pull-right(ng-click='addComment=false') Cancel
+            .row-fluid
+              form(ng-submit='submitAnswer(answerText, anonymous); answerText = ""')
+                .row-fluid
+                  textarea.comment-textbox-width(rows='3', ng-model='answerText', placeholder="Answer", ng-click='addComment=true')
+                .row-fluid(ng-show='addComment')
+                  .span6
+                    label.checkbox
+                      input(type='checkbox', ng-model='anonymous', value='')
+                      | Anonymous
+                  .span6
+                    input.btn.pull-right(type='submit', value='Post')
+                    a.btn.pull-right(ng-click='addComment=false') Cancel
+
+
+
+
         #pdf-errorWrapper(hidden='true')
           #pdf-errorMessageLeft
             span#pdf-errorMessage

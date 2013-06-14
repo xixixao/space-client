@@ -12,8 +12,8 @@
             a.grey(href='#/preview/{{question.url}}') {{(question.text.substr(0, 75) + (question.text.length > 75 ? "..." : ""))}}
     tab(data-tab-id='topics', caption='Topics')
       table.table.table-hover
-        tr(ng-repeat='(id, topic) in user.topics | orderBy:"name"')
+        tr(ng-repeat='topic in topics | orderBy:"name"')
           td
             strong
-              a.black(href='#/topics/{{id}}') {{topic.name}}
+              a.black(href='#/topics/{{topic._id}}') {{topic.name}}
 

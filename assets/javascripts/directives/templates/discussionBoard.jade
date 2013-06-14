@@ -6,7 +6,7 @@
       tbody
         tr(ng-repeat='(id, q) in questions')
           td.table-column-width(ng-click='$parent.question = getQuestion(q.uri)') {{q.timestamp | date}}
-          td(ng-click='$parent.question = getQuestion(q.uri)') {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
+          td(ng-click='setQuestion({$id: q._id})') {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
   .discussion(ng-show='question')
     a.btn.row-top-offset.row-buttom-offset(ng-click='question = null') Back to questions
     .row-fluid
@@ -32,7 +32,7 @@
               input(type='checkbox', value='')
               | Anonymous
           .span6
-            a.btn.pull-right Post
+            a.btn.pull-right(ng-click='submitCommentToQuestion()') Post
             a.btn.pull-right(ng-click='addComment=false') Cancel
     .row-fluid(ng-repeat='(id, answer) in question.answers')
       .row-fluid
@@ -65,3 +65,18 @@
             .span6
               a.btn.pull-right Post
               a.btn.pull-right(ng-click='addComment=false') Cancel
+    .row-fluid
+      form(ng-submit='submitAnswer(answerText, answerAnonymous)')
+        .row-fluid
+          textarea.comment-textbox-width(rows='3', placeholder="Answer", ng-click='addComment=true')
+        .row-fluid(ng-show='addComment')
+          .span6
+            label.checkbox
+              input(type='checkbox', ng-model='answerAnonymous', value='')
+              | Anonymous
+          .span6
+            input.btn.pull-right(type='submit') Post
+            a.btn.pull-right(ng-click='addComment=false') Cancel
+
+
+
