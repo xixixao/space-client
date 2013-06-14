@@ -42,6 +42,7 @@ requirejs [
   'd/datePicker'
   'd/focusIn'
   'd/draggable'
+  'd/collapsable'
   'd/boxSelect'
   'd/outside'
   'd/position'

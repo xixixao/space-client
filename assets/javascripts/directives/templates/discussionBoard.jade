@@ -10,6 +10,20 @@
   .discussion(ng-show='question')
     a.btn.row-top-offset.row-buttom-offset(ng-click='question = null') Back to questions
     .row-fluid
+      .span12
+        | {{question.text}}
+    .row-fluid(data-collapsable='parent')
+      .row-fluid
+        .comments-label(collapsable) Comments
+      .row-fluid.collapse(data-collapsable='collapse')
+        .row-fluid(ng-repeat='(id, comment) in question.comments')
+          | {{comment.text}}
+        .row-fluid
+          span
+            | {{comment.timestamp | date}}
+          span.pull-right
+            | {{comment.owner.name}}
+    .row-fluid
       accordion(close-others=true)
         accordion-group(heading='QUESTION: {{question.text}}')
           span 
