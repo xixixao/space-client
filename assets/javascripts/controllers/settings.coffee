@@ -19,10 +19,11 @@ define ['c/controllers'], (controllers) ->
         user.$save()
 
       $scope.updateUserPassword = ->
+        console.log $scope.oldPassword, $scope.newPassword, $scope.newPassword2
         if $scope.oldPassword != $scope.user.password
           return #fail
 
-        if $scope.newPassword != $scope.newPassword?
+        if $scope.newPassword != $scope.newPassword2
           return #fail
 
         $scope.user.password = $scope.newPassword
