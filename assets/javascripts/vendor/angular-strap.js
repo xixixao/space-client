@@ -1,4 +1,4 @@
-define(['ang', 'vendor/bootstrap'], function (angular) {
+define(['ang', 'vendor/bootstrap', 'vendor/bootstrap-datepicker'], function (angular) {
 
 /**
  * AngularStrap - Twitter Bootstrap directives for AngularJS

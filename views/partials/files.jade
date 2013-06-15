@@ -8,23 +8,24 @@
             .span12.pretty-file
               input(type='file', name='form[files][]', data-type='{{type}}', multiple='multiple')
               a.btn.btn-warning(ng-click='triggerFileBrowse(type)') Browse for files
-              a.btn.btn-info(ng-show='filesToUpload.length > 0', ng-click='') Upload
+              a.btn.btn-info(ng-show='filesToUpload.length > 0', ng-click='') Upload all
           .row-fluid.row-top-offset
             table.table.table-hover
               tbody
                 tr(ng-show='!uploadFile', ng-repeat='file in filesToUpload')
                   td
-                    input(type='text', placeholder='Date')
+                    .control-group.input-append
+                      input(type='text', ng-model='file.date', data-date-format='dd/mm/yyyy', bs-datepicker)
+                      button.btn(type='button', data-toggle='datepicker')
+                        i.icon-calendar
                   td
                     .input-prepend
                       span.add-on Display name
                       input(type='text', ng-model='file.displayName')
                   td {{file.name}}
                   td
-                    .btn-group.pull-right
-                      a.btn.btn-success(ng-click='uploadFile = true')
-                        i.icon-ok.icon-white
-                      a.btn.btn-danger(ng-click='uploadFile = true')
+                    .pull-right
+                      a.btn.btn-danger(ng-click='cancelUpload($index)')
                         i.icon-remove.icon-white
         .row-fluid
           table.table.table-hover
@@ -51,7 +52,6 @@
                       input(type='text', ng-model='fileDate', data-date-format='dd/mm/yyyy', bs-datepicker)
                       button.btn(type='button', data-toggle='datepicker')
                         i.icon-calendar
-                    input.input-small(type='text', placeholder='{{file.date}}')
                   settings(ng-show='removeFile')
                     span.text-error {{file.date | date}}
                 td

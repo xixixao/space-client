@@ -17,9 +17,8 @@ define ['c/controllers', 'services/topic'], (controllers) ->
         return dates
 
       $scope.$watch 'topic', (topic) ->
-        if topic?
+        if topic? and topic.files?
           topic.allFiles = groupFiles topic
-          console.log topic.permission
           $scope.canWrite = topic.permission == 'w'
       , true
 
@@ -30,11 +29,11 @@ define ['c/controllers', 'services/topic'], (controllers) ->
 
       $scope.triggerFileBrowse = (type) ->
         fileInput = $(".pretty-file input[type=\"file\"][data-type=\"#{type}\"]")
-        console.log fileInput.length, ".pretty-file input[type=\"file\"][data-type=\"#{type}\"]"
         fileInput.change -> $scope.$apply ->
           files = fileInput[0].files
           for file in files
             file.displayName = file.name[0...file.name.lastIndexOf '.']
+            file.date = new Date
           $scope.filesToUpload = files
 
         fileInput.click()
