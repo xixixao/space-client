@@ -4,19 +4,21 @@
     span
       .row-fluid(ng-show='canWrite')
         .span2
-          a.btn.row-buttom-offset(ng-show='!addFile', ng-click='addFile=true')
-            i.icon-plus
-            | Upload
-          a.btn(ng-show='addFile',ng-click='addFile=false')
-            i.icon-minus
-            | Cancel
-        .span10
-          span.pretty-file
-            input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
-            .input-append
-              input.input-large(ng-show='addFile', ng-model='fileInfo', type='text')
-              a.btn(ng-click='triggerFileBrowse()', ng-show='addFile') Browse
-              a.btn(ng-show='addFile') Upload
+          .element
+            a.btn.row-buttom-offset.btn-success(ng-show='!addFile', ng-click='addFile=true')
+              i.icon-plus
+              | Upload
+            a.btn.btn-info(ng-show='addFile',ng-click='addFile=false')
+              i.icon-minus
+              | Cancel
+          .span10
+            span.pretty-file
+              input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
+              .input-append
+                input.input-large(ng-show='addFile', ng-model='fileInfo', type='text')
+                a.btn.btn-warning(ng-click='triggerFileBrowse()', ng-show='addFile') Browse
+                a.btn.btn-success(ng-show='addFile') Upload
+
         table.table.table-hover
           tbody
             tr(ng-show='!uploadFile', ng-repeat='file in filesToUpload')
