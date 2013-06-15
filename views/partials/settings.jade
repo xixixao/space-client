@@ -14,9 +14,9 @@
                     span Name
                   td
                     span(ng-show='!editName') {{user.name}}
-                    form.form-no-margin(ng-show='editName', ng-submit='editName = false')
-                      input.input-small(type='text', placeholder='{{user.name}}')
-                      a.btn.btn-success(ng-click='editName = false')
+                    form.form-no-margin(ng-show='editName', ng-submit='editName = false; updateUser()')
+                      input.input-small(type='text', ng-model='user.name')
+                      a.btn.btn-success(ng-click='editName = false; updateUser()')
                        i.icon-ok.icon-white
                       a.btn.btn-danger(ng-click='editName = false')
                        i.icon-remove.icon-white
@@ -36,9 +36,9 @@
                     span Email
                   td
                     span(ng-show='!editEmail') {{user.email}}
-                    form.form-no-margin(ng-show='editEmail', ng-submit='editEmail = false')
-                      input.input-small(type='text', placeholder='{{user.email}}')
-                      a.btn.btn-success(ng-click='editEmail = false')
+                    form.form-no-margin(ng-show='editEmail', ng-submit='editEmail = false; updateUser()')
+                      input.input-small(type='text', ng-model='user.email')
+                      a.btn.btn-success(ng-click='editEmail = false; updateUser()')
                        i.icon-ok.icon-white
                       a.btn.btn-danger(ng-click='editEmail = false')
                        i.icon-remove.icon-white
@@ -52,9 +52,9 @@
                     span Facebook
                   td
                     span(ng-show='!editFacebook') {{user.facebook}}
-                    form.form-no-margin(ng-show='editFacebook', ng-submit='editFacebook = false')
-                      input.input-small(type='text', placeholder='{{user.facebook}}')
-                      a.btn.btn-success(ng-click='editFacebook = false')
+                    form.form-no-margin(ng-show='editFacebook', ng-submit='editFacebook = false; updateUser()')
+                      input.input-small(type='text', ng-model='user.facebook')
+                      a.btn.btn-success(ng-click='editFacebook = false; updateUser()')
                        i.icon-ok.icon-white
                       a.btn.btn-danger(ng-click='editFacebook = false')
                        i.icon-remove.icon-white
@@ -73,15 +73,15 @@
                       .btn-group
                         a.btn.btn-warning(ng-show='!editPassword', ng-click='editPassword = true')
                           i.icon-pencil.icon-white
-                    form.form-no-margin.form-inline(ng-show='editPassword', ng-submit='editPassword = false')
+                    form.form-no-margin.form-inline(ng-show='editPassword', ng-submit='editPassword = false; updateUserPassword()')
                       .control-group
-                        input.input-small(type='text', placeholder='Old Password')
+                        input.input-small(type='text', ng-model='oldPassword', placeholder='Old Password')
                       .control-group
-                        input.input-small(type='text', placeholder='New Password')
+                        input.input-small(type='text', ng-model='newPassword',  placeholder='New Password')
                       .control-group
-                        input.input-small(type='text', placeholder='Confirm Password')
+                        input.input-small(type='text', ng-model='newPassword2',  placeholder='Confirm Password')
                       .control-group
-                        a.btn.btn-success(ng-click='editPassword = false')
+                        a.btn.btn-success(ng-click='editPassword = false; updateUserPassword()')
                          i.icon-ok.icon-white
                         a.btn.btn-danger(ng-click='editPassword = false')
                          i.icon-remove.icon-white
