@@ -12,12 +12,12 @@ define [
       mappedFiles = {}
 
       $scope.$watch 'allFiles', (allFiles) ->
+        if allFiles?
+          labelKey = 'name'
+          fusedFiles = new Fuse allFiles, keys: [labelKey]
 
-        labelKey = 'name'
-        fusedFiles = new Fuse allFiles, keys: [labelKey]
-
-        for file in allFiles
-          mappedFiles[file[labelKey]] = file
+          for file in allFiles
+            mappedFiles[file[labelKey]] = file
 
       $scope.matchQuery = (query) ->
         return (name for {name} in fusedFiles.search(query))

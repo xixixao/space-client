@@ -4,23 +4,25 @@ define ['c/controllers', 'services/topic'], (controllers) ->
   controllers.controller 'topic', [
     '$scope'
     '$stateParams'
+    '$resource'
     'topic'
-    ($scope, $stateParams, service) ->
+    ($scope, $stateParams, $resource, service) ->
 
       groupFiles = (topic) ->
         dates = {}
-        for id, file of topic.files
+        for file in topic.files
           if !dates[file.date]?
             dates[file.date] = date: file.date, files: []
           dates[file.date].files.push file
         return dates
 
-      topicWithId = (topicId) ->
-        topic = $scope.user.topics[topicId]
-        topic.allFiles = groupFiles topic
-        return topic
+      $scope.$watch 'topic', (topic) ->
+        if topic?
+          topic.allFiles = groupFiles topic
+      , true
 
-      $scope.topic = service.topic = topicWithId $stateParams.topicId
+      $scope.topic = $resource('/api/topics/:topicId').get
+        topicId: $stateParams.topicId
       $scope.canWrite = $scope.topic.permission == 'w'
 
       $scope.filesToUpload = []

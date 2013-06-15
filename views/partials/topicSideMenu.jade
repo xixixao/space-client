@@ -3,7 +3,7 @@
     tabs
       tab(data-tab-id='questions', caption='Questions')
         table.table.table-hover
-          tr(ng-repeat='question in user.events | fromUrl | filter:questionInTopic ')
+          tr(ng-repeat='question in user.events')
             td
               .row-fluid
                 strong.red {{question.topic}}: {{question.file}}

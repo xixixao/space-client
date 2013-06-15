@@ -57,7 +57,8 @@ define ['filters/filters', 'services/user'], (filters) ->
 
 
       transform = (event) ->
-        element = fetch event.url, event
+        #element = fetch event.url, event
+        element = $resource("/api/#{event.url}").get()
         element.url = event.url
         return element
 
