@@ -181,29 +181,31 @@
 
             .row-fluid(ng-repeat='(id, answer) in discussed.answers')
               .row-fluid
-                .box-margin
-                  .well
-                    .row-fluid
-                      span.blue
-                        | {{answer.owner.name}}
-                      span.pull-right.green
-                        | {{answer.timestamp | date}}
-                    .span12(ng-bind-html-unsafe='answer.text')
+                .question-box-margin
+                  .comment-box
+                    span.blue
+                      | NAME: {{comment.owner.name}}
+                    span.pull-right.green
+                      | {{comment.timestamp | date}}
+                    .row-fluid    
+                      .span12(ng-bind-html-unsafe='answer.text')
               .row-fluid(data-collapsing='parent')
-                .row-fluid
-                  a.btn.row-top-offset.row-buttom-offset.btn-warning(collapsable) Comments
+                .row-fluid.question-row
+                  a.btn.row-top-offset.row-buttom-offset.btn-warning.comment-btn(collapsable) Comments
                 .row-fluid.collapse(data-collapsing='collapse')
                   .row-fluid(ng-repeat='(id, comment) in answer.comments')
                     .row-fluid
                       span
-                       .box-margin
-                        .well
-                          | {{comment.text}}
-                    .row-fluid
-                      span
-                        | {{comment.timestamp | date}}
-                      span.pull-right
-                        | {{comment.owner.name}}
+
+                        .question-box-margin
+                          .comment-box
+                            span.blue
+                              | NAME: {{comment.owner.name}}
+                            span.pull-right.green
+                              | {{comment.timestamp | date}}
+                            .row-fluid    
+                              | {{comment.text}}
+                  
                   .row-fluid
                     form(ng-submit='submitCommentA(answer, commentAText, anonymous); commentAText = ""')
                       textarea.answer-comment-textbox-width(rows='2', ng-model='commentAText', placeholder="Comment on this answer", ng-click='addComment=true')
