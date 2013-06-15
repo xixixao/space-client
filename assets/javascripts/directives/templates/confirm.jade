@@ -1,0 +1,10 @@
+.modal-header
+  button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+  h3 Confirmation required
+.modal-body
+  span(ng-repeat='part in message')
+    strong(ng-if='$index % 2 == 1') {{part}}
+    span(ng-if='$index % 2 == 0') {{part}}
+.modal-footer
+  button.btn(type='button', ng-click='hide()') No
+  button.btn.btn-primary(ng-click='modal.result=true;hide()') Yes

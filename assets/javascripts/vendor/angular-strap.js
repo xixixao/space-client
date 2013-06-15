@@ -413,12 +413,16 @@ angular.module('$strap.directives').factory('$modal', [
   function ($rootScope, $compile, $http, $timeout, $q, $templateCache, $strapConfig) {
     var ModalFactory = function ModalFactory(config) {
       function Modal(config) {
-        var options = angular.extend({ show: true }, $strapConfig.modal, config), scope = options.scope ? options.scope : $rootScope.$new(), templateUrl = options.template;
-        return $q.when($templateCache.get(templateUrl) || $http.get(templateUrl, { cache: true }).then(function (res) {
-          return res.data;
-        })).then(function onSuccess(template) {
-          var id = templateUrl.replace('.html', '').replace(/[\/|\.|:]/g, '-') + '-' + scope.$id;
-          var $modal = $('<div class="modal hide" tabindex="-1"></div>').attr('id', id).addClass('fade').html(template);
+        var options = angular.extend({ show: true }, $strapConfig.modal, config),
+            scope = options.scope ? options.scope : $rootScope.$new(),
+            templateUrl = options.template;
+        //return $q.when($templateCache.get(templateUrl) || $http.get(templateUrl, { cache: true }).then(function (res) {
+        //  return res.data;
+        //})
+        $q.when(options.template).then(function onSuccess(template) {
+          console.log(template);
+          //var id = templateUrl.replace('.html', '').replace(/[\/|\.|:]/g, '-') + '-' + scope.$id;
+          var $modal = $('<div class="modal hide" tabindex="-1"></div>').addClass('fade').html(template);
           if (options.modalClass)
             $modal.addClass(options.modalClass);
           $('body').append($modal);

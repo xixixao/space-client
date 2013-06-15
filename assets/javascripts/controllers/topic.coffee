@@ -1,12 +1,18 @@
-define ['c/controllers', 'jquery', 'services/topic'], (controllers, $) ->
+define [
+  'c/controllers'
+  'jquery'
+  'templates'
+  'services/topic'
+], (controllers, $, templates) ->
   'use strict'
 
   controllers.controller 'topic', [
     '$scope'
     '$stateParams'
     '$resource'
+    '$modal'
     'topic'
-    ($scope, $stateParams, $resource, service) ->
+    ($scope, $stateParams, $resource, $modal, service) ->
 
       groupFiles = (topic) ->
         dates = {}
@@ -80,6 +86,17 @@ define ['c/controllers', 'jquery', 'services/topic'], (controllers, $) ->
         #xhr.open("POST", "/api/topics/#{$scope.topic._id}/upload")
         #xhr.send(data)
 
+      $scope.confirm = (message, cb) ->
+        scope = $scope.$new true
+        scope.message = message
+        #scope.$watch 'result', (value) ->
+        #  if value?
+        #    cb()
+        modal = $modal
+          template: templates.confirm
+          show: true
+          backdrop: 'static'
+          scope: scope
 
 
 
@@ -90,6 +107,12 @@ define ['c/controllers', 'jquery', 'services/topic'], (controllers, $) ->
         filtered = {}
         filtered[id] = file for id, file of files when file.type is type
         return filtered
+
+      $scope.numOfType = (files, type) ->
+        sum = 0
+        sum++ for id of $scope.filter(files, type)
+        return sum
+
   ]
 
 
