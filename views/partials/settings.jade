@@ -16,10 +16,11 @@
                     span(ng-show='!editName') {{user.name}}
                     form.form-no-margin(ng-show='editName', ng-submit='editName = false')
                       input.input-small(type='text', placeholder='{{user.name}}')
-                      a.btn.btn-success(ng-click='editName = false')
-                       i.icon-ok.icon-white
-                      a.btn.btn-danger(ng-click='editName = false')
-                       i.icon-remove.icon-white
+                      .btn-group
+                        a.btn.btn-success(ng-click='editName = false')
+                         i.icon-ok.icon-white
+                        a.btn.btn-danger(ng-click='editName = false')
+                         i.icon-remove.icon-white
                   td
                     span.btn-toolbar.pull-right
                       .btn-group
@@ -38,10 +39,11 @@
                     span(ng-show='!editEmail') {{user.email}}
                     form.form-no-margin(ng-show='editEmail', ng-submit='editEmail = false')
                       input.input-small(type='text', placeholder='{{user.email}}')
-                      a.btn.btn-success(ng-click='editEmail = false')
-                       i.icon-ok.icon-white
-                      a.btn.btn-danger(ng-click='editEmail = false')
-                       i.icon-remove.icon-white
+                      .btn-group
+                        a.btn.btn-success(ng-click='editEmail = false')
+                         i.icon-ok.icon-white
+                        a.btn.btn-danger(ng-click='editEmail = false')
+                         i.icon-remove.icon-white
                   td
                     span.btn-toolbar.pull-right
                       .btn-group
@@ -54,10 +56,11 @@
                     span(ng-show='!editFacebook') {{user.facebook}}
                     form.form-no-margin(ng-show='editFacebook', ng-submit='editFacebook = false')
                       input.input-small(type='text', placeholder='{{user.facebook}}')
-                      a.btn.btn-success(ng-click='editFacebook = false')
-                       i.icon-ok.icon-white
-                      a.btn.btn-danger(ng-click='editFacebook = false')
-                       i.icon-remove.icon-white
+                      .btn-group
+                        a.btn.btn-success(ng-click='editFacebook = false')
+                         i.icon-ok.icon-white
+                        a.btn.btn-danger(ng-click='editFacebook = false')
+                         i.icon-remove.icon-white
                   td
                     span.btn-toolbar.pull-right
                       .btn-group
@@ -81,10 +84,11 @@
                       .control-group
                         input.input-small(type='text', placeholder='Confirm Password')
                       .control-group
-                        a.btn.btn-success(ng-click='editPassword = false')
-                         i.icon-ok.icon-white
-                        a.btn.btn-danger(ng-click='editPassword = false')
-                         i.icon-remove.icon-white
+                        .btn-group
+                          a.btn.btn-success(ng-click='editPassword = false')
+                           i.icon-ok.icon-white
+                          a.btn.btn-danger(ng-click='editPassword = false')
+                           i.icon-remove.icon-white
      .box-margin
       .well
         .row-fluid
@@ -98,7 +102,7 @@
                     td
                       span Facebook
                     td
-                      .btn-group.pull-right
+                      .pull-right
                         a.btn.btn-danger(ng-show='!OnFacebook', ng-click='OnFacebook = true')
                           i.icon-remove.icon-white
                         a.btn.btn-success(ng-show='OnFacebook', ng-click='OnFacebook = false')
@@ -107,7 +111,7 @@
                     td
                       span Email
                     td
-                      .btn-group.pull-right
+                      .pull-right
                         a.btn.btn-danger(ng-show='!OnEmail', ng-click='OnEmail = true')
                           i.icon-remove.icon-white
                         a.btn.btn-success(ng-show='OnEmail', ng-click='OnEmail = false')
