@@ -1,4 +1,5 @@
 .questions-component
+
   .pdf-viewer-control(tabindex='1')
     #pdf-outerContainer.pdf-loadingInProgress
       #pdf-sidebarContainer
@@ -128,7 +129,13 @@
         .discussion-board-component.tb
           .no-question-selected(ng-show='!discussed')
             span
-              h4 Questions
+              .row-fluid
+                .navbar.navbar-fixed
+                  .navbar-inner
+              .row-fluid
+                .span12.sub-navbar-view
+                  ui-view      
+              h4.text-center Questions
             table.table.table-hover
               tbody
                 tr(ng-repeat='(id, q) in questions')
@@ -147,8 +154,8 @@
                 a.btn.row-top-offset.row-buttom-offset.btn-warning(collapsable) Comments
               .row-fluid.collapse(data-collapsing='collapse')
                 .row-fluid(ng-repeat='(id, comment) in discussed.comments')
-                  .box-margin
-                    .well 
+                  .box-well
+                    .margin 
                       .row-fluid
                         span.blue
                           | {{comment.owner.name}}
