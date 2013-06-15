@@ -1,111 +1,94 @@
 .file-component.tb
   h3.topic-title {{topic.name}}
-  .files-component.tb
-    span
-      .row-fluid(ng-show='canWrite')
-        .span2
-          .element
-            a.btn.row-buttom-offset.btn-success(ng-show='!addFile', ng-click='addFile=true')
-              i.icon-plus.icon-white
-              | Upload
-            a.btn.btn-info(ng-show='addFile',ng-click='addFile=false')
-              i.icon-minus.icon-white
-              | Cancel
-          .span10
+  .row-fluid
+    tabs
+      tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type}}')
+        .row-fluid(ng-show='canWrite')
+          .span12
             span.pretty-file
-              input(ng-show='addFile', type='file', name='form[files][]', multiple='multiple')
-              .input-append
-                input.input-large(ng-show='addFile', ng-model='fileInfo', type='text')
-                a.btn.btn-warning(ng-click='triggerFileBrowse()', ng-show='addFile') Browse
-                a.btn.btn-success(ng-show='addFile') Upload
-
+              input(type='file', name='form[files][]', multiple='multiple')
+              a.btn.btn-warning(ng-click='triggerFileBrowse()') Browse for files
+              a.btn.btn-info(ng-show='filesToUpload.length > 0', ng-click='') Upload
+          table.table.table-hover
+            tbody
+              tr(ng-show='!uploadFile', ng-repeat='file in filesToUpload')
+                td
+                  input(type='text', placeholder='Date')
+                td
+                  input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
+                td
+                  select
+                    option(ng-repeat='type in topic.types') {{type}}
+                td
+                  .btn-group.pull-right
+                    a.btn(ng-click='uploadFile = true') 
+                      i.icon-ok.icon-white
+                    a.btn(ng-click='uploadFile = true') 
+                      i.icon-remove.icon-white
+        .row-fluid
+          table.table.table-hover
+            tbody
+              tr(ng-show='canWrite')
+                td.span3
+                  a.btn.btn-danger(ng-click='deleteType = true')
+                    i.icon-trash.icon-white.white
+                    | Delete Type
+                td
+                td
+                  .btn-toolbar(ng-show='deleteType')
+                    .btn-group.pull-right
+                      a.btn.btn-warning(ng-click='deleteType = false') 
+                        i.icon-ok.icon-white
+                      a.btn.btn-danger(ng-click='deleteType = false') 
+                        i.icon-remove.icon-white                      
+              tr(ng-repeat='(fileId, file) in filter(topic.files, type) | orderBy:"date"')
+                td
+                  span(ng-show='!canWrite') {{$index + 1}}
+                  span(ng-show='canWrite && !editFile && !removeFile') {{file.date | date}}
+                  span(ng-show='editFile')
+                    input.input-small(type='text', placeholder='{{file.date}}')
+                  settings(ng-show='removeFile')
+                    span.text-error {{file.date | date}}
+                td
+                  a(ng-show='!editFile && !removeFile', href='topics/{{topic.id}}/{{file.url}}') {{file.name}}
+                  settings(ng-show='removeFile')
+                    span.text-error {{file.name}}
+                  span(ng-show='editFile')
+                    input.input-small(type='text', placeholder='{{file.name}}')
+                td
+                  span(ng-show='editFile') 
+                    .btn-group
+                      button.btn.dropdown-toggle(data-toggle='dropdown')
+                          | Type
+                          span.caret
+                      ul.dropdown-menu
+                        li
+                          a Type1
+                  span.btn-toolbar.pull-right
+                    .btn-group(ng-show='canWrite && !removeFile && !editFile')
+                      a.btn.btn-warning(ng-click='editFile = true')
+                        i.icon-pencil.icon-white
+                      a.btn.btn-danger(ng-click='removeFile = true')
+                        i.icon-trash.icon-white
+                  span.pull-right
+                    .btn-toolbar(ng-show='removeFile')
+                      .btn-group
+                        a.btn.btn-warning(ng-click='removeFile = false') 
+                          i.icon-ok.icon-white
+                        a.btn.btn-danger(ng-click='removeFile = false') 
+                          i.icon-remove.icon-white
+                    .btn-toolbar(ng-show='editFile')
+                      .btn-group
+                        a.btn.btn-warning(ng-click='editFile = false') 
+                          i.icon-ok.icon-white
+                        a.btn.btn-danger(ng-click='editFile = false') 
+                          i.icon-remove.icon-white
+      tab(data-tab-id='timetable', caption='Timetable')
         table.table.table-hover
           tbody
-            tr(ng-show='!uploadFile', ng-repeat='file in filesToUpload')
+            tr(ng-repeat='date in topic.allFiles | orderBy:"date":reverse')
+              td.span3
+                {{date.date | date}}
               td
-                input(type='text', placeholder='Date')
-              td
-                input(type='text', ng-model='file.displayName', placeholder='{{file.nameWithoutExt}}')
-              td
-                .btn-group
-                  button.btn.dropdown-toggle(data-toggle='dropdown')
-                      | Type
-                      span.caret
-                  ul.dropdown-menu
-                    li
-                      a Type1
-              td
-                .btn-group.pull-right
-                  a.btn(ng-click='uploadFile = true') 
-                    i.icon-ok.icon-white
-                  a.btn(ng-click='uploadFile = true') 
-                    i.icon-remove.icon-white
-      .row-fluid
-        tabs
-          tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type}}')
-            table.table.table-hover
-              tbody
-                tr(ng-show='canWrite')
-                  td.span3
-                    a.btn.btn-danger(ng-click='deleteType = true')
-                      i.icon-trash.icon-white.white
-                      | Delete Type
-                  td
-                  td
-                    .btn-toolbar(ng-show='deleteType')
-                      .btn-group.pull-right
-                        a.btn.btn-warning(ng-click='deleteType = false') 
-                          i.icon-ok.icon-white
-                        a.btn.btn-danger(ng-click='deleteType = false') 
-                          i.icon-remove.icon-white                      
-                tr(ng-repeat='(fileId, file) in filter(topic.files, type) | orderBy:"date"')
-                  td
-                    span(ng-show='!canWrite') {{$index + 1}}
-                    span(ng-show='canWrite && !editFile && !removeFile') {{file.date}}
-                    span(ng-show='editFile')
-                      input.input-small(type='text', placeholder='{{file.date}}')
-                    settings(ng-show='removeFile')
-                      span.text-error {{file.date}}
-                  td
-                    a(ng-show='!editFile && !removeFile', href='topics/{{topic.id}}/{{file.url}}') {{file.name}}
-                    settings(ng-show='removeFile')
-                      span.text-error {{file.name}}
-                    span(ng-show='editFile')
-                      input.input-small(type='text', placeholder='{{file.name}}')
-                  td
-                    span(ng-show='editFile') 
-                      .btn-group
-                        button.btn.dropdown-toggle(data-toggle='dropdown')
-                            | Type
-                            span.caret
-                        ul.dropdown-menu
-                          li
-                            a Type1
-                    span.btn-toolbar.pull-right
-                      .btn-group(ng-show='canWrite && !removeFile && !editFile')
-                        a.btn.btn-warning(ng-click='editFile = true')
-                          i.icon-pencil.icon-white
-                        a.btn.btn-danger(ng-click='removeFile = true')
-                          i.icon-trash.icon-white
-                    span.pull-right
-                      .btn-toolbar(ng-show='removeFile')
-                        .btn-group
-                          a.btn.btn-warning(ng-click='removeFile = false') 
-                            i.icon-ok.icon-white
-                          a.btn.btn-danger(ng-click='removeFile = false') 
-                            i.icon-remove.icon-white
-                      .btn-toolbar(ng-show='editFile')
-                        .btn-group
-                          a.btn.btn-warning(ng-click='editFile = false') 
-                            i.icon-ok.icon-white
-                          a.btn.btn-danger(ng-click='editFile = false') 
-                            i.icon-remove.icon-white
-          tab(data-tab-id='timetable', caption='Timetable')
-            table.table.table-hover
-              tbody
-                tr(ng-repeat='date in topic.allFiles | orderBy:"date":reverse')
-                  td.span3
-                    {{date.date | date}}
-                  td
-                    div(ng-repeat='file in date.files')
-                      span {{file.name}}
+                div(ng-repeat='file in date.files')
+                  span {{file.name}}
