@@ -105,8 +105,7 @@
               tbody
                 tr(ng-repeat='date in topic.allFiles | orderBy:"date":reverse')
                   td.span3
-
-                    {{date.date}}
+                    {{date.date | date}}
                   td
                     div(ng-repeat='file in date.files')
                       span {{file.name}}

@@ -6,12 +6,12 @@
           tr(ng-repeat='(id, topic) in user.topics | orderBy:"name"')
             td
               strong
-                a.black(href='#/topics/{{topic.id}}') {{topic.name}}
+                a.black(href='#/topics/{{topic._id}}') {{topic.name}}
     tab(data-tab-id='questions', caption='Questions')
       table.table.table-hover
         tbody
           tr(ng-repeat='question in user.events | filter:{url: "questions"} | fromUrl')
-            td          
+            td
               .row-fluid
                  {{question.topic}}: {{question.file}}
               .row-fluid
