@@ -125,7 +125,7 @@
                 a.btn(ng-click='askQuestion()') Ask
           .centerer
             .dot(ng-repeat='(id, question) in file.questions', position='question', ng-click='setDiscussed(question)')
-        .discussion-board-component.tb
+        .discussion-board-component.tb.discussion-board-margin
           .no-question-selected(ng-show='!discussed')
             span
               h4 Questions
@@ -135,41 +135,41 @@
                   td.table-column-width {{q.timestamp | date}}
                   td(ng-click='setQuestion(q._id)') {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
           .discussion(ng-show='discussed')
-            a.btn.row-top-offset.row-buttom-offset.btn-info(ng-click='discussed = null') Back to questions
+            .row-fluid.question-row
+              a.btn.row-top-offset.row-buttom-offset.btn-info.question-btn(ng-click='discussed = null') Back to questions
             .row-fluid
               .span12
                 .row-fluid
-                  .box-margin
-                    .well
+                  .question-box-margin
+                    .question-box
                       | {{discussed.text}}
             .row-fluid(data-collapsing='parent')
-              .row-fluid
-                a.btn.row-top-offset.row-buttom-offset.btn-warning(collapsable) Comments
+              .row-fluid.question-row
+                a.btn.row-top-offset.row-buttom-offset.btn-warning.comment-btn(collapsable) Comments
               .row-fluid.collapse(data-collapsing='collapse')
                 .row-fluid(ng-repeat='(id, comment) in discussed.comments')
-                  .box-margin
-                    .well 
-                      .row-fluid
-                        span.blue
-                          | {{comment.owner.name}}
-                        span.pull-right.green
-                          | {{comment.timestamp | date}}
+                  .question-box-margin
+                    .comment-box
+                      span.blue
+                        | NAME: {{comment.owner.name}}
+                      span.pull-right.green
+                        | {{comment.timestamp | date}}
                       .row-fluid    
                         | {{comment.text}}
                   
-                .row-fluid
-                      form(ng-submit='submitCommentQ(commentQText, anonymous); commentQText = ""')
-                    .row-fluid
-                          textarea.answer-comment-textbox-width(rows='2', ng-model='commentQText', placeholder="Comment on this question", ng-click='addComment=true')
-                    .row-fluid(ng-show='addComment')
-                      .span6
+                form(ng-submit='submitCommentQ(commentQText, anonymous); commentQText = ""')
+                  textarea.answer-comment-textbox-width.pull-right(rows='2', ng-model='commentQText', placeholder="Comment on this question", ng-click='addComment=true')
+                  .row-fluid(ng-show='addComment')
+                    .span6
+                      .span2
+                      .span10 
                         label.checkbox
                           input(type='checkbox', ng-model='anonymous', value='')
                           | Anonymous
-                      .span6
-                        .btn-group.pull-right
-                          input.btn.btn-primary(type='submit', value='Post')
-                          a.btn.btn-info(ng-click='addComment=false') Cancel
+                    .span6
+                      .btn-group.pull-right
+                        input.btn.btn-primary(type='submit', value='Post')
+                        a.btn.btn-info(ng-click='addComment=false') Cancel
 
             .row-fluid(ng-repeat='(id, answer) in discussed.answers')
               .row-fluid
