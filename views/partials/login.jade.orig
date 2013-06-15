@@ -1,0 +1,43 @@
+.login-box.tb
+  .row-fluid
+    .navbar.navbar-fixed-top
+      .navbar-inner
+  .row-fluid
+    .span12.sub-navbar-view
+      ui-view
+  .row
+    .span8
+      strong
+        .logo
+          h2.text-center Welcome to Space!
+          h3.text-center.blue Share and discuss files with your colleagues and tutors.
+<<<<<<< HEAD
+    .span4
+=======
+    .span4 
+>>>>>>> 3e02c733267eeed332fed8ae90b4d31d8f30f771
+      .span3
+      .span6
+        .visible.widget-box
+          .username
+            .widget-body
+              .widget-main
+                h4.text-center.blue.lighter-bigger
+                form.login-form.form-horizontal(ng-submit='login()')
+                  .row.text-center
+                      .login-margin
+                        .control-group.field-margin
+                          input.login-value-username(type='text', placeholder="Username", name='username', ng-model='values.username', focus-in)
+                        .control-group.field-margin
+                          input.login-value-password(type='password', placeholder="Password", name='password', ng-model='values.password')
+
+                  .text-center
+                    input.btn.btn-medium.btn-primary.login-buttonLogin(type='submit', value='Log in')
+                  .row.text-center
+                      p.text-error {{error}}
+                  .row-fluid.text-center
+                    a.blue Forgot your password?
+                  .row-fluid.text-center 
+                    a.blue Register
+     .span3
+
