@@ -6,10 +6,10 @@
         .span2
           .element
             a.btn.row-buttom-offset.btn-success(ng-show='!addFile', ng-click='addFile=true')
-              i.icon-plus
+              i.icon-plus.icon-white
               | Upload
             a.btn.btn-info(ng-show='addFile',ng-click='addFile=false')
-              i.icon-minus
+              i.icon-minus.icon-white
               | Cancel
           .span10
             span.pretty-file
@@ -37,9 +37,9 @@
               td
                 .btn-group.pull-right
                   a.btn(ng-click='uploadFile = true') 
-                    i.icon-ok
+                    i.icon-ok.icon-white
                   a.btn(ng-click='uploadFile = true') 
-                    i.icon-remove
+                    i.icon-remove.icon-white
       .row-fluid
         tabs
           tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type}}')
