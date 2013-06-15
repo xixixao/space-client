@@ -3674,6 +3674,7 @@ window.addEventListener('click', function click(evt) {
 }, false);
 
 window.addEventListener('keydown', function keydown(evt) {
+  console.log(evt);
   if (evt.target.form) return;
   var handled = false;
   var cmd = (evt.ctrlKey ? 1 : 0) |

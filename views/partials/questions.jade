@@ -152,15 +152,17 @@
                     span.pull-right
                       | {{comment.owner.name}}
                 .row-fluid
-                  textarea.answer-comment-textbox-width(rows='1', placeholder="Comment",ng-click='addComment=true')
-                .row-fluid(ng-show='addComment')
-                  .span6
-                    label.checkbox
-                      input(type='checkbox', value='')
-                      | Anonymous
-                  .span6
-                    input.btn.pull-right(type='submit', value='Post')
-                    a.btn.pull-right(ng-click='addComment=false') Cancel
+                  form(ng-submit='submitCommentQ(commentQText, anonymous); commentQText = ""')
+                    .row-fluid
+                      textarea.answer-comment-textbox-width(rows='2', ng-model='commentQText', placeholder="Comment on this question", ng-click='addComment=true')
+                    .row-fluid(ng-show='addComment')
+                      .span6
+                        label.checkbox
+                          input(type='checkbox', ng-model='anonymous', value='')
+                          | Anonymous
+                      .span6
+                        input.btn.pull-right(type='submit', value='Post')
+                        a.btn.pull-right(ng-click='addComment=false') Cancel
             .row-fluid(ng-repeat='(id, answer) in discussed.answers')
               .row-fluid
                 .span12(ng-bind-html-unsafe='answer.text')
@@ -183,9 +185,9 @@
                       span.pull-right
                         | {{comment.owner.name}}
                   .row-fluid
-                    form(ng-submit='submitCommentA(commentAText, anonymous); commentAText = ""')
+                    form(ng-submit='submitCommentA(answer, commentAText, anonymous); commentAText = ""')
                       .row-fluid
-                        textarea.answer-comment-textbox-width(rows='2', ng-model='commentAText', placeholder="Comment", ng-click='addComment=true')
+                        textarea.answer-comment-textbox-width(rows='2', ng-model='commentAText', placeholder="Comment on this answer", ng-click='addComment=true')
                       .row-fluid(ng-show='addComment')
                         .span6
                           label.checkbox
@@ -197,7 +199,7 @@
             .row-fluid
               form(ng-submit='submitAnswer(answerText, anonymous); answerText = ""')
                 .row-fluid
-                  textarea.comment-textbox-width(rows='3', ng-model='answerText', placeholder="Answer", ng-click='addComment=true')
+                  textarea.comment-textbox-width(rows='3', ng-model='answerText', placeholder="Answer the question", ng-click='addComment=true')
                 .row-fluid(ng-show='addComment')
                   .span6
                     label.checkbox

@@ -141,11 +141,24 @@ define [
               fileId: fileId
               questionId: value._id
 
+            $scope.submitCommentQ = (text, anonymous) ->
+              Comment = $resource '/api/topics/:topicId/files/:fileId/questions/:questionId/comments/:commentId',
+                topicId: topicId
+                fileId: fileId
+                questionId: value._id
+              newComment = new Comment
+                text: text
+                owner: $scope.user._id
+              newComment.$save()
+              newComment.timestamp = new Date()
+              value.comments.push newComment
+
             $scope.submitAnswer = (text, anonymous) ->
               newAnswer = new Answer
                 text: text
                 owner: $scope.user._id
               newAnswer.$save()
+              newAnswer.timestamp = new Date()
               value.answers.push newAnswer
 
             $scope.submitCommentA = (answer, text, anonymous) ->
@@ -158,6 +171,7 @@ define [
                 text: text
                 owner: $scope.user._id
               newComment.$save()
+              newComment.timestamp = new Date()
               answer.comments.push newComment
 
           else
