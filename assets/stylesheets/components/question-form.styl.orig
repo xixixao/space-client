@@ -40,7 +40,12 @@
 
 
 .sub-navbar-view
+<<<<<<< HEAD
   padding 20px 0px
+=======
+  padding 0px 0px
+  background-colour #393939
+>>>>>>> 57aa3ecf06da711519190004471bda4d02defbdb
 
 .fixed
   position: fixed

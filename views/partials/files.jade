@@ -1,9 +1,32 @@
 .file-component.tb
-  h3.topic-title {{topic.name}}
-  .row-fluid
-    tabs
-      tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type}}')
-        .row-fluid(ng-show='canWrite')
+  .whole-margin  
+    h3.topic-title {{topic.name}}
+    .row-fluid
+      tabs
+        tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type}}')
+          .row-fluid(ng-show='canWrite')
+            .row-fluid
+              .span12.pretty-file
+                input(type='file', name='form[files][]', data-type='{{type}}', multiple='multiple')
+                a.btn.btn-warning(ng-click='triggerFileBrowse(type)') Browse for files
+                a.btn.btn-info(ng-show='filesToUpload.length > 0', ng-click='') Upload
+            .row-fluid.row-top-offset
+              table.table.table-hover
+                tbody
+                  tr(ng-show='!uploadFile', ng-repeat='file in filesToUpload')
+                    td
+                      input(type='text', placeholder='Date')
+                    td
+                      .input-prepend
+                        span.add-on Display name
+                        input(type='text', ng-model='file.displayName')
+                    td {{file.name}}
+                    td
+                      .btn-group.pull-right
+                        a.btn.btn-success(ng-click='uploadFile = true')
+                          i.icon-ok.icon-white
+                        a.btn.btn-danger(ng-click='uploadFile = true')
+                          i.icon-remove.icon-white
           .row-fluid
             form(data-type='{{type}}', enctype='multipart/form-data')
               .span12.pretty-file
@@ -13,7 +36,11 @@
           .row-fluid.row-top-offset
             table.table.table-hover
               tbody
-                tr(ng-show='!uploadFile', ng-repeat='file in filesToUpload')
+                tr(ng-show='canWrite')
+                  td.span3
+                    a.btn.btn-danger(ng-click='deleteType = true')
+                      i.icon-trash.icon-white.white
+                      | Delete Type
                   td
                     .control-group.input-append
                       input(type='text', ng-model='file.date', data-date-format='dd/mm/yyyy', bs-datepicker)
