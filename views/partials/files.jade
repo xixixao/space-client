@@ -5,10 +5,11 @@
       tab(ng-repeat='type in topic.types', data-tab-id='{{$index}}', caption='{{type}}')
         .row-fluid(ng-show='canWrite')
           .row-fluid
-            .span12.pretty-file
-              input(type='file', name='form[files][]', data-type='{{type}}', multiple='multiple')
-              a.btn.btn-warning(ng-click='triggerFileBrowse(type)') Browse for files
-              a.btn.btn-info(ng-show='filesToUpload.length > 0', ng-click='') Upload all
+            form(data-type='{{type}}', enctype='multipart/form-data')
+              .span12.pretty-file
+                input(type='file', name='form[files][]', data-type='{{type}}', multiple='multiple')
+                a.btn.btn-warning(ng-click='triggerFileBrowse(type)') Browse for files
+                a.btn.btn-info(ng-show='filesToUpload.length > 0', ng-click='uploadFiles(type)') Upload all
           .row-fluid.row-top-offset
             table.table.table-hover
               tbody
@@ -16,8 +17,8 @@
                   td
                     .control-group.input-append
                       input(type='text', ng-model='file.date', data-date-format='dd/mm/yyyy', bs-datepicker)
-                      button.btn(type='button', data-toggle='datepicker')
-                        i.icon-calendar
+                      button.btn.btn-success(type='button', data-toggle='datepicker')
+                        i.icon-calendar.icon-white
                   td
                     .input-prepend
                       span.add-on Display name
