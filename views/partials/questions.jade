@@ -129,18 +129,17 @@
         .discussion-board-component.tb.discussion-board-margin
           .no-question-selected(ng-show='!discussed')
             span
-              .row-fluid
-                .navbar.navbar-fixed
-                  .navbar-inner
-              .row-fluid
-                .span12.sub-navbar-view
-                  ui-view      
-              h4.text-center Questions
+              h4.text-center.purple-background Questions
             table.table.table-hover
               tbody
                 tr(ng-repeat='(id, q) in questions')
-                  td.table-column-width {{q.timestamp | date}}
-                  td(ng-click='setQuestion(q._id)') {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
+                  td(ng-click='setQuestion(q._id)')
+                    span.blue
+                      | NAME: {{}}
+                    span.pull-right.green
+                      | DATE: {{q.timestamp | date}}
+                    .row-fluid    
+                      {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
           .discussion(ng-show='discussed')
             .row-fluid.question-row
               a.btn.row-top-offset.row-buttom-offset.btn-info.question-btn(ng-click='discussed = null') Back to questions
