@@ -24,6 +24,9 @@ define ['c/controllers', 'services/topic'], (controllers) ->
 
       $scope.topic = $resource('/api/topics/:topicId').get
         topicId: $stateParams.topicId
+      , (topic) ->
+        for file in topic.files
+          file.date = new Date file.date
 
       $scope.filesToUpload = []
 
@@ -37,6 +40,9 @@ define ['c/controllers', 'services/topic'], (controllers) ->
           $scope.filesToUpload = files
 
         fileInput.click()
+
+      #$scope.cancelUpload = (index) ->
+      #  $scope.filesToUpload.splice index, 1
 
       $scope.filter = (files, type) ->
         filtered = {}

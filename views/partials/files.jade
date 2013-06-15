@@ -23,10 +23,10 @@
                       span.add-on Display name
                       input(type='text', ng-model='file.displayName')
                   td {{file.name}}
-                  td
-                    .pull-right
-                      a.btn.btn-danger(ng-click='cancelUpload($index)')
-                        i.icon-remove.icon-white
+                  // td
+                      .pull-right
+                        a.btn.btn-danger(ng-click='cancelUpload($index)')
+                          i.icon-remove.icon-white
         .row-fluid
           table.table.table-hover
             tbody
@@ -49,7 +49,7 @@
                   span(ng-show='canWrite && !editFile && !removeFile') {{file.date | date}}
                   span(ng-show='editFile')
                     .control-group.input-append
-                      input(type='text', ng-model='fileDate', data-date-format='dd/mm/yyyy', bs-datepicker)
+                      input(type='text', ng-model='file.date', data-date-format='dd/mm/yyyy', bs-datepicker)
                       button.btn(type='button', data-toggle='datepicker')
                         i.icon-calendar
                   settings(ng-show='removeFile')
@@ -59,7 +59,7 @@
                   settings(ng-show='removeFile')
                     span.text-error {{file.name}}
                   span(ng-show='editFile')
-                    input.input-small(type='text', placeholder='{{file.name}}')
+                    input.input-small(type='text', ng-model='file.name')
                 td
                   span.btn-toolbar.pull-right
                     .btn-group(ng-show='canWrite && !removeFile && !editFile')
