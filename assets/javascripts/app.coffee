@@ -6,7 +6,6 @@ define [
   'd/directives'
   'filters/filters'
   'vendor/angularResource'
-  'responseInterceptors/responseInterceptors'
   'services/services'
 ], (angular) ->
 
@@ -18,7 +17,6 @@ define [
     'directives'
     'filters'
     'ngResource'
-    'responseInterceptors'
     'services'
   ]
 

@@ -7,15 +7,17 @@ define [
 
   directives.directive 'searchBar', [->
     controller = ['$scope', '$element', '$location', ($scope, $element, $location) ->
-      if !$scope.allFiles?
-        throw new Error "Missing attribute all-files"
 
-      labelKey = 'name'
-      fusedFiles = new Fuse $scope.allFiles, keys: [labelKey]
-
+      fusedFiles = []
       mappedFiles = {}
-      for file in $scope.allFiles
-        mappedFiles[file[labelKey]] = file
+
+      $scope.$watch 'allFiles', (allFiles) ->
+
+        labelKey = 'name'
+        fusedFiles = new Fuse allFiles, keys: [labelKey]
+
+        for file in allFiles
+          mappedFiles[file[labelKey]] = file
 
       $scope.matchQuery = (query) ->
         return (name for {name} in fusedFiles.search(query))

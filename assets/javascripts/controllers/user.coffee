@@ -8,8 +8,10 @@ define ['c/controllers', 'services/user'], (controllers) ->
     'user'
     ($scope, $location, $rootScope, service) ->
 
-      $scope.user = user = service.user()
-      if !user?
+      service.loadUser()
+      .success ->
+        $scope.user = service.user()
+      .error ->
         $rootScope.beforeRedirect = $location.path()
         $location.path '/login'
   ]

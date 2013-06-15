@@ -418,8 +418,8 @@ legend {
 // ------------
 
 // Allow us to put symbols and text within the input field for a cleaner look
-.input-append,
-.input-prepend {
+.tb .input-append,
+.tb .input-prepend {
   margin-bottom: 5px;
   font-size: 0; // white space collapse hack
   white-space: nowrap; // Prevent span and input from separating
@@ -471,7 +471,7 @@ legend {
   }
 }
 
-.input-prepend {
+.tb .input-prepend {
   .add-on,
   .btn {
     margin-right: -1px;
@@ -483,7 +483,7 @@ legend {
   }
 }
 
-.input-append {
+.tb .input-append {
   input,
   select,
   .uneditable-input {
@@ -505,7 +505,7 @@ legend {
 }
 
 // Remove all border-radius for inputs with both prepend and append
-.input-prepend.input-append {
+.tb .input-prepend.input-append {
   input,
   select,
   .uneditable-input {

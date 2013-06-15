@@ -25,12 +25,13 @@ define ['c/controllers', 'services/topic'], (controllers) ->
 
       $scope.filesToUpload = []
 
-      $scope.triggerFileBrowse = ->
-        fileInput = $('.pretty-file input[type="file"]')
+      $scope.triggerFileBrowse = (type) ->
+        fileInput = $(".pretty-file input[type=\"file\"][data-type=\"#{type}\"]")
+        console.log fileInput.length, ".pretty-file input[type=\"file\"][data-type=\"#{type}\"]"
         fileInput.change -> $scope.$apply ->
           files = fileInput[0].files
           for file in files
-            file.nameWithoutExt = file.name[0...file.name.lastIndexOf '.']
+            file.displayName = file.name[0...file.name.lastIndexOf '.']
           $scope.filesToUpload = files
 
         fileInput.click()
