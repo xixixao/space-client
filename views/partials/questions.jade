@@ -135,50 +135,62 @@
                   td.table-column-width {{q.timestamp | date}}
                   td(ng-click='setQuestion(q._id)') {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
           .discussion(ng-show='discussed')
-            a.btn.row-top-offset.row-buttom-offset(ng-click='discussed = null') Back to questions
+            a.btn.row-top-offset.row-buttom-offset.btn-info(ng-click='discussed = null') Back to questions
             .row-fluid
               .span12
-                | {{discussed.text}}
+                .row-fluid
+                  .box-margin
+                    .well
+                      | {{discussed.text}}
             .row-fluid(data-collapsing='parent')
               .row-fluid
-                .comments-label(collapsable) Comments
+                a.btn.row-top-offset.row-buttom-offset.btn-warning(collapsable) Comments
               .row-fluid.collapse(data-collapsing='collapse')
                 .row-fluid(ng-repeat='(id, comment) in discussed.comments')
-                  .row-fluid
-                    | {{comment.text}}
-                  .row-fluid
-                    span
-                      | {{comment.timestamp | date}}
-                    span.pull-right
-                      | {{comment.owner.name}}
+                  .box-margin
+                    .well 
+                      .row-fluid
+                        span.blue
+                          | {{comment.owner.name}}
+                        span.pull-right.green
+                          | {{comment.timestamp | date}}
+                      .row-fluid    
+                        | {{comment.text}}
+                  
                 .row-fluid
-                  form(ng-submit='submitCommentQ(commentQText, anonymous); commentQText = ""')
+                      form(ng-submit='submitCommentQ(commentQText, anonymous); commentQText = ""')
                     .row-fluid
-                      textarea.answer-comment-textbox-width(rows='2', ng-model='commentQText', placeholder="Comment on this question", ng-click='addComment=true')
+                          textarea.answer-comment-textbox-width(rows='2', ng-model='commentQText', placeholder="Comment on this question", ng-click='addComment=true')
                     .row-fluid(ng-show='addComment')
                       .span6
                         label.checkbox
                           input(type='checkbox', ng-model='anonymous', value='')
                           | Anonymous
                       .span6
-                        input.btn.pull-right(type='submit', value='Post')
-                        a.btn.pull-right(ng-click='addComment=false') Cancel
+                        .btn-group.pull-right
+                          input.btn.btn-primary(type='submit', value='Post')
+                          a.btn.btn-info(ng-click='addComment=false') Cancel
+
             .row-fluid(ng-repeat='(id, answer) in discussed.answers')
               .row-fluid
-                .span12(ng-bind-html-unsafe='answer.text')
-              .row-fluid
-                span
-                  | {{answer.timestamp | date}}
-                span.pull-right
-                  | {{answer.owner.name}}
+                .box-margin
+                  .well
+                    .row-fluid
+                      span.blue
+                        | {{answer.owner.name}}
+                      span.pull-right.green
+                        | {{answer.timestamp | date}}
+                    .span12(ng-bind-html-unsafe='answer.text')
               .row-fluid(data-collapsing='parent')
                 .row-fluid
-                  .comments-label(collapsable) Comments
+                  a.btn.row-top-offset.row-buttom-offset.btn-warning(collapsable) Comments
                 .row-fluid.collapse(data-collapsing='collapse')
                   .row-fluid(ng-repeat='(id, comment) in answer.comments')
                     .row-fluid
                       span
-                        | {{comment.text}}
+                       .box-margin
+                        .well
+                          | {{comment.text}}
                     .row-fluid
                       span
                         | {{comment.timestamp | date}}
@@ -186,16 +198,16 @@
                         | {{comment.owner.name}}
                   .row-fluid
                     form(ng-submit='submitCommentA(answer, commentAText, anonymous); commentAText = ""')
-                      .row-fluid
-                        textarea.answer-comment-textbox-width(rows='2', ng-model='commentAText', placeholder="Comment on this answer", ng-click='addComment=true')
+                      textarea.answer-comment-textbox-width(rows='2', ng-model='commentAText', placeholder="Comment on this answer", ng-click='addComment=true')
                       .row-fluid(ng-show='addComment')
                         .span6
                           label.checkbox
                             input(type='checkbox', ng-model='anonymous', value='')
                             | Anonymous
                         .span6
-                          input.btn.pull-right(type='submit', value='Post')
-                          a.btn.pull-right(ng-click='addComment=false') Cancel
+                          .btn-group.pull-right
+                            input.btn.btn-primary(type='submit', value='Post')
+                            a.btn.btn-info(ng-click='addComment=false') Cancel
             .row-fluid
               form(ng-submit='submitAnswer(answerText, anonymous); answerText = ""')
                 .row-fluid
@@ -206,8 +218,11 @@
                       input(type='checkbox', ng-model='anonymous', value='')
                       | Anonymous
                   .span6
-                    input.btn.pull-right(type='submit', value='Post')
-                    a.btn.pull-right(ng-click='addComment=false') Cancel
+                    .btn-group.pull-right
+                      input.btn.btn-primary(type='submit', value='Post')
+                      a.btn.btn-info(ng-click='addComment=false') Cancel
+
+
 
 
 
