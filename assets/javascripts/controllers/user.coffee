@@ -1,4 +1,4 @@
-define ['c/controllers', 'services/user'], (controllers) ->
+define ['c/controllers', 'services/fakeuser'], (controllers) ->
   'use strict'
 
   controllers.controller 'user', [
