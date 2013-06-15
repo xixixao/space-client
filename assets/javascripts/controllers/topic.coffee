@@ -19,11 +19,12 @@ define ['c/controllers', 'services/topic'], (controllers) ->
       $scope.$watch 'topic', (topic) ->
         if topic?
           topic.allFiles = groupFiles topic
+          console.log topic.permission
+          $scope.canWrite = topic.permission == 'w'
       , true
 
       $scope.topic = $resource('/api/topics/:topicId').get
         topicId: $stateParams.topicId
-      $scope.canWrite = $scope.topic.permission == 'w'
 
       $scope.filesToUpload = []
 

@@ -183,7 +183,10 @@ define [
           $scope.discussed = null
 
       $scope.focused = {topicId, fileId, questionId, commentId, answerId, commentAId}
-      $scope.file = $scope.user.topics[topicId]?.files[fileId]
+
+      $scope.file = $resource '/api/topics/:topicId/files/:fileId',
+        topicId: topicId
+        fileId: fileId
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
 
