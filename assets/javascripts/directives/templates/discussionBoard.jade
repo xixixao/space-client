@@ -1,6 +1,6 @@
 .discussion-board-component.tb
   .no-question-selected(ng-show='!question')
-    span
+    span.border-left
       h4 Questions
     table.table.table-hover
       tbody
@@ -8,7 +8,7 @@
           td.table-column-width(ng-click='$parent.question = getQuestion(q.uri)') {{q.timestamp | date}}
           td(ng-click='setQuestion({$id: q._id})') {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
   .discussion(ng-show='question')
-    a.btn.row-top-offset.row-buttom-offset(ng-click='question = null') Back to questions
+    a.btn.btn-info.row-top-offset.row-buttom-offset(ng-click='question = null') Back to questions
     .row-fluid
       .span12
         | {{question.text}}
