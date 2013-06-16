@@ -2,7 +2,8 @@ define ['services/services', 'vendor/angularResource'], (services) ->
 
 	services.factory 'topic', ['$resource', ($resource) ->
 
-    resource = $resource('/api/topics/:topicId')
+    resource = $resource '/api/topics/:topicId',
+      topicId: '@_id'
 
     topicId = undefined
 

@@ -3,8 +3,8 @@
       .text-center
         h3.grey What's new in your SPACE?
     .row-hover.event(ng-repeat='event in events')
-      a(href='#/{{constructURL(event.url)}}')
-        .row-fluid(ng-show='event.model == "Question"')
+      a(href='#/{{constructURL(event.url)}}', ng-switch='event.model')
+        .row-fluid(ng-switch-when='Question')
           .event-tag.red-background New question
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
@@ -14,7 +14,7 @@
           .text-preview
             | {{trim(event.target.text, 280)}}
 
-        .row-fluid(ng-show='event.model == "CommentQ"')
+        .row-fluid(ng-switch-when='CommentQ')
           .event-tag.orange-background New comment
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
@@ -24,7 +24,7 @@
           .text-preview
             | {{trim(event.target.text, 280)}}
 
-        .row-fluid(ng-show='event.model == "CommentA"')
+        .row-fluid(ng-switch-when='CommentA')
           .event-tag.orange-background New comment
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
@@ -34,7 +34,7 @@
           .text-preview
             | {{trim(event.target.text, 280)}}
 
-        .row-fluid(ng-show='event.model == "Answer"')
+        .row-fluid(ng-switch-when='Answer')
           .event-tag.green-background New answer
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
@@ -44,7 +44,7 @@
           .text-preview
             | {{trim(event.target.text, 280)}}
 
-        .row-fluid(ng-show='event.model == "Topic"')
+        .row-fluid(ng-switch-when='Topic')
           .event-tag.purple-background New topic
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
@@ -52,7 +52,7 @@
           .timestamp.pull-right
             {{event.timestamp | date}}
 
-        .row-fluid(ng-show='event.model == "File"')
+        .row-fluid(ng-switch-when='File')
           .event-tag.blue-background New files
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.name}}

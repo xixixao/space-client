@@ -28,7 +28,7 @@
                   td {{file.name}}
         .row-fluid
           .row-fluid.bottom-offset(ng-show='canWrite')
-            a.btn.btn-danger.pull-right(ng-click='confirm(["Do you really want to delete type ", type, " and all ", numOfType(topic.files, type), " associated files?"])')
+            a.btn.btn-danger.pull-right(ng-click='confirm(["Do you really want to delete type ", type, " and all ", numOfType(topic.files, type), " associated files?"], deleteType, type)')
               i.icon-trash.icon-white.white
               | Delete Type
         .row-fluid
@@ -56,7 +56,7 @@
                     .btn-group(ng-show='canWrite && !editFile')
                       a.btn.btn-warning(ng-click='editFile = true')
                         i.icon-pencil.icon-white
-                      a.btn.btn-danger(ng-click='confirm(["Do you really want to delete file ", file.name, " ?"])')
+                      a.btn.btn-danger(ng-click='confirm(["Do you really want to delete file ", file.name, " ?"], deleteFile, file)')
                         i.icon-trash.icon-white
                   span.pull-right
                     .btn-toolbar(ng-show='editFile')
@@ -74,3 +74,18 @@
               td
                 div(ng-repeat='file in date.files')
                   span {{file.name}}
+      tab(data-tab-id='newtype', caption='<New type>')
+        p
+          | Material should be sorted into categories, such as
+          strong  Notes
+          | ,
+          strong  Tutorials
+          |  and similar.
+        p
+          | Specify a name of a new category. When it is created, files can be added to it inside the tab with its name.
+        .row-plain
+          form.form-inline(ng-submit='addType(newTypeName)')
+            label Name
+            input.left-offset(type='text', ng-model='newTypeName')
+            input.btn.btn-success.left-offset(type='submit', value='Add')
+

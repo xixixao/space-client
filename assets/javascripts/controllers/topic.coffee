@@ -11,8 +11,9 @@ define [
     '$stateParams'
     '$resource'
     '$modal'
+    '$filter'
     'topic'
-    ($scope, $stateParams, $resource, $modal, service) ->
+    ($scope, $stateParams, $resource, $modal, $filter, service) ->
 
       groupFiles = (topic) ->
         dates = {}
@@ -83,27 +84,43 @@ define [
         #xhr.open("POST", "/api/topics/#{$scope.topic._id}/upload")
         #xhr.send(data)
 
-      $scope.confirm = (message, cb) ->
+      $scope.confirm = (message, cb, values...) ->
         scope = $scope.$new true
         scope.message = message
-        #scope.$watch 'result', (value) ->
-        #  if value?
-        #    cb()
+        scope.$watch 'result', (value) ->
+          if value?
+            cb values...
         modal = $modal
           template: templates.confirm
           show: true
           backdrop: 'static'
           scope: scope
 
-
-
       #$scope.cancelUpload = (index) ->
       #  $scope.filesToUpload.splice index, 1
 
       $scope.numOfType = (files, type) ->
         sum = 0
-        sum++ for id of $scope.filter(files, type)
+        sum++ for id of $filter('filter')(files, type: type)
         return sum
+
+      $scope.addType = (name) ->
+        $scope.topic.types.push name
+        $scope.topic.$save()
+
+      $scope.deleteType = (name) ->
+        types = $scope.topic.types
+        types.splice types.indexOf(name), 1
+        $scope.topic.$save()
+
+      $scope.deleteFile = (file) ->
+        $resource "/api/topics/:topicId/files/:fileId",
+          topicId: $scope.topic._id
+        .delete
+          fileId: file._id
+        index = do -> i for f, i in $scope.topic.files when f._id is file._id
+        $scope.topic.files.splice index, 1
+
 
   ]
 

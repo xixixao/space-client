@@ -420,7 +420,6 @@ angular.module('$strap.directives').factory('$modal', [
         //  return res.data;
         //})
         $q.when(options.template).then(function onSuccess(template) {
-          console.log(template);
           //var id = templateUrl.replace('.html', '').replace(/[\/|\.|:]/g, '-') + '-' + scope.$id;
           var $modal = $('<div class="modal hide" tabindex="-1"></div>').addClass('fade').html(template);
           if (options.modalClass)
