@@ -38,7 +38,6 @@ requirejs [
   'd/tabs'
   'd/smallViewer'
   'd/searchBar'
-  'd/discussionBoard'
   'd/highlighter'
   'd/datePicker'
   'd/focusIn'

@@ -22,7 +22,7 @@ define [
           dates[file.date].files.push file
         return dates
 
-      $scope.topic = $resource('/api/topics/:topicId').get
+      $scope.topic = service.get
         topicId: $stateParams.topicId
       , (topic) ->
         for file in topic.files

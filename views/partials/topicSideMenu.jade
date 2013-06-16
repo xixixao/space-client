@@ -2,14 +2,14 @@
   tabs
     tab(data-tab-id='questions', caption='Questions')
       table.table.table-hover
-        tr(ng-repeat='question in user.events | {url: "question"}')
+        tr(ng-repeat='question in questions | filter:questionInTopic')
           td
             .row-fluid
-              strong.red {{question.topic}}: {{question.file}}
+              strong.red {{question.topic.name}}: {{question.file.name}}
             .row-fluid
               strong
-                em {{question.timestamp | date}} by {{question.owner.name}}:
-            a.grey(href='#/preview/{{question.url}}') {{(question.text.substr(0, 75) + (question.text.length > 75 ? "..." : ""))}}
+                em {{question.modifiedTime | date:"HH:mm, MMM d, yyyy"}} by {{question.owner.name}}
+            .text-preview(href='#/preview/{{question.url}}') {{trim(question.text, 75)}}
     tab(data-tab-id='topics', caption='Topics')
       .list-menu
         .row-plain.row-hover(ng-repeat='(id, topic) in user.topics | orderBy:"name"')

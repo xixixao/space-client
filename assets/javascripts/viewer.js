@@ -2257,8 +2257,6 @@ var PageView = function pageView(container, id, scale, navigateTo, defaultViewpo
   };
 
   this.scrollIntoView = function pageViewScrollIntoView(dest) {
-          console.log('VIEWER HERE', dest);
-
       if (!dest) {
         scrollIntoView(div);
         return;
@@ -2273,7 +2271,6 @@ var PageView = function pageView(container, id, scale, navigateTo, defaultViewpo
       var scale = 0;
       switch (dest[1].name) {
         case 'XYZ':
-          console.log('VIEWER HERE');
           x = dest[2];
           y = dest[3];
           scale = dest[4];
@@ -3674,7 +3671,6 @@ window.addEventListener('click', function click(evt) {
 }, false);
 
 window.addEventListener('keydown', function keydown(evt) {
-  console.log(evt);
   if (evt.target.form) return;
   var handled = false;
   var cmd = (evt.ctrlKey ? 1 : 0) |

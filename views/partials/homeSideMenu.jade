@@ -2,7 +2,7 @@
   tabs
     tab(data-tab-id='topics', caption='Topics')
       .list-menu
-        .row-plain.row-hover(ng-repeat='(id, topic) in user.topics | orderBy:"name"')
+        .row-plain.row-hover(ng-repeat='topic in user.topics | orderBy:"name"')
           a(href='#/topics/{{topic._id}}') {{topic.name}}
     tab(data-tab-id='questions', caption='Questions')
       .list-menu
@@ -12,7 +12,7 @@
               | {{question.topic.name}}
             .row-plain
               | - {{question.file.name}}
-            .row-plain
+            .row-plain.text-preview
               | {{trim(question.text, 75)}}
             .row-plain
               em {{question.modifiedTime | date}} by {{question.owner.name}}

@@ -1,15 +1,13 @@
 define [
   'c/controllers'
   'viewer'
-  'jquery'
   'utils/vector'
   'utils/rectangle'
   'vendor/q'
-  'services/question'
-], (controllers, PDFViewer, $, V, Rectangle) ->
+], (controllers, PDFViewer, V, Rectangle) ->
   controllers.controller 'questions', [
-    '$scope', '$stateParams', '$location', '$q', 'question', '$resource'
-    ($scope, $stateParams, $location, Q, service, $resource) ->
+    '$scope', '$stateParams', '$location', '$q', '$resource'
+    ($scope, $stateParams, $location, $q, $resource) ->
 
       {topicId, fileId} = $stateParams
       [questionId, commentId, answerId, commentAId] = $stateParams.params.match(///
@@ -193,7 +191,7 @@ define [
 
       file = $stateParams.file
 
-      deferred = Q.defer()
+      deferred = $q.defer()
       window.addEventListener 'pagesRendered', (event) ->
         deferred.resolve()
       $scope.rendered = deferred.promise

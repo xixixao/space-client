@@ -19,7 +19,6 @@ define ['c/controllers', 'services/user'], (controllers) ->
         text.substr(0, limit) + if text.length > limit then "..." else ""
 
       $scope.constructURL = (url) ->
-        console.log url
         string = "topics/#{url.topicId}"
         if url.fileId?
           string += "/files/#{url.fileId}"
@@ -29,13 +28,8 @@ define ['c/controllers', 'services/user'], (controllers) ->
               string += "/answers/#{url.answerId}"
             if url.commentId?
               string += "/comments/#{url.commentId}"
-        console.log string
         return string
 
       $scope.lookup = (id, array) ->
-        for el in array
-          console.log el, typeof  el._id, typeof id,el._id is id
-          if el._id is id
-            return el 
-
+        return el for el in array when el._id is id
   ]

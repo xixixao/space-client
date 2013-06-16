@@ -1,9 +1,8 @@
-define ['c/controllers', 'services/events'], (controllers) ->
-  'use strict'
+define ['c/controllers', 'services/questions'], (controllers) ->
 
   controllers.controller 'sideMenu', [
-    '$scope', '$resource', 'events'
-    ($scope, $resource, service) ->
+    '$scope', 'questions'
+    ($scope, service) ->
 
-      $scope.questions = $resource('/api/questions').query()
+      $scope.questions = service.query()
   ]

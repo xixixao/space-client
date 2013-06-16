@@ -1,13 +1,11 @@
-define ['c/controllers', 'services/topic'], (controllers) ->
+define ['c/controllers', 'services/questions', 'services/topic'], (controllers) ->
   'use strict'
 
   controllers.controller 'topicBound', [
-    '$scope'
-    'topic'
-    ($scope, service) ->
+    '$scope', 'questions', 'topic'
+    ($scope, service, current) ->
+      $scope.questions = service.query()
 
-      $scope.current = service
-
-      $scope.questionInTopic = (event) ->
-        event.type == 'question' and event.topicId = $scope.current._id
+      $scope.questionInTopic = (question) ->
+        question.topic._id is current.topicId()
   ]
