@@ -47,15 +47,6 @@
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
 
-.discussion
-
-  .grey-background
-    color black
-    background-color #E3E3E3
-    padding 0px 0px 0px 0px
-    border-right white
-    margin-top 5px
-
 .sub-navbar-view
   padding 20px 0px
 
@@ -98,6 +89,36 @@
     padding-top 0px
     padding-bottom 7px
     margin 5px $paddingHorSmall
+
+  .tag
+    display inline-block
+    padding-right $paddingHorSmall
+    font-weight bold
+
+  .votes
+    font-weight normal
+    background-color #E3E3E3
+    padding $paddingSmall
+    padding-right 4px
+    margin-right 6px
+    border-radius 4px
+
+    i
+      margin-top 3px
+
+  .grey-background
+    color black
+    background-color #E3E3E3
+    padding 0px 0px 0px 0px
+    border-right none
+    margin-top 5px
+
+  .votes,
+  .grey-background
+    cursor pointer
+
+    &:hover
+      color $grayLight
 
   form
     margin 0

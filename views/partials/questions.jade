@@ -141,7 +141,7 @@
                             span.pull-right.green
                               | {{q.createdTime | date:"HH:mm, MMM d, yyyy"}}
                         .row-plain
-                          {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
+                          {{trim(q.text, 150)}}
           .discussion(ng-show='discussed')
             span
               .widget-header
@@ -157,8 +157,8 @@
                             span.pull-right.green
                               | {{discussed.createdTime | date:"HH:mm, MMM d, yyyy"}}
                         .row-plain
-                            strong Question:
-                            | {{discussed.text}}
+                            span.tag Question
+                            |  {{discussed.text}}
                     .row-plain(data-collapsing='parent')
                       .row-plain.question-row
                         .row-plain.grey-background.text-center(collapsable) {{discussed.comments.length}} comments
@@ -184,7 +184,7 @@
                               .span6
                                 input.btn.btn-primary.pull-right.post-btn(type='submit', value='Post')
 
-            .row-fluid(ng-repeat='(id, answer) in discussed.answers')
+            .row-fluid(ng-repeat='answer in discussed.answers')
               .row-fluid
                 .answer-box
                   .row-fluid.row-padding
@@ -196,10 +196,11 @@
                           span.pull-right.green
                             | {{answer.timestamp | date:"HH:mm, MMM d, yyyy"}}
                       .row-fluid
-                        strong Answer: {{answer.votesFor.length}}
-                        i.icon-thumbs-up.icon-margin(ng-show='!click', ng-ckick='click=true')
-                        i.icon-thumbs-down.icon-margin(ng-show='click', ng-ckick='click=false')
-                        .black(ng-bind-html-unsafe='answer.text')
+                        span.votes {{answer.votesFor.length}}
+                          i.icon-arrow-up.icon-margin(ng-show='!click', ng-click='click=true')
+                          i.icon-arrow-down.icon-margin(ng-show='click', ng-click='click=false')
+                        span.tag Answer
+                        span(ng-bind-html-unsafe='answer.text')
                   .row-fluid(data-collapsing='parent')
                     .row-fluid.question-row
                       .row-fluid.grey-background.text-center(collapsable) {{answer.comments.length}} comments

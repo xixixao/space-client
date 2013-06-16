@@ -700,9 +700,9 @@ var PDFHistory = {
     this.historyUnlocked = false;
 
     if (state.target.dest) {
-      PDFView.navigateTo(state.target.dest);
+      //PDFView.navigateTo(state.target.dest);
     } else {
-      PDFView.setHash(state.target.hash);
+      //PDFView.setHash(state.target.hash);
     }
     this.currentUid = state.uid;
     if (state.uid > this.uid) {

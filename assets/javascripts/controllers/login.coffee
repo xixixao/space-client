@@ -18,7 +18,7 @@ define ['c/controllers', 'services/user'], (controllers) ->
           if $rootScope.beforeRedirect?
             $location.path $rootScope.beforeRedirect
           else
-            $location.path '/'
+            $location.path '/home'
         .error (error) ->
           $scope.error = error
   ]

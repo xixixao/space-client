@@ -89,7 +89,7 @@ requirejs [
       abstract: true
       templateUrl: 'partials/split'
     .state 'user.split.home',
-      url: "^/"
+      url: "^/home"
       views:
         'sideMenu':
           templateUrl: 'partials/homeSideMenu'
