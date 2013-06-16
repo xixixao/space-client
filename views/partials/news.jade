@@ -8,7 +8,7 @@
           .event-tag.red-background New question
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
-            em  by {{event.target.owner.name}}
+            span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
             {{event.timestamp | date}}
           .text-preview
@@ -18,7 +18,7 @@
           .event-tag.orange-background New comment
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
-            em  by {{event.target.owner.name}}
+            span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
            {{event.timestamp | date}}
           .text-preview
@@ -28,7 +28,7 @@
           .event-tag.orange-background New comment
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
-            em  by {{event.target.owner.name}}
+            span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
             {{event.timestamp | date}}
           .text-preview
@@ -38,7 +38,7 @@
           .event-tag.green-background New answer
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
-            em  by {{event.target.owner.name}}
+            span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
            {{event.timestamp | date}}
           .text-preview
@@ -48,7 +48,7 @@
           .event-tag.purple-background New topic
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.file.name}}
-            em  by {{event.target.owner.name}}
+            span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
            {{event.timestamp | date}}
 
@@ -56,6 +56,6 @@
           .event-tag.blue-background New files
           .event-label in {{event.target.topic.name}} -
             |  {{event.target.name}}
-            em  by {{event.target.owner.name}}
+            span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
             {{event.date | date}}

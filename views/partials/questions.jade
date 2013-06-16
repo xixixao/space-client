@@ -128,25 +128,25 @@
             .dot(ng-repeat='(id, question) in file.questions', position='question', ng-class='{selected: selection}', ng-click='setDiscussed(question)')
         .discussion-board-component.tb.discussion-board-margin
           .no-question-selected(ng-show='!discussed')
-            span
-              .widget-header 
-                h4.text-center Questions
             .row-plain
-                .row-plain
-                  .question-box(ng-repeat='(id, q) in questions')
-                    .row-plain.row-padding(ng-click='setQuestion(q._id)')
-                        .row-plain
-                            span.blue
-                              | {{q.owner.name}}
-                            span.pull-right.green
-                              | {{q.createdTime | date:"HH:mm, MMM d, yyyy"}}
-                        .row-plain
-                          {{trim(q.text, 150)}}
+              .questions-header
+                h4.text-center Questions
+            .row-plain.text-center.top-offset(ng-show='questions.length == 0')
+              | No questions yet. Ask one!
+            .row-plain
+              .question-box(ng-repeat='q in questions')
+                .row-plain.row-padding(ng-click='setQuestion(q._id)')
+                  .row-plain
+                    span.blue
+                      | {{q.owner.name}}
+                    span.pull-right.green
+                      | {{q.createdTime | date:"HH:mm, MMM d, yyyy"}}
+                  .row-plain
+                    {{trim(q.text, 150)}}
           .discussion(ng-show='discussed')
             span
-              .widget-header
-                .row-fluid
-                  h4.text-center(ng-click='discussed = null') Back to questions
+              .row-plain.link-back
+                h4.text-center(ng-click='discussed = null') Back to questions
             .row-plain
                 .row-plain
                   .question-box
