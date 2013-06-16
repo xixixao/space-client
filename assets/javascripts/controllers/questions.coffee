@@ -187,14 +187,15 @@ define [
       $scope.file = $resource '/api/topics/:topicId/files/:fileId',
         topicId: topicId
         fileId: fileId
+      .get ->
+        if questionId
+          #$scope.discussed = service.get "topics/#{topicId}/files/#{fileId}/questions/#{questionId}"
+          $scope.discussed = $scope.file.questions[questionId]
+          if $scope.discussed?
+            $scope.showDiscussion = true
+        
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
-
-      if questionId
-        #$scope.discussed = service.get "topics/#{topicId}/files/#{fileId}/questions/#{questionId}"
-        $scope.discussed = $scope.file?.questions[questionId]
-        if $scope.discussed?
-          $scope.showDiscussion = true
 
       file = $stateParams.file
 

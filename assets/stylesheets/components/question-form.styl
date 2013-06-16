@@ -72,22 +72,47 @@
   padding 0px
   margin 0px
 
-.comment-box
-  background-color white
-  border-bottom 1px solid #E3E3E3
-  border-left 1px solid white
-  border-right white
-  padding-top 0px
-  padding-bottom 7px
-  margin 5px
 
-.question-box
-  background-color white
-  border 1px solid #E3E3E3
-  box-shadow 0 1px 1px rgba(0, 0, 0, 0.05) inset
-  padding-bottom 0px
-  margin 4px
-  border-radius 4px
+.discussion-board-component
+
+  .question-box, .answer-box
+    border 1px solid #E3E3E3
+    box-shadow 0 1px 1px rgba(0, 0, 0, 0.05) inset
+    margin $paddingHorSmall $paddingHorSmall 0
+    border-radius 4px
+
+  .comment-box
+    border-bottom 1px solid #E3E3E3
+    border-left 1px solid white
+    border-right white
+    padding-top 0px
+    padding-bottom 7px
+    margin 5px $paddingHorSmall
+
+  form
+    margin 0
+
+  textarea.answer-input
+    margin $paddingHorSmall
+
+  .answer-box
+    margin-left 2 * $paddingHorSmall
+
+  .textarea-wrapper
+    padding $paddingHorSmall
+
+  .answer-textarea-wrapper
+      padding $paddingHorSmall
+      padding-left 2 * $paddingHorSmall
+
+  textarea.answer-input,
+  textarea.comment-answer-input,
+  textarea.comment-question-input
+    -webkit-box-sizing border-box
+    -moz-box-sizing border-box
+    box-sizing border-box
+    margin 0
+    width 100%
 
 .question-box-margin
   padding 0px 10px
