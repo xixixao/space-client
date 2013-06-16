@@ -3,18 +3,16 @@ $newsTagWidth = 100px
 .news-component
   padding 0 (2 * $paddingHorSmall)
 
-  td
-
+  .event
     padding $paddingHorSmall
+    border-top 1px solid $tableBorder
 
-  td > a
+  .event > a
     color inherit
 
     &:hover
-      text-decoration none
 
-  tr
-    cursor pointer
+      text-decoration none
 
   .event-tag
     display inline-block
@@ -24,6 +22,9 @@ $newsTagWidth = 100px
   .event-label
     display inline-block
     margin-left 4px
+
+  .timestamp
+    padding $paddingSmall
 
   .text-preview
     display block

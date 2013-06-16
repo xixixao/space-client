@@ -5,13 +5,14 @@
         .row-plain.row-hover(ng-repeat='(id, topic) in user.topics | orderBy:"name"')
           a(href='#/topics/{{topic._id}}') {{topic.name}}
     tab(data-tab-id='questions', caption='Questions')
-      table.table.table-hover
-        tbody
-          tr(ng-repeat='question in user.events | filter:{url: "questions"}')
-            td
-              .row-fluid
-                 {{question.topic}}: {{question.file}}
-              .row-fluid
-                strong
-                  em {{question.timestamp | date}} by {{question.owner.name}}:
-              a.grey(href='#/preview/{{question.url}}') {{(question.text.substr(0, 75) + (question.text.length > 75 ? "..." : ""))}}
+      .list-menu
+        .row-plain.row-hover(ng-repeat='question in questions | orderBy:"modifiedTime"')
+          a(href='#/{{constructURL(question.url)}}')
+            .row-plain
+              | {{question.topic.name}}
+            .row-plain
+              | - {{question.file.name}}
+            .row-plain
+              | {{trim(question.text, 75)}}
+            .row-plain
+              em {{question.modifiedTime | date}} by {{question.owner.name}}

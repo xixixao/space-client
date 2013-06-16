@@ -28,6 +28,7 @@ requirejs [
   'c/topic'
   'c/topicBound'
   'c/news'
+  'c/sideMenu'
   'c/feed'
   'c/preview'
   'c/questions'
@@ -93,6 +94,7 @@ requirejs [
       views:
         'sideMenu':
           templateUrl: 'partials/homeSideMenu'
+          controller: 'sideMenu'
         'mainView':
           templateUrl: 'partials/news'
           controller: 'news'

@@ -34,9 +34,18 @@
       border-right 1px solid $darkerBorderColor
 
   .list-menu
-    .row-plain:first-child
-      border-top none
-    .row-plain
+    .row-hover
+      &:first-child
+        border-top none
+      &:hover
+        background-color #fcfcfc
       border-top 1px solid $tableBorder
+    a
       padding $paddingHorSmall
       padding-left 2 * $paddingHorSmall
+      color $black
+      display block
+      &:hover
+        text-decoration none
+        border-left 5px solid $navbarBackgroundHighlight
+        padding-left (2 * $paddingHorSmall) - 5px

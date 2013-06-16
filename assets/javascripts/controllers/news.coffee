@@ -1,10 +1,10 @@
-define ['c/controllers'], (controllers) ->
+define ['c/controllers', 'services/events'], (controllers) ->
   'use strict'
 
   controllers.controller 'news', [
-    '$scope', '$stateParams', '$resource'
-    ($scope, $stateParams, $resource) ->
-      $scope.events = $resource('/api/events').query()
+    '$scope', '$stateParams', '$resource', 'events'
+    ($scope, $stateParams, $resource, service) ->
+      $scope.events = service.events()
       $scope.trim = (text, limit) ->
         text.substr(0, limit) + if text.length > limit then "..." else ""
       $scope.constructUrl = (url) ->

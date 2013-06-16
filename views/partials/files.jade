@@ -9,7 +9,9 @@
               .span12.pretty-file
                 input(type='file', name='form[files][]', data-type='{{type}}', multiple='multiple')
                 a.btn.btn-warning(ng-click='triggerFileBrowse(type)') Browse for files
-                a.btn.btn-info(ng-show='filesToUpload.length > 0', ng-click='uploadFiles(type)') Upload all
+                a.btn.btn-danger.left-offset(ng-show='filesToUpload.length > 0', ng-click='filesToUpload = []')
+                  i.icon-remove.icon-white
+                a.btn.btn-info.pull-right(ng-show='filesToUpload.length > 0', ng-click='uploadFiles(type)') Upload all
           .row-fluid.row-top-offset
             table.table.table-hover
               tbody
@@ -24,10 +26,6 @@
                       span.add-on Display name
                       input(type='text', ng-model='file.displayName')
                   td {{file.name}}
-                  // td
-                      .pull-right
-                        a.btn.btn-danger(ng-click='cancelUpload($index)')
-                          i.icon-remove.icon-white
         .row-fluid
           .row-fluid.bottom-offset(ng-show='canWrite')
             a.btn.btn-danger.pull-right(ng-click='confirm(["Do you really want to delete type ", type, " and all ", numOfType(topic.files, type), " associated files?"])')
