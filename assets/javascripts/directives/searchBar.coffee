@@ -23,9 +23,8 @@ define [
         return (name for {name} in fusedFiles.search(query))
 
       $scope.selected = ->
-        #$location.path "/topics/222/files/#{mappedFiles[$scope.query]}"
         $scope.$apply ->
-          $location.path "/topics/222/files/intro"
+          $location.path "/topics/222/files/#{mappedFiles[$scope.query]._id}"
     ]
 
     controller: controller

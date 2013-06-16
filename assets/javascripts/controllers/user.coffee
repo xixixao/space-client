@@ -8,12 +8,15 @@ define ['c/controllers', 'services/user'], (controllers) ->
     'user'
     ($scope, $location, $rootScope, service) ->
 
-      service.loadUser()
-      .success ->
+      if !service.user()?
+        service.loadUser()
+        .success ->
+          $scope.user = service.user()
+        .error ->
+          $rootScope.beforeRedirect = $location.path()
+          $location.path '/login'
+      else
         $scope.user = service.user()
-      .error ->
-        $rootScope.beforeRedirect = $location.path()
-        $location.path '/login'
 
       $scope.trim = (text, limit) ->
         text.substr(0, limit) + if text.length > limit then "..." else ""
