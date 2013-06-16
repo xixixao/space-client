@@ -20,7 +20,7 @@
             |  {{event.target.file.name}}
             span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
-           {{event.timestamp | date}}
+            {{event.timestamp | date}}
           .text-preview
             | {{trim(event.target.text, 280)}}
 
@@ -40,7 +40,7 @@
             |  {{event.target.file.name}}
             span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
-           {{event.timestamp | date}}
+            {{event.timestamp | date}}
           .text-preview
             | {{trim(event.target.text, 280)}}
 
@@ -50,7 +50,7 @@
             |  {{event.target.file.name}}
             span.blue  by {{event.target.owner.name}}
           .timestamp.pull-right
-           {{event.timestamp | date}}
+            {{event.timestamp | date}}
 
         .row-fluid(ng-show='event.model == "File"')
           .event-tag.blue-background New files

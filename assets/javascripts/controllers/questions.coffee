@@ -185,9 +185,8 @@ define [
       $scope.file = $resource '/api/topics/:topicId/files/:fileId',
         topicId: topicId
         fileId: fileId
-      .get()
-
-      PDFViewer.loadFile 'files/lecture9.pdf', prefix
+      .get ->
+        PDFViewer.loadFile "/api/#{$scope.file.path}", prefix
 
       file = $stateParams.file
 

@@ -59,10 +59,8 @@ define [
           mimeType: 'multipart/form-data'
         .then (names) -> $scope.$apply ->
           names = JSON.parse names
-          console.log names
           for {tmpName}, i in names
             metadata = $scope.filesToUpload[i]
-            console.log "saving", metadata, metadata.date
             newFile = new File
               _id: metadata.displayName.toLowerCase().replace().replace(/\W+/g, '-')
               name: metadata.displayName
@@ -71,11 +69,10 @@ define [
               date: metadata.date
               tmpName: tmpName
               type: type
-            console.log "saving2"
             newFile.$save()
-            console.log newFile.date, typeof newFile.date
             $scope.topic.files.push newFile
-            console.log "HERE"
+          $scope.filesToUpload = [] # hide ui
+
 
         #xhr = new XMLHttpRequest()
         #xhr.addEventListener("load", (e) ->
@@ -102,11 +99,6 @@ define [
 
       #$scope.cancelUpload = (index) ->
       #  $scope.filesToUpload.splice index, 1
-
-      $scope.filter = (files, type) ->
-        filtered = {}
-        filtered[id] = file for id, file of files when file.type is type
-        return filtered
 
       $scope.numOfType = (files, type) ->
         sum = 0

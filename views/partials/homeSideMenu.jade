@@ -6,7 +6,7 @@
           a(href='#/topics/{{topic._id}}') {{topic.name}}
     tab(data-tab-id='questions', caption='Questions')
       .list-menu
-        .row-plain.row-hover(ng-repeat='question in questions | orderBy:"modifiedTime"')
+        .row-plain.row-hover(ng-repeat='question in questions | orderBy:"-modifiedTime"')
           a(href='#/{{constructURL(question.url)}}')
             .row-plain
               | {{question.topic.name}}
@@ -15,4 +15,4 @@
             .row-plain.text-preview
               | {{trim(question.text, 75)}}
             .row-plain
-              em {{question.modifiedTime | date}} by {{question.owner.name}}
+              em {{question.modifiedTime | date:"HH:mm, MMM d, yyyy"}} by {{question.owner.name}}

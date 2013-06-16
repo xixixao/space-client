@@ -34,7 +34,7 @@
         .row-fluid
           table.table.table-hover
             tbody
-              tr(ng-repeat='(fileId, file) in filter(topic.files, type) | orderBy:"date"')
+              tr(ng-repeat='file in topic.files | filter:{type: type} | orderBy:"name"')
                 td
                   span(ng-show='!canWrite') {{$index + 1}}
                   span(ng-show='canWrite && !editFile && !removeFile') {{file.date | date}}
@@ -46,7 +46,7 @@
                   settings(ng-show='removeFile')
                     span.text-error {{file.date | date}}
                 td
-                  a(ng-show='!editFile && !removeFile', href='topics/{{topic.id}}/{{file.url}}') {{file.name}}
+                  a(ng-show='!editFile && !removeFile', href='#/topics/{{topic._id}}/files/{{file._id}}') {{file.name}}
                   settings(ng-show='removeFile')
                     span.text-error {{file.name}}
                   span(ng-show='editFile')
