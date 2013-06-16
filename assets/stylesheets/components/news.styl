@@ -1,52 +1,68 @@
-.event-tag
-  display inline-block
-  min-width 100px
+$newsTagWidth = 100px
 
-.red-background
-  color white
-  background-color #D15B47 
-  padding 2px 5px 2px 5px
-  margin 2px 5px 2px 2px
+.news-component
+  padding 0 (2 * $paddingHorSmall)
 
-.green-background
-  color white
-  background-color #87B87F  
-  padding 2px 8px 2px 8px
-  margin 2px 5px 2px 2px
+  td
 
-.orange-background
-  color white
-  background-color #F89406   
-  padding 2px 2px 2px 4px
-  margin 2px 5px 2px 2px
+    padding $paddingHorSmall
 
-.blue-background
-  color white
-  background-color #6FB3E0   
-  padding 2px 6px 2px 6px
-  margin 2px 5px 2px 2px
+  td > a
+    color inherit
 
-.purple-background
-  color white
-  background-color #892E65   
-  padding 2px 6px 2px 6px
-  margin 2px 5px 2px 2px
+    &:hover
+      text-decoration none
 
-.grey
-  color grey
+  tr
+    cursor pointer
 
-.dark-grey
-  color #808080
+  .event-tag
+    display inline-block
+    min-width $newsTagWidth
+    padding $paddingSmall
 
-.well
-  background-color white
-  border 1px solid #E3E3E3
-  box-shadow 0 1px 1px rgba(0, 0, 0, 0.05) inset
-  margin-bottom 20px
-  padding 19px
+  .event-label
+    display inline-block
+    margin-left 4px
 
-.box-margin
-  margin 20px
+  .text-preview
+    display block
+    color $grayLight
+    padding-left $paddingHorSmall
+    padding-top 4px
 
-.news-margin
-  margin 10px 25px 10px 25px
+  .red-background
+    color white
+    background-color #D15B47
+
+  .green-background
+    color white
+    background-color #87B87F
+
+  .orange-background
+    color white
+    background-color #F89406
+
+  .blue-background
+    color white
+    background-color #6FB3E0
+
+  .purple-background
+    color white
+    background-color #892E65
+
+  .dark-grey
+    color #808080
+
+  .well
+    background-color white
+    border 1px solid #E3E3E3
+    box-shadow 0 1px 1px rgba(0, 0, 0, 0.05) inset
+    margin-bottom 20px
+    padding 19px
+
+  .box-margin
+    margin 20px
+
+  .news-margin
+    margin 10px 25px 10px 25px
