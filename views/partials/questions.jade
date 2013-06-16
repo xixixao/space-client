@@ -125,7 +125,7 @@
                 textarea(rows='2', ng-model='question.text')
                 a.btn(ng-click='askQuestion()') Ask
           .centerer
-            .dot(ng-repeat='(id, question) in file.questions', position='question', ng-click='setDiscussed(question)')
+            .dot(ng-repeat='(id, question) in file.questions', position='question', ng-class='{selected: selection}', ng-click='setDiscussed(question)')
         .discussion-board-component.tb.discussion-board-margin
           .no-question-selected(ng-show='!discussed')
             span
@@ -137,9 +137,9 @@
                     .row-plain.row-padding(ng-click='setQuestion(q._id)')
                         .row-plain
                             span.blue
-                              | NAME: {{}}
+                              | {{q.owner.name}}
                             span.pull-right.green
-                              | DATE: {{q.timestamp | date}}
+                              | {{q.createdTime | date:"HH:mm, MMM d, yyyy"}}
                         .row-plain
                           {{(q.text.substr(0, 150) + (q.text.length > 150 ? "..." : ""))}} 
           .discussion(ng-show='discussed')
@@ -153,11 +153,11 @@
                     .row-plain.row-padding
                         .row-plain
                             span.blue
-                              | NAME: {{}}
+                              | {{discussed.owner.name}}
                             span.pull-right.green
-                              | DATE: {{q.timestamp | date}}
+                              | {{discussed.createdTime | date:"HH:mm, MMM d, yyyy"}}
                         .row-plain
-                            strong Question: 
+                            strong Question:
                             | {{discussed.text}}
                     .row-plain(data-collapsing='parent')
                       .row-plain.question-row
@@ -166,23 +166,23 @@
                         .row-plain(ng-repeat='(id, comment) in discussed.comments')
                           .comment-box
                             span.blue
-                              | NAME: {{comment.owner.name}}
+                              | {{comment.owner.name}}
                             span.pull-right.green
-                              | {{comment.timestamp | date}}
+                              | {{comment.timestamp | date:"HH:mm, MMM d, yyyy"}}
                             .row-plain
                               | {{comment.text}}
                         form(ng-submit='submitCommentQ(commentQText, anonymous); commentQText = ""')
                           .textarea-wrapper
                             textarea.comment-question-input(rows='2', ng-model='commentQText', placeholder="Comment on this question", ng-click='addComment=true')
-                          .row-fluid(ng-show='addComment')
-                            .span6
-                              .span1
-                              .span11 
-                                label.checkbox
-                                  input(type='checkbox', ng-model='anonymous', value='')
-                                  | Anonymous
-                            .span6
-                              input.btn.btn-primary.pull-right.post-btn(type='submit', value='Post')
+                            .row-fluid.top-offset(ng-show='addComment')
+                              .span6
+                                .span1
+                                .span11 
+                                  label.checkbox
+                                    input(type='checkbox', ng-model='anonymous', value='')
+                                    | Anonymous
+                              .span6
+                                input.btn.btn-primary.pull-right.post-btn(type='submit', value='Post')
 
             .row-fluid(ng-repeat='(id, answer) in discussed.answers')
               .row-fluid
@@ -192,14 +192,14 @@
                       .row-fluid
                         .span12
                           span.blue
-                            | NAME: {{comment.owner.name}}
+                            | {{answer.owner.name}}
                           span.pull-right.green
-                            | {{comment.timestamp | date}}
-                      .row-fluid  
-                        strong Answer: 20
+                            | {{answer.timestamp | date:"HH:mm, MMM d, yyyy"}}
+                      .row-fluid
+                        strong Answer: {{answer.votesFor.length}}
                         i.icon-thumbs-up.icon-margin(ng-show='!click', ng-ckick='click=true')
                         i.icon-thumbs-down.icon-margin(ng-show='click', ng-ckick='click=false')
-                        a.black(ng-bind-html-unsafe='answer.text')
+                        .black(ng-bind-html-unsafe='answer.text')
                   .row-fluid(data-collapsing='parent')
                     .row-fluid.question-row
                       .row-fluid.grey-background.text-center(collapsable) {{answer.comments.length}} comments
@@ -208,34 +208,35 @@
                         .row-fluid
                           .comment-box
                             span.blue
-                              | NAME: {{comment.owner.name}}
+                              | {{comment.owner.name}}
                             span.pull-right.green
-                              | {{comment.timestamp | date}}
-                            .row-fluid    
+                              | {{comment.timestamp | date:"HH:mm, MMM d, yyyy"}}
+                            .row-fluid
                               | {{comment.text}}
                       .row-fluid
                         form(ng-submit='submitCommentA(answer, commentAText, anonymous); commentAText = ""')
-                          textarea.comment-answer-input.pull-right(rows='2', ng-model='commentAText', placeholder="Comment on this answer", ng-click='addCommentQ=true')
-                          .row-fluid(ng-show='addCommentQ')
-                            .span6
-                              .span1
-                              .span11 
-                                label.checkbox
-                                  input(type='checkbox', ng-model='anonymous', value='')
-                                  | Anonymous
-                            .span6
-                                input.btn.btn-primary.pull-right.post-btn(type='submit', value='Post')
+                          .textarea-wrapper
+                            textarea.comment-answer-input(rows='2', ng-model='commentAText', placeholder="Comment on this answer", ng-click='addCommentQ=true')
+                            .row-fluid.top-offset(ng-show='addCommentQ')
+                              .span6
+                                .span1
+                                .span11 
+                                  label.checkbox
+                                    input(type='checkbox', ng-model='anonymous', value='')
+                                    | Anonymous
+                              .span6
+                                  input.btn.btn-primary.pull-right.post-btn(type='submit', value='Post')
             .row-plain
               form(ng-submit='submitAnswer(answerText, anonymous); answerText = ""')
                 .row-plain.answer-textarea-wrapper
                   textarea.answer-input(rows='3', ng-model='answerText', placeholder="Answer the question", ng-click='addCommentA=true')
-                .row-plain(ng-show='addCommentA')
-                  .span6
-                    label.checkbox.checkbox-margin
-                      input(type='checkbox', ng-model='anonymous', value='')
-                      | Anonymous
-                  .span6
-                    input.btn.btn-primary.pull-right.second-post-btn(type='submit', value='Post')
+                  .row-plain.top-offset(ng-show='addCommentA')
+                    .span6
+                      label.checkbox.checkbox-margin
+                        input(type='checkbox', ng-model='anonymous', value='')
+                        | Anonymous
+                    .span6
+                      input.btn.btn-primary.pull-right.second-post-btn(type='submit', value='Post')
 
 
 

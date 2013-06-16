@@ -19,10 +19,20 @@
 .dot
   display block
   $border-radius(15px)
-  width 30px
-  height 30px
-  background rgba(0, 0, 0, 0.2)
+  width 28px
+  height 28px
+  padding 1px
+  background rgba(210, 210, 210, .7)
   cursor pointer
+
+  &.selected
+    border 1px solid $linkColor
+    padding 0
+
+.discussion
+  .dot
+    $box-shadow(0 0 $baseBorderRadius $baseBorderRadius rgba(0,0,0,.5))
+    
 
 .blue
   color #0088CC
@@ -77,7 +87,7 @@
 
   .question-box, .answer-box
     border 1px solid #E3E3E3
-    box-shadow 0 1px 1px rgba(0, 0, 0, 0.05) inset
+    box-shadow 0 1px 1px rgba(0, 0, 0, 0.05)
     margin $paddingHorSmall $paddingHorSmall 0
     border-radius 4px
 

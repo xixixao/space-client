@@ -34,8 +34,11 @@ define [
       $scope.questions = Question.query()
 
       $scope.setQuestion = (id) ->
-        console.log "calling setQuestion"
-        $scope.discussed = Question.get questionId: id
+        question = Question.get questionId: id, ->
+          $scope.discussed = question
+
+      if questionId?
+        $scope.setQuestion Number(questionId)
 
       $scope.askQuestion = ->
         newQuestion = new Question
@@ -96,12 +99,11 @@ define [
 
       $scope.questionPosition = (question) ->
         $scope.rendered.then ->
-          console.log "questionPosition", question
           pdfPosition = Rectangle.fromJSON(question.position)
           [pdfPosition.translate(converter().toScreen), pdfPosition]
 
       $scope.setDiscussed = (question) ->
-        console.log "discussing", question
+        console.log "setDiscussed", question
         $scope.discussed = question
 
       preventStateTransition = ->
@@ -125,13 +127,11 @@ define [
           $scope.hideQuestionInput = true
 
       $scope.$watch 'discussed', (value, oldValue) ->
-        console.log "discussed", value
         if !value?
           $scope.selection = null
         if value != oldValue
           preventStateTransition()
           if value?
-            console.log "id", value._id
             $location.path "topics/#{topicId}/files/#{fileId}/questions/#{value._id}"
             displayQuestion value
             $scope.showDiscussion = true
@@ -187,19 +187,12 @@ define [
       $scope.file = $resource '/api/topics/:topicId/files/:fileId',
         topicId: topicId
         fileId: fileId
-      .get ->
-        if questionId
-          #$scope.discussed = service.get "topics/#{topicId}/files/#{fileId}/questions/#{questionId}"
-          $scope.discussed = $scope.file.questions[questionId]
-          if $scope.discussed?
-            $scope.showDiscussion = true
-        
+      .get()
 
       PDFViewer.loadFile 'files/lecture9.pdf', prefix
 
       file = $stateParams.file
 
-      console.log Q
       deferred = Q.defer()
       window.addEventListener 'pagesRendered', (event) ->
         deferred.resolve()
@@ -207,12 +200,6 @@ define [
 
       if $scope.discussed?
         displayQuestion $scope.discussed
-
-      #$http.get('/files/#{file}')
-      #.success (data) ->
-      #  console.log data
-      #.error (error) ->
-      #  $scope.error = error
 
   ]
 

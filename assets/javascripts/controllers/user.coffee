@@ -31,4 +31,11 @@ define ['c/controllers', 'services/user'], (controllers) ->
               string += "/comments/#{url.commentId}"
         console.log string
         return string
+
+      $scope.lookup = (id, array) ->
+        for el in array
+          console.log el, typeof  el._id, typeof id,el._id is id
+          if el._id is id
+            return el 
+
   ]
