@@ -1,7 +1,7 @@
 define ['filters/filters', 'services/user'], (filters) ->
   'use strict'
 
-  filters.filter 'fromUrl', ['user', (service) -> (events) ->
+  filters.filter 'fromUrl', ['$resource', 'user', ($resource, service) -> (events) ->
 
       user = service.user()
 
@@ -58,7 +58,9 @@ define ['filters/filters', 'services/user'], (filters) ->
 
       transform = (event) ->
         #element = fetch event.url, event
-        element = $resource("/api/#{event.url}").get()
+        #element = $resource("/api/#{event.url}").get()
+        console.log "fromUrl called"
+        element = event
         element.url = event.url
         return element
 

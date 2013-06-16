@@ -161,7 +161,7 @@
                             | {{discussed.text}}
                     .row-plain(data-collapsing='parent')
                       .row-plain.question-row
-                        .row-plain.grey-background.text-center(collapsable) comments {{discussed.comments.length}}
+                        .row-plain.grey-background.text-center(collapsable) {{discussed.comments.length}} comments
                       .row-plain.question-comments.collapse(data-collapsing='collapse')
                         .row-plain(ng-repeat='(id, comment) in discussed.comments')
                           .comment-box
@@ -202,7 +202,7 @@
                         a.black(ng-bind-html-unsafe='answer.text')
                   .row-fluid(data-collapsing='parent')
                     .row-fluid.question-row
-                      .row-fluid.grey-background.text-center(collapsable) view {{answer.comments.length}} Comment
+                      .row-fluid.grey-background.text-center(collapsable) {{answer.comments.length}} comments
                     .row-fluid.collapse(data-collapsing='collapse')
                       .row-fluid(ng-repeat='(id, comment) in answer.comments')
                         .row-fluid

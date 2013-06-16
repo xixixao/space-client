@@ -2,7 +2,7 @@ define ['c/controllers'], (controllers) ->
   'use strict'
 
   controllers.controller 'news', [
-    '$scope', '$stateParams'
-    ($scope, $stateParams) ->
-      console.log "wtffff", $stateParams
+    '$scope', '$stateParams', '$resource'
+    ($scope, $stateParams, $resource) ->
+      $scope.events = $resource('/api/events').query()
   ]
