@@ -1,0 +1,42 @@
+.tabbed-side-menu-component
+  background-color $lightBackgroundColor
+  border-bottom 1px solid $darkerBorderColor
+
+  .tabbable
+    padding-top $paddingHorSmall
+
+    .nav-tabs
+      border-color $darkerBorderColor
+      margin-bottom 0
+      padding-left $paddingHorSmall
+
+      li
+        a
+          padding-top 8px
+          padding-bottom 10px
+
+      & > .active > a,
+      & > .active > a:hover
+        border-top-color $darkerBorderColor
+        border-left-color $darkerBorderColor
+        border-right-color $darkerBorderColor
+        background-color $lightBackgroundColor
+    .nav
+      & > li > a:hover
+        background-color $white
+        border-bottom-color $darkerBorderColor
+      & > .active > a:hover
+        border-bottom-color $lightBackgroundColor
+
+
+    .tab-content
+      padding-top $paddingHorSmall
+      border-right 1px solid $darkerBorderColor
+
+  .list-menu
+    .row-plain:first-child
+      border-top none
+    .row-plain
+      border-top 1px solid $tableBorder
+      padding $paddingHorSmall
+      padding-left 2 * $paddingHorSmall

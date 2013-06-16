@@ -1,18 +1,16 @@
-.topic-side-menue-component.tb
-  .span12
-    tabs
-      tab(data-tab-id='questions', caption='Questions')
-        table.table.table-hover
-          tr(ng-repeat='question in user.events')
-            td
-              .row-fluid
-                strong.red {{question.topic}}: {{question.file}}
-              .row-fluid
-                strong
-                  em {{question.timestamp | date}} by {{question.owner.name}}:
-              a.grey(href='#/preview/{{question.url}}') {{(question.text.substr(0, 75) + (question.text.length > 75 ? "..." : ""))}}
-      tab(data-tab-id='feed', caption='Topics')
-        table.table.table-hover
-          tr(ng-repeat='(id, topic) in user.topics | orderBy:"name"')
-            td
-              a.black(href='#/topics/{{id}}') {{topic.name}}
+.tabbed-side-menu-component.tb
+  tabs
+    tab(data-tab-id='questions', caption='Questions')
+      table.table.table-hover
+        tr(ng-repeat='question in user.events | {url: "question"}')
+          td
+            .row-fluid
+              strong.red {{question.topic}}: {{question.file}}
+            .row-fluid
+              strong
+                em {{question.timestamp | date}} by {{question.owner.name}}:
+            a.grey(href='#/preview/{{question.url}}') {{(question.text.substr(0, 75) + (question.text.length > 75 ? "..." : ""))}}
+    tab(data-tab-id='topics', caption='Topics')
+      .list-menu
+        .row-plain.row-hover(ng-repeat='(id, topic) in user.topics | orderBy:"name"')
+          a(href='#/topics/{{topic._id}}') {{topic.name}}
