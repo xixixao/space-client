@@ -186,6 +186,7 @@ define [
         topicId: topicId
         fileId: fileId
       .get ->
+        console.log $scope.file
         PDFViewer.loadFile "/api/#{$scope.file.path}", prefix
 
       file = $stateParams.file

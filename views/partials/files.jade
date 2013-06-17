@@ -74,7 +74,7 @@
               td
                 div(ng-repeat='file in date.files')
                   span {{file.name}}
-      tab(data-tab-id='newtype', caption='<New type>')
+      tab(data-tab-id='newtype', caption='<New type>', ng-if='canWrite')
         p
           | Material should be sorted into categories, such as
           strong  Notes

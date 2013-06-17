@@ -22,11 +22,13 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
     login = (values) ->
       $http.post(URL, values)
       .success (data) ->
+        console.log data
         preprocessUserData data
 
     loadUser = ->
       $http.get('/api/data')
       .success (data) ->
+        console.log data
         preprocessUserData data
 
     user = ->

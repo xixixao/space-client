@@ -30,6 +30,7 @@ define [
           file.date = new Date file.date
         topic.allFiles = groupFiles topic
         $scope.canWrite = topic.permission == 'w'
+        console.log $scope.canWrite
 
       $scope.filesToUpload = []
 
