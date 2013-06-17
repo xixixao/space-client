@@ -17,18 +17,17 @@ define ['ang', 'services/services', 'vendor/angularResource'], (angular, service
           file
           file.id = fileId # id == _id
           file.date = new Date file.date
+          file.topic = topic
           userData.flattened.files.push file
 
     login = (values) ->
       $http.post(URL, values)
       .success (data) ->
-        console.log data
         preprocessUserData data
 
     loadUser = ->
       $http.get('/api/data')
       .success (data) ->
-        console.log data
         preprocessUserData data
 
     user = ->

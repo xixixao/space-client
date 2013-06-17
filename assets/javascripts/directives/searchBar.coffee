@@ -24,7 +24,8 @@ define [
 
       $scope.selected = ->
         $scope.$apply ->
-          $location.path "/topics/222/files/#{mappedFiles[$scope.query]._id}"
+          file = mappedFiles[$scope.query]
+          $location.path "/topics/#{file.topic._id}/files/#{file._id}"
     ]
 
     controller: controller
