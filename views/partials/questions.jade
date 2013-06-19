@@ -125,7 +125,7 @@
                 textarea(rows='2', ng-model='question.text')
                 a.btn(ng-click='askQuestion()') Ask
           .centerer
-            .dot(ng-repeat='(id, question) in file.questions', position='question', ng-class='{selected: selection}', ng-click='setDiscussed(question)')
+            .dot(ng-repeat='(id, question) in questions', position='question', ng-class='{selected: selection}', ng-click='setDiscussed(question)')
         .discussion-board-component.tb.discussion-board-margin
           .no-question-selected(ng-show='!discussed')
             .row-plain

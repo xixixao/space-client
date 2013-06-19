@@ -110,6 +110,7 @@ define [
           allowStateTransition()
 
       makeVisible = (pdfPosition) ->
+        console.log "SCROLL UP" + (pdfPosition.br.y + 20)
         PDFViewer.View.pages[pdfPosition.br.page - 1].scrollIntoView [
           null
           name: 'XYZ'
